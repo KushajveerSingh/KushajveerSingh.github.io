@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Weight Standardization: A new normalization in town</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=a3899cd1b5" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://kushajveersingh.github.io//post_003/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://kushajveersingh.github.io//post_003/amp/" />
+    
+    <meta property="og:site_name" content="Kushajveer Singh" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Weight Standardization: A new normalization in town" />
+    <meta property="og:description" content="Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data." />
+    <meta property="og:url" content="https://kushajveersingh.github.io//post_003/" />
+    <meta property="og:image" content="https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png" />
+    <meta property="article:published_time" content="2019-04-11T12:01:00.000Z" />
+    <meta property="article:modified_time" content="2020-05-13T12:06:26.000Z" />
+    <meta property="article:tag" content="paper-implementation" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Weight Standardization: A new normalization in town" />
+    <meta name="twitter:description" content="Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data." />
+    <meta name="twitter:url" content="https://kushajveersingh.github.io//post_003/" />
+    <meta name="twitter:image" content="https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Kushajveer Singh" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="paper-implementation" />
+    <meta name="twitter:site" content="@Kkushaj" />
+    <meta name="twitter:creator" content="@Kkushaj" />
+    <meta property="og:image:width" content="1749" />
+    <meta property="og:image:height" content="894" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Kushajveer Singh",
+        "url": "https://kushajveersingh.github.io//",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://kushajveersingh.github.io//favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Kushajveer Singh",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://kushajveersingh.github.io//author/kushaj/",
+        "sameAs": [
+            "https://twitter.com/Kkushaj"
+        ]
+    },
+    "headline": "Weight Standardization: A new normalization in town",
+    "url": "https://kushajveersingh.github.io//post_003/",
+    "datePublished": "2019-04-11T12:01:00.000Z",
+    "dateModified": "2020-05-13T12:06:26.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png",
+        "width": 1749,
+        "height": 894
+    },
+    "keywords": "paper-implementation",
+    "description": "Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kushajveersingh.github.io//"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.15" />
+    <link rel="alternate" type="application/rss+xml" title="Kushajveer Singh" href="https://kushajveersingh.github.io//rss/" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123402359-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-123402359-2');
+</script>
+
+</head>
+<body class="post-template tag-paper-implementation">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://kushajveersingh.github.io/">Kushajveer Singh</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://kushajveersingh.github.io//">Home</a></li>
+    <li class="nav-tags" role="menuitem"><a href="https://kushajveersingh.github.io//tags/">Tags</a></li>
+    <li class="nav-about" role="menuitem"><a href="https://kushajveersingh.github.io//about/">About</a></li>
+    <li class="nav-notebooks" role="menuitem"><a href="https://kushajveersingh.github.io//notebooks/">Notebooks</a></li>
+    <li class="nav-projects" role="menuitem"><a href="https://kushajveersingh.github.io//projects/">Projects</a></li>
+    <li class="nav-contact" role="menuitem"><a href="https://kushajveersingh.github.io//contact/">Contact</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">Weight Standardization: A new normalization in town</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <ul class="nav" role="menu">
+    <li class="nav-twitter" role="menuitem"><a href="https://twitter.com/Kkushaj">twitter</a></li>
+    <li class="nav-github" role="menuitem"><a href="https://github.com/KushajveerSingh">github</a></li>
+    <li class="nav-linkedin" role="menuitem"><a href="https://www.linkedin.com/in/kushaj/">linkedin</a></li>
+</ul>
+
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-paper-implementation ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="/tag/paper-implementation/">paper-implementation</a>
+                </section>
+
+                <h1 class="post-full-title">Weight Standardization: A new normalization in town</h1>
+
+                <p class="post-full-custom-excerpt">Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data.</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                                    <div class="author-info">
+                                        <div class="bio">
+                                            <h2>Kushajveer Singh</h2>
+                                            <p>Deep Learning Researcher with interest in Computer Vision and Natural Language Processing</p>
+                                            <p><a href="/author/kushaj/">More posts</a> by Kushajveer Singh.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="/author/kushaj/" class="author-avatar">
+                                    <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                                </a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="/author/kushaj/">Kushajveer Singh</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2019-04-11">11 Apr 2019</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 5 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+            
+            
+            
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p>Recently a new normalization technique is proposed not for the activations but for the weights themselves in the paper <a href="https://arxiv.org/abs/1903.10520">Weight Standardization</a>.</p><p>In short, to get new state of the art results, they combined Batch Normalization and Weight Standardization. So in this post, I discuss what is weight standardization and how it helps in the training process, and I will show my own experiments on CIFAR-10 which you can also follow along.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig1-2.png" class="kg-image"><figcaption>Fig1; Taken from the <a href="https://arxiv.org/abs/1903.10520">paper</a>. Shows a clear comparison of all normalizations.</figcaption></figure><p>The notebook for the post is at this <a href="https://nbviewer.jupyter.org/github/KushajveerSingh/Deep-Learning-Notebooks/blob/master/Blog%20Posts%20Notebooks/Weight%20Standardization%3A%20A%20New%20Normalization%20in%20town/Weight%20Standardization%20on%20CIFAR-10.ipynb">link</a>. For my experiments, I will use cyclic learning. As the paper discusses training with constant learning rates, I would use cyclic LR as presented by Leslie N. Smith in his <a href="https://arxiv.org/abs/1803.09820">report</a>. I am working on making a post on state-of-the methods for training neural networks in 2019 where I would summarize all these methods along with the ones that I learned from fastai courses.</p><p>To make things cleaner I would use this notation:-</p><ol><li>BN -&gt; Batch Normalization</li><li>GN -&gt; Group Normalization</li><li>WS -&gt; Weight Standardization</li></ol><h3 id="what-is-wrong-with-bn-and-gn"><strong>What is wrong with BN and GN?</strong></h3><p>Ideally, nothing is wrong with them. But to get the most benefit out of BN we have to use a large batch size. And when we have smaller batch sizes we prefer to use GN. (By smaller I mean 1–2 images/GPU).</p><p>Why is this so?</p><p>To understand it we have to see how BN works. To make things simple, consider we have only one-channel on which we want to apply BN and we have 2 images as our batch size.</p><p>Now we would compute the mean and variance using the 2 images and then normalize the one-channel of the 2 images. So we used 2 images to compute mean and variance. This is the problem.</p><p>By increasing batch size, we are able to sample the value of mean and variance from a larger population, which means that the computed mean and variance would be closer to their real values.</p><p>GN was introduced for cases of small batch sizes but it was not able to meet the results that BN was able to achieve using larger batch sizes.</p><h3 id="how-these-normalizations-actually-help"><strong>How these normalizations actually help?</strong></h3><p>It is one of the leading areas of research. But it was recently shown in the paper <a href="https://arxiv.org/abs/1901.09321">Fixup Initialization: Residual Learning without Normalization</a> the reason for the performance gains using BN.</p><p>In short, it helps make the loss surface smooth.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig2-1.jpeg" class="kg-image"><figcaption>Fig2: Remember when we train NNs we are in millions of dimensions. Here I show an example of loss varying with only one parameter.</figcaption></figure><p>When we make the loss surface smooth we can take longer steps, which means we can increase our learning rate. So using Batch Norm actually stabilizes our training and also makes it faster.</p><h3 id="weight-standardization"><strong>Weight Standardization</strong></h3><p>Unlike BN and GN that we apply on activations i.e the output of the conv layer, we apply Weight Standardization on the weights of the conv layer itself. So we are applying WS to the kernels that our conv layer uses.</p><p>How does this help?</p><p>For the theoretical justification see the <a href="https://arxiv.org/pdf/1903.10520.pdf">original paper</a> where they prove WS reduces the Lipschitz constants of the loss and the gradients.</p><p>But there are easier ways to understand it.</p><p>First, consider the optimizer we use. The role of the optimizer is to optimize the weights of our model, but when we apply normalization layers like BN, we do not normalize our weights, but instead, we normalize the activations which are optimizer does not even care about.</p><p>By using WS we are essentially normalizing the gradients during the backpropagation.</p><p>The authors of the paper tested WS on various computer vision tasks and they were able to achieve better results with the combination of WS+GN and WS+BN. The tasks that they tested on included:</p><ol><li>Image Classification</li><li>Object Detection</li><li>Video Recognition</li><li>Semantic Segmentation</li><li>Point Cloud Classification</li></ol><h3 id="enough-talk-let-s-go-to-experiments"><strong>Enough talk, let’s go to experiments</strong></h3><p>The code is available in the <a href="https://github.com/KushajveerSingh/pytorch_projects/tree/master/Blog%20Posts%20Notebooks">notebook</a>.</p><h4 id="how-to-implement-ws"><strong>How to implement WS?</strong></h4><!--kg-card-begin: html--><script src="https://gist.github.com/KushajveerSingh/90d1b3f48524065ac9a964cd4c04b3a7.js"></script><!--kg-card-end: html--><h4 id="first-let-s-try-out-at-batch-size-64"><strong>First, let’s try out at batch size = 64</strong></h4><p>This will provide a baseline of what we should expect. For this, I create 2 resnet18 models:</p><ol><li>resnet18 -&gt; It uses the nn.Conv2d layers</li><li>resnet18_ws -&gt; It uses above Conv2d layer which uses weight standardization</li></ol><p>I change the head of resnet model, as CIFAR images are already 32 in size and I don’t want to half their size initially. The code can be found in the notebook. And for the CIFAR dataset, I use the official train and valid split.</p><p>First I plot the value of loss v/s learning rate. For the theory behind it, refer to <a href="https://course.fast.ai/">fastai courses</a> or Leslie N. Smith’s <a href="https://arxiv.org/abs/1803.09820">papers</a>.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig3-1.png" class="kg-image"></figure><p>For those not familiar with loss v/s learning_rate graph. We are looking for the maximum value of lr at which the loss value starts increasing.</p><p>In this case the max_lr is around 0.0005. So let’s try to train model for some steps and see. In case you wonder in the second case the graph is flatter around 1e-2, it is because the scale of the two graphs is different.</p><p>So now let’s train our model and see what happens. I am using the <em><em>fit_one_cycle</em></em> to train my model.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig4-1.png" class="kg-image"></figure><p>There is not much difference between the two as valid loss almost remains the same.</p><p>So not, let’s test it out for small batches. So now I take a batch size of 2 and train the models in a similar manner.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig5.png" class="kg-image"></figure><p>One thing that I should add here, is the loss diverged quickly when I used only BN, after around 40 iterations, while in the case of WS+BN the loss did not diverge.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig6.png" class="kg-image"></figure><p>There is not much difference in the loss values, but the time to run each cycle increased very much.</p><p>Also, I run some more experiments where I used a batch size of 256. Although, I could use a larger learning rate but the time taken to complete the cycle increased. The results are shown below.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig7.png" class="kg-image"></figure><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig8.png" class="kg-image"></figure><p>Again, in the graph we see we can use a larger learning rate.</p><p>From the above experiments, I think I would prefer not to use Weight Standardization when I am using cyclic learning. For large batch sizes, it even gave worse performance and for smaller batch sizes, it gave almost similar results, but using weight standardization we added a lot of time to our computation, which we could have used to train our model with Batch Norm alone.</p><p>For constant learning rate, I think weight standardization still makes sense as there we do not change our learning rate in the training process, so we must benefit from the smoother loss function. But in the case of cyclic learning, it does not offer us a benefit.</p>
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>More in</span> <a href="/tag/paper-implementation/">paper-implementation</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="/post_007/">Study of Mish activation function in transfer learning with code and discussion</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2019-11-11">11 Nov 2019</time> –
+                                        3 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="/post_005/">All you need for Photorealistic Style Transfer in PyTorch</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2019-05-06">6 May 2019</time> –
+                                        6 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="/post_004/">SPADE: State of the art in Image-to-Image Translation by Nvidia</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2019-04-17">17 Apr 2019</time> –
+                                        7 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="/tag/paper-implementation/">See all 3 posts
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-paper-implementation ">
+
+    <a class="post-card-image-link" href="/post_004/">
+        <img class="post-card-image"
+            srcset="/content/images/size/w300/2020/05/fig1-2.jpeg 300w,
+                    /content/images/size/w600/2020/05/fig1-2.jpeg 600w,
+                    /content/images/size/w1000/2020/05/fig1-2.jpeg 1000w,
+                    /content/images/size/w2000/2020/05/fig1-2.jpeg 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="/content/images/size/w600/2020/05/fig1-2.jpeg"
+            alt="SPADE: State of the art in Image-to-Image Translation by Nvidia"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/post_004/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">paper-implementation</div>
+                <h2 class="post-card-title">SPADE: State of the art in Image-to-Image Translation by Nvidia</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>New state of the art method for generating colored images from segmentation masks. It uses a GAN to learn to produce photorealistic images.</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        Kushajveer Singh
+                    </div>
+            
+                    <a href="/author/kushaj/" class="static-avatar">
+                        <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/kushaj/">Kushajveer Singh</a></span>
+                <span class="post-card-byline-date"><time datetime="2019-04-17">17 Apr 2019</time> <span class="bull">&bull;</span> 7 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-tutorial ">
+
+    <a class="post-card-image-link" href="/post_002/">
+        <img class="post-card-image"
+            srcset="/content/images/size/w300/2020/05/fig2.png 300w,
+                    /content/images/size/w600/2020/05/fig2.png 600w,
+                    /content/images/size/w1000/2020/05/fig2.png 1000w,
+                    /content/images/size/w2000/2020/05/fig2.png 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="/content/images/size/w600/2020/05/fig2.png"
+            alt="Training AlexNet with tips and checks on how to train CNNs: Practical CNNs in PyTorch"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/post_002/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">tutorial</div>
+                <h2 class="post-card-title">Training AlexNet with tips and checks on how to train CNNs: Practical CNNs in PyTorch</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>Overfitting small batch, manually checking loss. Creating data pipelines. I give a complete and detailed introduction on how to create AlexNet model in PyTorch with code.</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        Kushajveer Singh
+                    </div>
+            
+                    <a href="/author/kushaj/" class="static-avatar">
+                        <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/kushaj/">Kushajveer Singh</a></span>
+                <span class="post-card-byline-date"><time datetime="2019-02-18">18 Feb 2019</time> <span class="bull">&bull;</span> 5 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://kushajveersingh.github.io/">Kushajveer Singh</a> &copy; 2020</section>
+                <nav class="site-footer-nav">
+                    <a href="https://kushajveersingh.github.io/">Latest Posts</a>
+                    
+                    <a href="https://twitter.com/Kkushaj" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="/assets/built/casper.js?v=a3899cd1b5"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    
+
+</body>
+</html>

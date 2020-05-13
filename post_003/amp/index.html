@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+
+    <title>Weight Standardization: A new normalization in town</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://kushajveersingh.github.io//post_003/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="Kushajveer Singh" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Weight Standardization: A new normalization in town" />
+    <meta property="og:description" content="Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data." />
+    <meta property="og:url" content="https://kushajveersingh.github.io//post_003/" />
+    <meta property="og:image" content="https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png" />
+    <meta property="article:published_time" content="2019-04-11T12:01:00.000Z" />
+    <meta property="article:modified_time" content="2020-05-13T12:06:26.000Z" />
+    <meta property="article:tag" content="paper-implementation" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Weight Standardization: A new normalization in town" />
+    <meta name="twitter:description" content="Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data." />
+    <meta name="twitter:url" content="https://kushajveersingh.github.io//post_003/" />
+    <meta name="twitter:image" content="https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Kushajveer Singh" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="paper-implementation" />
+    <meta name="twitter:site" content="@Kkushaj" />
+    <meta name="twitter:creator" content="@Kkushaj" />
+    <meta property="og:image:width" content="1749" />
+    <meta property="og:image:height" content="894" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Kushajveer Singh",
+        "url": "https://kushajveersingh.github.io//",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://kushajveersingh.github.io//favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Kushajveer Singh",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://kushajveersingh.github.io//author/kushaj/",
+        "sameAs": [
+            "https://twitter.com/Kkushaj"
+        ]
+    },
+    "headline": "Weight Standardization: A new normalization in town",
+    "url": "https://kushajveersingh.github.io//post_003/",
+    "datePublished": "2019-04-11T12:01:00.000Z",
+    "dateModified": "2020-05-13T12:06:26.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png",
+        "width": 1749,
+        "height": 894
+    },
+    "keywords": "paper-implementation",
+    "description": "Weight Standardization to accelerate deep network training. WS is targeted at the micro-batch training setting where each GPU has 1-2 batches of data.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kushajveersingh.github.io//"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.15" />
+    <link rel="alternate" type="application/rss+xml" title="Kushajveer Singh" href="https://kushajveersingh.github.io//rss/" />
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,600,400" />
+    <style amp-custom>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{margin:0.67em 0;font-size:2em}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{position:relative;vertical-align:baseline;font-size:75%;line-height:0}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}amp-img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;color:inherit;font:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;border:1px solid #c0c0c0}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}html{max-height:100%;height:100%;font-size:62.5%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{max-height:100%;height:100%;color:#3a4145;background:#f4f8fb;letter-spacing:0.01rem;font-family:"Merriweather",serif;font-size:1.8rem;line-height:1.75em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"kern" 1;-moz-font-feature-settings:"kern" 1;-o-font-feature-settings:"kern" 1}::-moz-selection{background:#d6edff}::selection{background:#d6edff}h1,h2,h3,h4,h5,h6{margin:0 0 0.3em 0;color:#2e2e2e;font-family:"Open Sans",sans-serif;line-height:1.15em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"dlig" 1,"liga" 1,"lnum" 1,"kern" 1;-moz-font-feature-settings:"dlig" 1,"liga" 1,"lnum" 1,"kern" 1;-o-font-feature-settings:"dlig" 1,"liga" 1,"lnum" 1,"kern" 1}h1{text-indent:-2px;letter-spacing:-1px;font-size:2.6rem}h2{letter-spacing:0;font-size:2.4rem}h3{letter-spacing:-0.6px;font-size:2.1rem}h4{font-size:1.9rem}h5{font-size:1.8rem}h6{font-size:1.8rem}a{color:#4a4a4a}a:hover{color:#111}p,ul,ol,dl{margin:0 0 2.5rem 0;font-size:1.5rem;text-rendering:geometricPrecision;-webkit-font-feature-settings:"liga" 1,"onum" 1,"kern" 1;-moz-font-feature-settings:"liga" 1,"onum" 1,"kern" 1;-o-font-feature-settings:"liga" 1,"onum" 1,"kern" 1}ol,ul{padding-left:2em}ol ol,ul ul,ul ol,ol ul{margin:0 0 0.4em 0;padding-left:2em}dl dt{float:left;clear:left;overflow:hidden;margin-bottom:1em;width:180px;text-align:right;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-bottom:1em;margin-left:200px}li{margin:0.4em 0}li li{margin:0}hr{display:block;margin:1.75em 0;padding:0;height:1px;border:0;border-top:#efefef 1px solid}blockquote{box-sizing:border-box;margin:1.75em 0 1.75em 0;padding:0 0 0 1.75em;border-left:#4a4a4a 0.4em solid;-moz-box-sizing:border-box}blockquote p{margin:0.8em 0;font-style:italic}blockquote small{display:inline-block;margin:0.8em 0 0.8em 1.5em;color:#ccc;font-size:0.9em}blockquote small:before{content:"\2014 \00A0"}blockquote cite{font-weight:700}blockquote cite a{font-weight:normal}mark{background-color:#fdffb6}code,tt{padding:1px 3px;border:#e3edf3 1px solid;background:#f7fafb;border-radius:2px;white-space:pre-wrap;font-family:Inconsolata,monospace,sans-serif;font-size:0.85em;font-feature-settings:"liga" 0;-webkit-font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" 0}pre{overflow:auto;box-sizing:border-box;margin:0 0 1.75em 0;padding:10px;width:100%;border:#e3edf3 1px solid;background:#f7fafb;border-radius:3px;white-space:pre;font-family:Inconsolata,monospace,sans-serif;font-size:0.9em;-moz-box-sizing:border-box}pre code,pre tt{padding:0;border:none;background:transparent;white-space:pre-wrap;font-size:inherit}kbd{display:inline-block;margin-bottom:0.4em;padding:1px 8px;border:#ccc 1px solid;background:#f4f4f4;border-radius:4px;box-shadow:0 1px 0 rgba(0,0,0,0.2),0 1px 0 0 #fff inset;color:#666;text-shadow:#fff 0 1px 0;font-size:0.9em;font-weight:700}table{box-sizing:border-box;margin:1.75em 0;max-width:100%;width:100%;background-color:transparent;-moz-box-sizing:border-box}table th,table td{padding:8px;border-top:#efefef 1px solid;vertical-align:top;text-align:left;line-height:20px}table th{color:#000}table caption + thead tr:first-child th,table caption + thead tr:first-child td,table colgroup + thead tr:first-child th,table colgroup + thead tr:first-child td,table thead:first-child tr:first-child th,table thead:first-child tr:first-child td{border-top:0}table tbody + tbody{border-top:#efefef 2px solid}table table table{background-color:#fff}table tbody > tr:nth-child(odd) > td,table tbody > tr:nth-child(odd) > th{background-color:#f6f6f6}table.plain tbody > tr:nth-child(odd) > td,table.plain tbody > tr:nth-child(odd) > th{background:transparent}iframe,amp-iframe,.fluid-width-video-wrapper{display:block;margin:1.75em 0}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper amp-iframe{margin:0}textarea,select,input{margin:0 0 5px 0;padding:6px 9px;width:260px;outline:0;border:#e7eef2 1px solid;background:#fff;border-radius:4px;box-shadow:none;font-family:"Open Sans",sans-serif;font-size:1.6rem;line-height:1.4em;font-weight:100;-webkit-appearance:none}textarea{min-width:250px;min-height:80px;max-width:340px;width:100%;height:auto}input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="week"]:focus,input[type="time"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,textarea:focus{outline:none;outline-width:0;border:#bbc7cc 1px solid;background:#fff}select{width:270px;height:30px;line-height:30px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.main-header{position:relative;display:table;overflow:hidden;box-sizing:border-box;width:100%;height:50px;background:#5ba4e5 no-repeat center center;background-size:cover;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.content{background:#fff;padding-top:15px}.blog-title,.content{margin:auto;max-width:600px}.blog-title a{display:block;padding-right:16px;padding-left:16px;height:50px;color:#fff;text-decoration:none;font-family:"Open Sans",sans-serif;font-size:16px;line-height:50px;font-weight:600}.post{position:relative;margin-top:0;margin-right:16px;margin-left:16px;padding-bottom:0;max-width:100%;border-bottom:#ebf2f6 1px solid;word-wrap:break-word;font-size:0.95em;line-height:1.65em}.post-header{margin-bottom:1rem}.post-title{margin-bottom:0}.post-title a{text-decoration:none}.post-meta{display:block;margin:3px 0 0 0;color:#9eabb3;font-family:"Open Sans",sans-serif;font-size:1.3rem;line-height:2.2rem}.post-meta a{color:#9eabb3;text-decoration:none}.post-meta a:hover{text-decoration:underline}.post-meta .author{margin:0;font-size:1.3rem;line-height:1.3em}.post-date{display:inline-block;text-transform:uppercase;white-space:nowrap;font-size:1.2rem;line-height:1.2em}.post-image{margin:0;padding-top:3rem;padding-bottom:30px;border-top:1px #E8E8E8 solid}.post-image img{object-fit:cover;}.post-content amp-img,.post-content amp-anim{position:relative;left:50%;display:block;padding:0;min-width:0;max-width:112%;width:calc(100% + 32px);height:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%)}.footnotes{font-size:1.3rem;line-height:1.6em;font-style:italic}.footnotes li{margin:0.6rem 0}.footnotes p{margin:0}.footnotes p a:last-child{text-decoration:none}.site-footer{position:relative;margin:0 auto 20px auto;padding:1rem 15px;max-width:600px;color:rgba(0,0,0,0.5);font-family:"Open Sans",sans-serif;font-size:1.1rem;line-height:1.75em}.site-footer a{color:rgba(0,0,0,0.5);text-decoration:none;font-weight:bold}.site-footer a:hover{border-bottom:#bbc7cc 1px solid}.poweredby{display:block;float:right;width:45%;text-align:right}.copyright{display:block;float:left;width:45%}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="main-header">
+        <nav class="blog-title">
+            <a href="https://kushajveersingh.github.io/">Kushajveer Singh</a>
+        </nav>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">Weight Standardization: A new normalization in town</h1>
+                <section class="post-meta">
+                    <p class="author">by <a href="/author/kushaj/">Kushajveer Singh</a></p>
+                    <time class="post-date" datetime="2019-04-11">2019-04-11</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="https://kushajveersingh.github.io//content/images/2020/05/fig1-1.png" width="600" height="400" layout="responsive"></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <p>Recently a new normalization technique is proposed not for the activations but for the weights themselves in the paper <a href="https://arxiv.org/abs/1903.10520">Weight Standardization</a>.</p><p>In short, to get new state of the art results, they combined Batch Normalization and Weight Standardization. So in this post, I discuss what is weight standardization and how it helps in the training process, and I will show my own experiments on CIFAR-10 which you can also follow along.</p><figure class="kg-card kg-image-card kg-card-hascaption"><figcaption>Fig1; Taken from the <a href="https://arxiv.org/abs/1903.10520">paper</a>. Shows a clear comparison of all normalizations.</figcaption></figure><p>The notebook for the post is at this <a href="https://nbviewer.jupyter.org/github/KushajveerSingh/Deep-Learning-Notebooks/blob/master/Blog%20Posts%20Notebooks/Weight%20Standardization%3A%20A%20New%20Normalization%20in%20town/Weight%20Standardization%20on%20CIFAR-10.ipynb">link</a>. For my experiments, I will use cyclic learning. As the paper discusses training with constant learning rates, I would use cyclic LR as presented by Leslie N. Smith in his <a href="https://arxiv.org/abs/1803.09820">report</a>. I am working on making a post on state-of-the methods for training neural networks in 2019 where I would summarize all these methods along with the ones that I learned from fastai courses.</p><p>To make things cleaner I would use this notation:-</p><ol><li>BN -&gt; Batch Normalization</li><li>GN -&gt; Group Normalization</li><li>WS -&gt; Weight Standardization</li></ol><h3 id="what-is-wrong-with-bn-and-gn"><strong>What is wrong with BN and GN?</strong></h3><p>Ideally, nothing is wrong with them. But to get the most benefit out of BN we have to use a large batch size. And when we have smaller batch sizes we prefer to use GN. (By smaller I mean 1–2 images/GPU).</p><p>Why is this so?</p><p>To understand it we have to see how BN works. To make things simple, consider we have only one-channel on which we want to apply BN and we have 2 images as our batch size.</p><p>Now we would compute the mean and variance using the 2 images and then normalize the one-channel of the 2 images. So we used 2 images to compute mean and variance. This is the problem.</p><p>By increasing batch size, we are able to sample the value of mean and variance from a larger population, which means that the computed mean and variance would be closer to their real values.</p><p>GN was introduced for cases of small batch sizes but it was not able to meet the results that BN was able to achieve using larger batch sizes.</p><h3 id="how-these-normalizations-actually-help"><strong>How these normalizations actually help?</strong></h3><p>It is one of the leading areas of research. But it was recently shown in the paper <a href="https://arxiv.org/abs/1901.09321">Fixup Initialization: Residual Learning without Normalization</a> the reason for the performance gains using BN.</p><p>In short, it helps make the loss surface smooth.</p><figure class="kg-card kg-image-card kg-card-hascaption"><figcaption>Fig2: Remember when we train NNs we are in millions of dimensions. Here I show an example of loss varying with only one parameter.</figcaption></figure><p>When we make the loss surface smooth we can take longer steps, which means we can increase our learning rate. So using Batch Norm actually stabilizes our training and also makes it faster.</p><h3 id="weight-standardization"><strong>Weight Standardization</strong></h3><p>Unlike BN and GN that we apply on activations i.e the output of the conv layer, we apply Weight Standardization on the weights of the conv layer itself. So we are applying WS to the kernels that our conv layer uses.</p><p>How does this help?</p><p>For the theoretical justification see the <a href="https://arxiv.org/pdf/1903.10520.pdf">original paper</a> where they prove WS reduces the Lipschitz constants of the loss and the gradients.</p><p>But there are easier ways to understand it.</p><p>First, consider the optimizer we use. The role of the optimizer is to optimize the weights of our model, but when we apply normalization layers like BN, we do not normalize our weights, but instead, we normalize the activations which are optimizer does not even care about.</p><p>By using WS we are essentially normalizing the gradients during the backpropagation.</p><p>The authors of the paper tested WS on various computer vision tasks and they were able to achieve better results with the combination of WS+GN and WS+BN. The tasks that they tested on included:</p><ol><li>Image Classification</li><li>Object Detection</li><li>Video Recognition</li><li>Semantic Segmentation</li><li>Point Cloud Classification</li></ol><h3 id="enough-talk-let-s-go-to-experiments"><strong>Enough talk, let’s go to experiments</strong></h3><p>The code is available in the <a href="https://github.com/KushajveerSingh/pytorch_projects/tree/master/Blog%20Posts%20Notebooks">notebook</a>.</p><h4 id="how-to-implement-ws"><strong>How to implement WS?</strong></h4><h4 id="first-let-s-try-out-at-batch-size-64"><strong>First, let’s try out at batch size = 64</strong></h4><p>This will provide a baseline of what we should expect. For this, I create 2 resnet18 models:</p><ol><li>resnet18 -&gt; It uses the nn.Conv2d layers</li><li>resnet18_ws -&gt; It uses above Conv2d layer which uses weight standardization</li></ol><p>I change the head of resnet model, as CIFAR images are already 32 in size and I don’t want to half their size initially. The code can be found in the notebook. And for the CIFAR dataset, I use the official train and valid split.</p><p>First I plot the value of loss v/s learning rate. For the theory behind it, refer to <a href="https://course.fast.ai/">fastai courses</a> or Leslie N. Smith’s <a href="https://arxiv.org/abs/1803.09820">papers</a>.</p><figure class="kg-card kg-image-card"></figure><p>For those not familiar with loss v/s learning_rate graph. We are looking for the maximum value of lr at which the loss value starts increasing.</p><p>In this case the max_lr is around 0.0005. So let’s try to train model for some steps and see. In case you wonder in the second case the graph is flatter around 1e-2, it is because the scale of the two graphs is different.</p><p>So now let’s train our model and see what happens. I am using the <em><em>fit_one_cycle</em></em> to train my model.</p><figure class="kg-card kg-image-card"></figure><p>There is not much difference between the two as valid loss almost remains the same.</p><p>So not, let’s test it out for small batches. So now I take a batch size of 2 and train the models in a similar manner.</p><figure class="kg-card kg-image-card"></figure><p>One thing that I should add here, is the loss diverged quickly when I used only BN, after around 40 iterations, while in the case of WS+BN the loss did not diverge.</p><figure class="kg-card kg-image-card"></figure><p>There is not much difference in the loss values, but the time to run each cycle increased very much.</p><p>Also, I run some more experiments where I used a batch size of 256. Although, I could use a larger learning rate but the time taken to complete the cycle increased. The results are shown below.</p><figure class="kg-card kg-image-card"></figure><figure class="kg-card kg-image-card"></figure><p>Again, in the graph we see we can use a larger learning rate.</p><p>From the above experiments, I think I would prefer not to use Weight Standardization when I am using cyclic learning. For large batch sizes, it even gave worse performance and for smaller batch sizes, it gave almost similar results, but using weight standardization we added a lot of time to our computation, which we could have used to train our model with Batch Norm alone.</p><p>For constant learning rate, I think weight standardization still makes sense as there we do not change our learning rate in the training process, so we must benefit from the smoother loss function. But in the case of cyclic learning, it does not offer us a benefit.</p>
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="https://kushajveersingh.github.io/">Kushajveer Singh</a> &copy; 2020</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+</body>
+</html>

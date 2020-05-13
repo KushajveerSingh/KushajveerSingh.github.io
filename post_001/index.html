@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Theoretical Machine Learning: Probabilistic and Statistical Math</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=a3899cd1b5" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://kushajveersingh.github.io//post_001/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://kushajveersingh.github.io//post_001/amp/" />
+    
+    <meta property="og:site_name" content="Kushajveer Singh" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Theoretical Machine Learning: Probabilistic and Statistical Math" />
+    <meta property="og:description" content="A quick summary of probabilistic math used in machine learning." />
+    <meta property="og:url" content="https://kushajveersingh.github.io//post_001/" />
+    <meta property="og:image" content="https://kushajveersingh.github.io//content/images/2020/05/fig1.jpeg" />
+    <meta property="article:published_time" content="2018-09-14T10:44:00.000Z" />
+    <meta property="article:modified_time" content="2020-05-13T11:01:28.000Z" />
+    <meta property="article:tag" content="machine learning" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Theoretical Machine Learning: Probabilistic and Statistical Math" />
+    <meta name="twitter:description" content="A quick summary of probabilistic math used in machine learning." />
+    <meta name="twitter:url" content="https://kushajveersingh.github.io//post_001/" />
+    <meta name="twitter:image" content="https://kushajveersingh.github.io//content/images/2020/05/fig1.jpeg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Kushajveer Singh" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="machine learning" />
+    <meta name="twitter:site" content="@Kkushaj" />
+    <meta name="twitter:creator" content="@Kkushaj" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="420" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Kushajveer Singh",
+        "url": "https://kushajveersingh.github.io//",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://kushajveersingh.github.io//favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Kushajveer Singh",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://kushajveersingh.github.io//author/kushaj/",
+        "sameAs": [
+            "https://twitter.com/Kkushaj"
+        ]
+    },
+    "headline": "Theoretical Machine Learning: Probabilistic and Statistical Math",
+    "url": "https://kushajveersingh.github.io//post_001/",
+    "datePublished": "2018-09-14T10:44:00.000Z",
+    "dateModified": "2020-05-13T11:01:28.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://kushajveersingh.github.io//content/images/2020/05/fig1.jpeg",
+        "width": 600,
+        "height": 420
+    },
+    "keywords": "machine learning",
+    "description": "A quick summary of probabilistic math used in machine learning.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kushajveersingh.github.io//"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.15" />
+    <link rel="alternate" type="application/rss+xml" title="Kushajveer Singh" href="https://kushajveersingh.github.io//rss/" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123402359-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-123402359-2');
+</script>
+
+</head>
+<body class="post-template tag-machine-learning">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://kushajveersingh.github.io/">Kushajveer Singh</a>
+            <div class="site-nav-content">
+                    <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://kushajveersingh.github.io//">Home</a></li>
+    <li class="nav-tags" role="menuitem"><a href="https://kushajveersingh.github.io//tags/">Tags</a></li>
+    <li class="nav-about" role="menuitem"><a href="https://kushajveersingh.github.io//about/">About</a></li>
+    <li class="nav-notebooks" role="menuitem"><a href="https://kushajveersingh.github.io//notebooks/">Notebooks</a></li>
+    <li class="nav-projects" role="menuitem"><a href="https://kushajveersingh.github.io//projects/">Projects</a></li>
+    <li class="nav-contact" role="menuitem"><a href="https://kushajveersingh.github.io//contact/">Contact</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">Theoretical Machine Learning: Probabilistic and Statistical Math</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <ul class="nav" role="menu">
+    <li class="nav-twitter" role="menuitem"><a href="https://twitter.com/Kkushaj">twitter</a></li>
+    <li class="nav-github" role="menuitem"><a href="https://github.com/KushajveerSingh">github</a></li>
+    <li class="nav-linkedin" role="menuitem"><a href="https://www.linkedin.com/in/kushaj/">linkedin</a></li>
+</ul>
+
+
+    </div>
+</nav>
+    </div>
+</div></header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-machine-learning ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="/tag/machine-learning/">machine learning</a>
+                </section>
+
+                <h1 class="post-full-title">Theoretical Machine Learning: Probabilistic and Statistical Math</h1>
+
+                <p class="post-full-custom-excerpt">A quick summary of probabilistic math used in machine learning.</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                                    <div class="author-info">
+                                        <div class="bio">
+                                            <h2>Kushajveer Singh</h2>
+                                            <p>Deep Learning Researcher with interest in Computer Vision and Natural Language Processing</p>
+                                            <p><a href="/author/kushaj/">More posts</a> by Kushajveer Singh.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="/author/kushaj/" class="author-avatar">
+                                    <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                                </a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="/author/kushaj/">Kushajveer Singh</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2018-09-14">14 Sep 2018</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 6 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+            
+            
+            
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p>I will start with a quick overview of probability and then dive into details of Gaussian distribution. In the end I have provided links to some of the theoretical books that I have read for the concepts mentioned here.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig1-1.jpeg" class="kg-image"></figure><p>Why is there a need for uncertainty (probability) in machine learning (ML)? Generally when we are given a dataset and we fit a model on that data what we want to do actually is capture the property of dataset i.e. the underlying regularity in order to generalize well to unseen data. But the individual observations are corrupted by random noise (due to sources of variability that are themselves unobserved). This is what is termed as <strong><strong>Polynomial Curve Fitting</strong></strong> in ML.</p><p>In curve fitting, we usually use the <strong><strong>maximum likelihood approach</strong></strong> which suffers from the problem of overfitting (as we can easily increase the complexity of the model to learn the train data).</p><p>To overcome overfitting we use <strong><strong>regularization techniques</strong></strong> by penalizing the parameters<strong><strong>.</strong></strong> We do not penalize the bias term as it’s inclusion in the regularization causes the result to depend on the choice of origin.</p><h3 id="quick-probability-overview"><strong>Quick Probability Overview</strong></h3><p>Consider an event of tossing a coin. We use events to describe various possible states in our universe. So we represent the possible states as <em><em>X = Event that heads come</em></em> and <em><em>Y = Event that tails come.</em></em> Now <em><em>P(X) = Probability of that particular event happening.</em></em></p><p>Takeaway, represent your probabilities as events of something happening.</p><p>In the case of ML, we have P(X = x) which means, the probability of observing the value x for our variable X. Note I changed from using the word event to a variable.</p><p>Next, we discuss <strong><strong>expectation.</strong></strong> One of the most important concepts. When we say E[X] (expectation of X ) we are saying, that we want to find the average of the variable X. As a quick test, what is the E[x] where x is some observed value?</p><p>Suppose x takes the value 10, the average of that value is the number itself.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig2.jpeg" class="kg-image"><figcaption>Copyright: <a href="https://imgflip.com/i/1xopea">https://imgflip.com/i/1xopea</a></figcaption></figure><p>Next, we discuss <strong><strong>variance</strong></strong>. Probably the most frustrating part of an ML project when we have to deal with large variances. Suppose we found the expectation (which we generally call mean) of some values. Then variance tells us the average distance of each value from the mean i.e. it tells how spread a distribution is.</p><p>Another important concept in probabilistic maths is the concept of <strong><strong>prior</strong></strong>, <strong><strong>posterior</strong></strong> and <strong><strong>likelihood</strong></strong>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig3.jpeg" class="kg-image"><figcaption>Copyright: <a href="https://www.countbayesie.com/blog/2015/2/18/hans-solo-and-bayesian-priors">https://www.countbayesie.com/blog/2015/2/18/hans-solo-and-bayesian-priors</a></figcaption></figure><p>Prior = P(X). It is probability available before we observing an event</p><p>Posterior = P(X|Y). It is the probability of X after event Y has happened.</p><p>Likelihood = P(Y|X). It tells how probable it is for the event Y to happen given the current settings i.e. X</p><p>Now when we use maximum likelihood we are adjusting the values of X to get to maximize the likelihood function P(Y|X).</p><p><strong><strong><em><em>Note</em></em></strong></strong><em><em>: Follow the resource list given at the end for further reading of the topic.</em></em></p><h3 id="gaussian-distribution"><strong>Gaussian Distribution</strong></h3><p>As it is by far the most commonly used distribution used in the ML literature I use it as a base case and discuss various concepts using this distribution.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig4.jpeg" class="kg-image"><figcaption>Copyright: <a href="https://makeameme.org/meme/gaussian-gaussian-is">https://makeameme.org/meme/gaussian-gaussian-is</a></figcaption></figure><p>But before that let us discuss why we need to know about <strong><strong>probability distributions</strong></strong> in the first place?</p><p>When we are given a dataset and we want to make predictions about new data that has not been observed then what we essentially want is a formula in which we pass the input value and get the output values as output.</p><p>Let’s see how we get to that formula. Initially, we are given input data (X). Now, this data would also come from a formula, which I name probability distribution (the original distribution is although corrupted from random noises). So we set a prior for the input data. And this prior comes in the form of a probability distribution (Gaussian in most cases).</p><p><strong><strong><em><em>Note</em></em></strong></strong><em><em>: From a purely theoretical perspective we are simply following Bayesian statistics and filling in values to the Baye’s Rule.</em></em></p><p>As a quick test, if we already know a probability distribution for the input data then why we need to make complex ML models?</p><p>After assuming an input distribution we then need to assume some complexity over the model that we want to fit on the input data. Why do we want to do this? Simply because there are infinitely many figures that we draw that would pass through the given two points. It is up to us to decide whether the figure is linear, polynomial.</p><p>Now in any ML model, we have weights that we have to finetune. We can either assume constant values for these weights or we can go even a bit deeper and assume a prior for these weights also. More on this later.</p><p><strong><strong><em><em>Note</em></em></strong></strong><em><em>: In this post, I am approaching ML from a statistics point of view and not the practical way of using backpropagation to finetune the values of the weights.</em></em></p><p>Now I present a general way of approaching the problem of finding the values for the variables of a prior.</p><p>The Gaussian Equation is represented as follow</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig5.jpeg" class="kg-image"><figcaption>Gaussian formula for a single variable</figcaption></figure><p>Now when we assume a Gaussian prior for input data we have to deal with two variables namely the mean and variance of the distribution and it is a common hurdle when you assume some other distribution.</p><p>So how to get the value of these variables. This is where maximum likelihood comes into play. Say you observed <strong><strong>N</strong></strong> values as input. Now all these <strong><strong>N</strong></strong> values are i.i.d. (independently identically distributed), so the combined joint probability (likelihood function) can be represented as</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig6.jpeg" class="kg-image"><figcaption>Joint Probability for a Gaussian for N observed inputs</figcaption></figure><p>After getting the likelihood function, we now want to maximize this function with respect to the variables one by one. To make our life easier we usually take the log of the above value as log is a monotonically increasing function.</p><figure class="kg-card kg-image-card"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig7.jpeg" class="kg-image"></figure><p>Now simply take the derivative w.r.t the variables and get their values.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig8.jpeg" class="kg-image"><figcaption>Maximum Likelihood Value for Mean of a Univariate Gaussian distribution</figcaption></figure><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig9.jpeg" class="kg-image"><figcaption>Maximum Likelihood Value for Variance of a Univariate Gaussian distribution</figcaption></figure><p><strong><strong><em><em>Note</em></em></strong></strong><em><em>: In a fully Bayesian setting the above two values represent the prior for that variables and we can update them as we observe new data.</em></em></p><h4 id="why-was-all-this-important"><strong>Why was all this important?</strong></h4><p>All of you may have heard about the MSE (mean squared error) loss function, but you may not be able to use that loss function for every situation as that loss function is derived after assuming the Gaussian prior on the input data. Similarly, other loss functions like Softmax are also derived for that particular prior.</p><p>In cases where you have to take a prior like Poisson MSE would not be a good metric to consider.</p><h4 id="set-prior-on-the-variables-also"><strong>Set Prior on the variables also</strong></h4><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://kushajveersingh.github.io//content/images/2020/05/fig10.jpeg" class="kg-image"><figcaption>Copyright: <a href="https://imgflip.com/i/1p3ai9">https://imgflip.com/i/1p3ai9</a></figcaption></figure><p>Another design choice that you can make is by assuming that the variable values also follow a probability distribution. How to choose that distribution?</p><p>Ideally, you can choose any distribution. But practically you want to choose a <strong><strong>conjugate prior</strong></strong> for the variables. Suppose your prior for the input data is Gaussian. And now you want to select a prior for the mean. You must choose a prior such that after applying the Baye’s rule the resulting distribution for the input data is still Gaussian and same for variance also. These are called conjugate priors.</p><p>Just for a reference, conjugate prior for the mean is also Gaussian and for the variance and inverse gamma for the variance.</p><p>Congratulations if you made it to the end of the post. I rarely scratched the surface but I tried to present the material in a more interactive manner focused more on building intuition.</p><p>Here is the list of resources that I would highly recommend for learning ML:-</p><ol><li>CS229: Machine Learning by Stanford</li><li>Pattern Recognition and Machine Learning by Christopher M. Bishop</li><li>An Introduction to Statistical Learning: with Applications in R</li><li>The Elements of Statistical Learning Data Mining, inference and Prediction</li></ol>
+                </div>
+            </section>
+
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post tag-tutorial ">
+
+    <a class="post-card-image-link" href="/post_002/">
+        <img class="post-card-image"
+            srcset="/content/images/size/w300/2020/05/fig2.png 300w,
+                    /content/images/size/w600/2020/05/fig2.png 600w,
+                    /content/images/size/w1000/2020/05/fig2.png 1000w,
+                    /content/images/size/w2000/2020/05/fig2.png 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="/content/images/size/w600/2020/05/fig2.png"
+            alt="Training AlexNet with tips and checks on how to train CNNs: Practical CNNs in PyTorch"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/post_002/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">tutorial</div>
+                <h2 class="post-card-title">Training AlexNet with tips and checks on how to train CNNs: Practical CNNs in PyTorch</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>Overfitting small batch, manually checking loss. Creating data pipelines. I give a complete and detailed introduction on how to create AlexNet model in PyTorch with code.</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        Kushajveer Singh
+                    </div>
+            
+                    <a href="/author/kushaj/" class="static-avatar">
+                        <img class="author-profile-image" src="//www.gravatar.com/avatar/795c48f5c95e520aa431105b15c2e4c8?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Kushajveer Singh" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/kushaj/">Kushajveer Singh</a></span>
+                <span class="post-card-byline-date"><time datetime="2019-02-18">18 Feb 2019</time> <span class="bull">&bull;</span> 5 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://kushajveersingh.github.io/">Kushajveer Singh</a> &copy; 2020</section>
+                <nav class="site-footer-nav">
+                    <a href="https://kushajveersingh.github.io/">Latest Posts</a>
+                    
+                    <a href="https://twitter.com/Kkushaj" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="/assets/built/casper.js?v=a3899cd1b5"></script>
+
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        // FitVids - start
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // FitVids - end
+
+        // Replace nav with title on scroll - start
+        Casper.stickyNavTitle({
+            navSelector: '.site-nav-main',
+            titleSelector: '.post-full-title',
+            activeClass: 'nav-post-title-active'
+        });
+        // Replace nav with title on scroll - end
+
+        // Hover on avatar
+        var hoverTimeout;
+        $('.author-list-item').hover(function () {
+            var $this = $(this);
+
+            clearTimeout(hoverTimeout);
+
+            $('.author-card').removeClass('hovered');
+            $(this).children('.author-card').addClass('hovered');
+
+        }, function () {
+            var $this = $(this);
+
+            hoverTimeout = setTimeout(function () {
+                $this.children('.author-card').removeClass('hovered');
+            }, 800);
+        });
+    });
+</script>
+
+
+    
+
+</body>
+</html>

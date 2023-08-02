@@ -1,0 +1,235 @@
+---
+title: Starlight Setup
+---
+
+## Install Starlight
+Install [starlight](https://github.com/withastro/starlight)
+```bash
+npm create astro@latest -- --template starlight
+```
+
+Select
+- `./` - Where should we create your new project?
+- `Yes` - Install dependencies?
+- `Yes` - Do you plan to write TypeScript?
+- `Strictest` - How strict should TypeScript be?
+
+Make the following changes
+- Delete everything in `public` and place your desired favicon file here. Then add the path to favicon file in `astro.config.mjs`.
+    ```ts
+    export default defineConfig({
+      integrations: [
+        starlight({
+          ...,
+          favicon: '/favicon.ico',
+          ...,
+        })
+      ]
+    })
+    ```
+- Delete everything in `src/assets` folder. This folder is used to store all the images.
+- Delete everything in `src/content/docs` except `src/content/docs/index.mdx` and change `index.mdx` to the following
+    ```mdx
+    ---
+    title: Hello world
+    template: splash
+    ---
+
+    Hello world
+    ```
+- Remove `sidebar` property in `astro.config.mjs`
+
+The folder structure should be as follows
+```bash
+.
+├── node_modules
+├── public
+│   └── favicon.ico
+├── src
+│   ├── assets
+│   ├── content
+│   │   ├── config.ts
+│   │   └── docs
+│   │       └── index.mdx
+│   └── env.d.ts
+├── .gitignore
+├── astro.config.mjs
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+## Install Starlight Links Validator
+Add [starlight-links-validator](https://github.com/HiDeoo/starlight-links-validator) support.
+```bash
+npm install starlight-links-validator
+```
+
+Update `astro.config.mjs` to include Starlight Links Validator integration before the Starlight integration
+```ts
+import starlightLinksValidator from 'starlight-links-validator';
+
+export default defineConfig({
+  integrations: [
+    starlightLinksValidator(),
+	starlight({
+      ...
+    }),
+  ],
+});
+```
+
+## Upgrade Starlight
+Upgrade to latest version and see [CHANGELOG](https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md) before that
+```bash
+npm install @astrojs/starlight@latest
+```
+
+## Markdown docs
+
+### Markdown
+- `*Italic*` - *Italic*
+- `**Bold**` - **Bold**
+- `# Heading 1`
+- `## Heading 2`
+- `[link_text](http://link.url)`
+- `[image_alt_text](image_link)`
+- `> Blockquote`
+- `* Unordered List`
+- `1. Ordered List`
+- `---` - create a horizontal line
+- create code block with 3 backticks or indent by 4 spaces
+
+### GitHub Flavored Markdown
+- `~Strikethrough~` - ~Strikethrough~
+- Table
+    ```md
+    | foo | bar |
+    | --- | --- |
+    | baz | bim |
+
+    | --- | - left align
+    | :-- | - left align
+    | --: | - right align
+    | :-: | - center align
+    ```
+- Task list item
+    - [ ] foo
+    - [x] bar
+    
+    ```md
+    - [ ] foo
+    - [x] bar
+    ```
+- Autolinks. If you write a link www.commonmark.org, then it would be automatically rendered as `<p><a href="http://www.commonmark.org">www.commonmark.org</a></a>`. **Note** By default, it adds `http`.
+
+### Starlight additions
+The `title` in frontmatter is rendered as `<h1>` and automatically added at the start of the page. So files should start with `<h2>` tags.
+
+Link to another page `[link to another page](/astro_setup)` (http://www.commonmark.org/).
+
+You can link directly to anchor links like `[starlight additions](#starlight-additions)` ([starligh additions](#starlight-additions)).
+
+Asides for `note`, `tip`, `caution`, `danger`. The general syntax is
+```md
+:::note[Custom title]
+Your content `code`.
+:::
+```
+
+:::note[Did you know?]
+This is a note.
+:::
+
+:::tip
+This is a tip.
+:::
+
+:::caution
+This is a caution.
+:::
+
+:::danger
+This is a danger.
+:::
+
+## Components
+Syntax for importing and using components in MDX files
+```jsx
+---
+title: Something
+---
+
+import MyComponent from '/src/components/MyComponent.astro';
+
+<MyComponent prop="something" />
+
+// If you want to disable the default styling of Starlight affecting
+// your component
+<MyComponent class="not-content" />
+```
+
+### Card / CardGrid
+To show content in a box use `Card`. Wrap multiple `Card` in `CardGrid` (can be used to show features of your project on the homepage).
+
+```jsx
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+// Optionally provide "icon" which has to be from this list
+// https://starlight.astro.build/guides/components/#all-icons
+<Card title="Check this out" icon="up-caret">Some content.</Card>
+```
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<Card title="Check this out" icon="up-caret">Some content.</Card>
+
+```jsx
+// Optionally pass "stagger" to shift the second column of cards
+// vertically and add visual interest.
+<CardGrid stagger>
+    <Card title="Stars" icon="star">Sirius</Card>
+    <Card title="Moons" icon="moon">Io</Card>
+</CardGrid>
+```
+
+<CardGrid>
+    <Card title="Stars" icon="star">Sirius</Card>
+    <Card title="Moons" icon="moon">Io</Card>
+</CardGrid>
+
+### Icon
+You can import icons that are listed at https://starlight.astro.build/guides/components/#all-icons using `<Icon>`.
+
+```jsx
+import { Icon } from '@astrojs/starlight/components';
+
+// optionally provide label/size/color
+<Icon name="star" size="2rem" color="goldenrod" />
+```
+
+import { Icon } from '@astrojs/starlight/components';
+
+<Icon name="star" size="2rem" color="goldenrod" />
+
+Icons are internally represented as SVGs. You can check the source code of the Icon component [here](https://github.com/withastro/starlight/blob/main/packages/starlight/user-components/Icon.astro). And then copy this component to your repo, and change `name` to include the SVG text, something like `<path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/>`.
+
+Starlight [issue](https://github.com/withastro/starlight/issues/349) which tracks support for external icons. One suggestion is to use [astro-icon](https://github.com/natemoo-re/astro-icon).
+
+### Tabs
+```jsx
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+    <TabItem label="First">This should be shown first</TabItem>
+    <TabItem label="Second">This should be shown second</TabItem>
+</Tabs>
+```
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+    <TabItem label="First">This should be shown first</TabItem>
+    <TabItem label="Second">This should be shown second</TabItem>
+</Tabs>

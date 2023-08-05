@@ -30,10 +30,20 @@ export default defineConfig({
 
       sidebar: [
         { 
-          label: 'Notes',
-          autogenerate: { directory: 'notes' }
+          label: 'Short Notes',
+          items: [
+            { label: 'Starlight', link: '/short_notes/starlight' },
+          ],
         },
       ],
+
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en',
+        },
+      },
 
       social: {
         github: 'https://github.com/KushajveerSingh',

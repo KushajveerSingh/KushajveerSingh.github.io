@@ -2,7 +2,9 @@
 title: Starlight Setup
 ---
 
-## Install Starlight
+## Setup
+
+### Install
 Install [starlight](https://github.com/withastro/starlight)
 ```bash
 npm create astro@latest -- --template starlight
@@ -60,7 +62,7 @@ The folder structure should be as follows
 └── tsconfig.json
 ```
 
-## Install Starlight Links Validator
+### Install Starlight Links Validator
 Add [starlight-links-validator](https://github.com/HiDeoo/starlight-links-validator) support.
 ```bash
 npm install starlight-links-validator
@@ -73,14 +75,14 @@ import starlightLinksValidator from 'starlight-links-validator';
 export default defineConfig({
   integrations: [
     starlightLinksValidator(),
-	starlight({
+	  starlight({
       ...
     }),
   ],
 });
 ```
 
-## Upgrade Starlight
+### Upgrade
 Upgrade to latest version and see [CHANGELOG](https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md) before that
 ```bash
 npm install @astrojs/starlight@latest
@@ -125,34 +127,31 @@ npm install @astrojs/starlight@latest
 - Autolinks. If you write a link www.commonmark.org, then it would be automatically rendered as `<p><a href="http://www.commonmark.org">www.commonmark.org</a></a>`. **Note** By default, it adds `http`.
 
 ### Starlight additions
-The `title` in frontmatter is rendered as `<h1>` and automatically added at the start of the page. So files should start with `<h2>` tags.
+- The `title` in frontmatter is rendered as `<h1>` and automatically added at the start of the page. So start the headings with `<h2>` tags in your markdown files.
+- Link to another page `[link to another page](/astro_setup)` (http://www.commonmark.org/).
+- Link directly to anchor links like `[starlight additions](#starlight-additions)` ([starligh additions](#starlight-additions)).
+- Asides for `note`, `tip`, `caution`, `danger`. The general syntax is
+    ```md
+    :::note[Custom title]
+    Your content `code`.
+    :::
+    ```
 
-Link to another page `[link to another page](/astro_setup)` (http://www.commonmark.org/).
+    :::note[Did you know?]
+    This is a note.
+    :::
 
-You can link directly to anchor links like `[starlight additions](#starlight-additions)` ([starligh additions](#starlight-additions)).
+    :::tip
+    This is a tip.
+    :::
 
-Asides for `note`, `tip`, `caution`, `danger`. The general syntax is
-```md
-:::note[Custom title]
-Your content `code`.
-:::
-```
+    :::caution
+    This is a caution.
+    :::
 
-:::note[Did you know?]
-This is a note.
-:::
-
-:::tip
-This is a tip.
-:::
-
-:::caution
-This is a caution.
-:::
-
-:::danger
-This is a danger.
-:::
+    :::danger
+    This is a danger.
+    :::
 
 ## Components
 Syntax for importing and using components in MDX files
@@ -194,7 +193,7 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 </CardGrid>
 ```
 
-<CardGrid>
+<CardGrid stagger>
     <Card title="Stars" icon="star">Sirius</Card>
     <Card title="Moons" icon="moon">Io</Card>
 </CardGrid>
@@ -233,3 +232,88 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
     <TabItem label="First">This should be shown first</TabItem>
     <TabItem label="Second">This should be shown second</TabItem>
 </Tabs>
+
+## astro.config.mjs
+View the `astro.config.mjs` file used for this project at this [link](https://github.com/KushajveerSingh/KushajveerSingh.github.io/blob/main/astro.config.mjs).
+
+```ts
+title: 'Title for website used in metadata and tab title.', 
+description: `Description for website used in metadata. Also, 
+              the default, if description not passed in frontmatter.`,
+logo: {
+  src: '/src/assets/profile.jpg', // Comment 'src', if providing light/dark logos
+  // light: '/src/assets/profile.jpg',
+  // dark: '/src/assets/profile.jpg',
+  alt: 'My profile picture',
+  replacesTitle: false, // If logo contains your title, then you can hide title
+},
+
+// this can be set globally or per-page in frontmatter
+// tableOfContents: false // to disable it
+tableOfContents: {
+  minHeadingLevel: 2,
+  maxHeadingLevel: 3,
+},
+
+// Show "Edit page" links at the bottom of each page. The final link is
+// "editLink.baseUrl + CURRENT_PAGE_PATH".
+editLink: {
+  baseUrl: 'https://github.com/{USERNAME}/{REPO}/edit/{BRANCH}/'
+},
+
+sidebar: {
+
+},
+
+// Add social media accounts at top-right in the header. See all available
+// options at https://starlight.astro.build/reference/configuration/#social
+social: {
+  github: 'https://github.com/{USERNAME}',
+}
+
+// Add custom css files. Can import local files and files installed using npm
+customCss: ['./src/custom-styles.css', '@fontsource/roboto'],
+
+head: [
+  {
+    tag: 'script',
+    attr: {
+      src: 'https://cdn.usefathom.com/script.js',
+      'data-size': 'MY-FANTHOM-ID',
+      defer: true,
+    }
+  },
+  { // Fallback favicon
+    tag: 'link',
+    attr: {
+      rel: 'icon',
+      href: '/images/favicon.ico',
+      sizes: '32x32',
+    }
+  }
+]
+// If footer should show when page was last updated
+lastUpdated: false,
+
+// If footer should include previous and next page links
+pagination: true,
+
+// Should be located in 'public' folder (ico/gif/jpg/png/svg)
+favicon: '/favicon.ico',
+```
+
+## Extra files
+
+### 404.mdx
+Create `src/content/docs/404.mdx`. The default *404* pages the following frontmatter
+
+```mdx
+---
+title: '404'
+template: splash
+editUrl: false
+hero:
+  title: '404'
+  tagline: Page not found. Check the URL or try using the search bar.
+---
+```

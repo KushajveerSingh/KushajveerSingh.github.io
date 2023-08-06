@@ -16,11 +16,11 @@ inputs:
     description: "If not automatically detectable, you may specify your preferred package manager"
     required: false
     default: ""
-  resolve-dep-from-path:
-    description: "If the dependency file is located inside the folder specified by path" 
-    type: boolean
-    required: false
-    default: true 
+  # resolve-dep-from-path:
+  #   description: "If the dependency file is located inside the folder specified by path" 
+  #   type: boolean
+  #   required: false
+  #   default: true 
 
 runs:
   using: composite

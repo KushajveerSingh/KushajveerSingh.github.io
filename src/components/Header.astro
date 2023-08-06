@@ -1,9 +1,9 @@
 ---
-import LanguageSelect from './LanguageSelect.astro';
-import Search from './Search.astro';
-import SiteTitle from './SiteTitle.astro';
-import SocialIcons from './SocialIcons.astro';
-import ThemeSelect from './ThemeSelect.astro';
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 
 interface Props {
 	locale: string | undefined;
@@ -18,7 +18,7 @@ const { locale } = Astro.props;
 	<div class="hidden md:flex right-group">
     <a class="link_tag" href="/work">Work</a>
     <a class="link_tag" href="/projects">Projects</a>
-    <a class="link_tag" href="/blog">Blogs</a>
+    <a class="link_tag" href="/blog">Blog</a>
     <a class="link_tag" href="/about">About</a>
 		<SocialIcons />
 		<ThemeSelect {locale} />

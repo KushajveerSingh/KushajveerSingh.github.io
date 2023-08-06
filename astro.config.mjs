@@ -35,6 +35,15 @@ export default defineConfig({
             { label: 'Starlight', link: '/short_notes/starlight' },
           ],
         },
+        {
+          label: 'Other',
+          items: [
+            { label: 'About', link: '/about' },
+            { label: 'Blog', link: 'https://www.kushajveersingh.com/blog/' },
+            { label: 'Projects', link: '/projects' },
+            { label: 'Work', link: '/work' },
+          ]
+        },
       ],
 
       defaultLocale: 'root',

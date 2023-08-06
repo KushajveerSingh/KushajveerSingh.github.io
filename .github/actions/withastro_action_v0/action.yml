@@ -77,7 +77,7 @@ runs:
     - name: Replace astrojs/starlight component
       shell: "bash"
       run: |
-        cp src/components/Header.astro node_modules/astrojs/starlight/components/Header.astro
+        cp src/components/Header.astro node_modules/@astrojs/starlight/components/Header.astro
 
     - name: Build
       shell: "bash"

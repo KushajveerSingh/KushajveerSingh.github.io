@@ -1,0 +1,44 @@
+---
+title: Sorting Algorithms
+sidebar_label: Sorting
+pagination_label: Sorting
+---
+
+Stable v/s Unstable sorting algorithm
+
+- Stable - order of the elements is preserved
+- Unstable - order of the elements is not preserved.
+- For example, when sorting the array \[4, 1(a), 3, 1(b)], the order of the 1's i.e. a and b is preserved in stable sorting algorithms.
+
+## Insertion Sort
+
+- Time = `O(N^2)`, Space = `O(1)`, Stable
+- Split the array into sorted (left) and unsorted (right) array.
+- Takes the maximum time if elements are sorted in reverse order.
+- _Insertion_ sort is used when the size of the array is small and the array is almost sorted. Like you can first start with _QuickSort_, and when the subarray size get's smaller than a threshold use _Insertion_ sort.
+
+Example of the working
+
+- \[7, 8, 5, 2, 4, 6, 3] - (7) is already sorted
+- \[7, 8, 5, 2, 4, 6, 3]
+- \[5, 7, 8, 2, 4, 6, 3]
+
+```python showLineNumbers
+def insertion_sort(x):
+    if len(x) == 0:
+        return x
+
+    for i in range(1, len(x)):
+        # We want to place the current element "x[i]" in the correct position
+        # in the left subarry
+        key = x[i]
+
+        # Swap the elements till you find the correct position to place "key"
+        j = i - 1
+        while j >= 0 and x[j] > key:
+            x[j+1] = x[j]
+            j = j - 1
+        x[j+1] = key
+
+    return x
+```

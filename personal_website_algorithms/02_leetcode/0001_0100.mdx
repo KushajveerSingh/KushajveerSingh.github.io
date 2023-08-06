@@ -1,0 +1,153 @@
+---
+title: Problems 1 - 50
+sidebar_label: 1 - 50
+pagination_label: Problems 1 - 100
+---
+
+### 1. Two Sum [link](https://leetcode.com/problems/two-sum/description/)
+
+**Problem**
+
+Given an array of unsorted integers, return indices of two numbers that add up to target value.
+
+**Idea**
+
+- Time = `O(N)`, Space = `O(N)`.
+- Iterate through the array and store the current value and it's index in a hash map.
+- When iterating if you find "target - current_value" in the hash map, return the indices.
+
+```python showLineNumbers
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # Key = "first_num"
+        # Value = index of "first_num" in "nums"
+        d = {}
+
+        for i in range(len(nums)):
+            first_num = nums[i]
+            second_num = target - first_num
+
+            if second_num in d:
+                first_num_index = i
+                second_num_index = d[second_num]
+                return [first_num_index, second_num_index]
+
+            d[first_num] = i
+```
+
+### 2. Add Two Numbers [link](https://leetcode.com/problems/add-two-numbers/)
+
+**Problem**
+
+Given two linked lists represeting two non-negative integers (in reverse order), create a new linked list with the sum of those numbers.
+
+**Example**
+
+- l1 = 2 -> 4 -> 3 (i.e. the number 342)
+- l2 = 5 -> 6 -> 4 (i.e. the number 465)
+- output = 7 -> 0 -> 8 (i.e. the number 807)
+
+**Idea**
+
+- Time = `O(max(l1.length, l2.length))`, Space = `O(1)` (only the space for intermediate steps is considered here).
+- Simultaneously iterate through both the lists and add their values.
+- Create a new node (in the output list) with the sum of the values (taking carry into account also).
+
+```python showLineNumbers
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def addTwoNumbers(self, l1: [ListNode], l2: [ListNode]) -> [ListNode]:
+        # Helper function to avoid code duplication. Can be placed outside
+        # the function also.
+        def add_vals(l1, l2, carry):
+            # val = carry + l1.val + l2.val
+            val = carry
+            if l1 is not None:
+                val += l1.val
+                l1 = l1.next
+            if l2 is not None:
+                val += l2.val
+                l2 = l2.next
+
+            # Handle carry
+            if val >= 10:
+                val = val - 10
+                carry = 1
+            else:
+                carry = 0
+
+            # Return the modified lists, carry, and a new node with the 'val'
+            return l1, l2, carry, ListNode(val)
+
+
+        # Create "root" node and initialize "head" pointer, as we want to return
+        # "root" as the final answer
+        l1, l2, carry, root = add_vals(l1, l2, 0)
+        head = root
+
+        # Check till l1 is empty, l2 is empty, and carry is 0
+        while (l1 is not None) or (l2 is not None) or (carry != 0):
+            l1, l2, carry, node = add_vals(l1, l2, carry)
+
+            head.next = node
+            head = head.next
+
+        return root
+```
+
+### 3. Longest Substring Without Repeating Characters [link](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+**Problem**
+
+Find the length of the longest substring (contiguous non-empty sequence) without repeating characters in a string.
+
+**Example**
+
+- s = "abcabcbb", out = 3 (i.e. "abc")
+- s = "tmmzuxt", out = 5 (i.e. "mzuxt")
+
+**Idea**
+
+- Time = `O(N)`, Space = `O(1)` (as the characters you can use in the string is constant).
+- Maintain the 'start' of the substring (i.e. the final output), and as you iterate through the string, update the 'start' to the index of the repeating character + 1.
+- For the string "tmmzuxt", iterate from left to right
+- For "t", store its index "0" in hashmap and start = 0
+- For "m", store "1" in hashmap, start still at 0, as no repeating character is found.
+- For "m", we find "m" is already in the hashmap. So we update its value to "2", and update start to 2, as "tm" can never be part of the output now.
+
+```python showLineNumbers
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        substring_start = 0
+        max_substring_length = 0
+
+        # Key = "character"
+        # Value = index of last seen "character" as we iterate through the string
+        d = {}
+
+        for i in range(len(s)):
+            c = s[i]
+
+            # Reason for adding "substring_start <= d[c]"
+            # Consider the string "tmmzuxt".
+            # When we reach the second "m", we update the start to 2, as "tm" can never
+            # be part of the output now.
+            # When we reach the last "t" i.e. "tmmzuxt", we already have the start at 2,
+            # i.e. the string we are considering is "mzuxt", so there is no point in
+            # checking "if c in d", becaues the first "t" is not part of the substring.
+            # An alternative approach is to delete the characters from the hashmap, as we
+            # update 'start', but all those deletions add up and we end up doing an extra
+            # pass through the whole string. So this trick allows us to solve the problem
+            # in a single pass, rather than two passes.
+            if c in d and substring_start <= d[c]:
+                substring_start = d[c] + 1
+            else:
+                max_substring_length = max(max_substring_length, i - substring_start + 1)
+            d[c] = i
+
+        return max_substring_length
+```

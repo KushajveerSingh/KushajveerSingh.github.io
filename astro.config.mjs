@@ -35,8 +35,10 @@ export default defineConfig({
             { label: 'Starlight', link: '/short_notes/starlight' },
           ],
         },
+        { label: 'Currently working on', link: '/currently_working_on' },
         {
-          label: 'Other',
+          label: 'Header Links',
+          collapsed: true,
           items: [
             { label: 'About', link: '/about' },
             { label: 'Blog', link: 'https://www.kushajveersingh.com/blog/' },

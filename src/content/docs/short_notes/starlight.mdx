@@ -93,30 +93,47 @@ export default defineConfig({
 ```
 
 ### Modify Header
-In order to show headings like "Work", "Project", "About" in the header, modify `node_modules/@astrojs/starlight/components/Header.astro`
-```astro
-<div class="header flex">
-	<SiteTitle {locale} />
-	<Search {locale} />
-	<div class="hidden md:flex right-group">
-    <a class="link_tag" href="/work">Work</a>
-    <a class="link_tag" href="/project">Project</a>
-    <a class="link_tag" href="/blog">Blog</a>
-    <a class="link_tag" href="/about">About</a>
-		<SocialIcons />
-		<ThemeSelect {locale} />
-		<LanguageSelect {locale} />
-	</div>
-</div>
+To show headings like "Work", "Project", "About" in the header use the following instructions.
 
-<style>
-  .link_tag {
-    color: var(--sl-color-text-accent);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-</style>
-```
+1. Copy the content of `node_modules/@astrojs/starlight/components/Header.astro` and paste in `src/components/Header.astro`.
+2. To remove TypeScript error warning add `// @ts-ignore` in `src/components/Header.astro` for the imports as shown below
+    ```ts
+    // @ts-ignore
+    import LanguageSelect from './LanguageSelect.astro';
+    // @ts-ignore
+    import Search from './Search.astro';
+    // @ts-ignore
+    import SiteTitle from './SiteTitle.astro';
+    // @ts-ignore
+    import SocialIcons from './SocialIcons.astro';
+    // @ts-ignore
+    import ThemeSelect from './ThemeSelect.astro';
+    ```
+3. Modify the Header components to include your headings
+    ```astro
+    <div class="header flex">
+      <SiteTitle {locale} />
+      <Search {locale} />
+      <div class="hidden md:flex right-group">
+        <a class="link_tag" href="/work">Work</a>
+        <a class="link_tag" href="/project">Project</a>
+        <a class="link_tag" href="/blog">Blog</a>
+        <a class="link_tag" href="/about">About</a>
+        <SocialIcons />
+        <ThemeSelect {locale} />
+        <LanguageSelect {locale} />
+      </div>
+    </div>
+
+    <style>
+      .link_tag {
+        color: var(--sl-color-text-accent);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+    </style>
+    ```
+4. The changes you made in the previous step, should also be copied to `node_modules/@astrojs/starlight/components/Header.astro`. This header file would be used for the local builds i.e. when you run `npm run dev`. But when deploying to GitHub, we would copy `src/components/Header.astro` to `note_modules` folder.
 
 This needs to be changed everytime you upgrade Starlight.
 
@@ -178,11 +195,11 @@ Upgrade to latest version and see [CHANGELOG](https://github.com/withastro/starl
 npm install @astrojs/starlight@latest
 ```
 
-[Modify Header](#modify-header) also.
+:::caution
+If you are using a custom header, then follow the instructions in [Modify Header](#modify-header) to create the header again with your changes.
+:::
 
 ### Deploy
-Complete instructions at https://docs.astro.build/en/guides/deploy/.
-
 Add the `site` property in `astro.config.mjs`
 ```ts
 export default defineConfig({
@@ -191,6 +208,104 @@ export default defineConfig({
 });
 ```
 
+Files
+- `.github/actions/withastro_action_v0/action.yml` - The code for this is copied from the official `withastro/actionv0`. After installing all the `npm` dependencies, we copy `src/components/Header.astro` to `node_modules`, which is shown in the step `name: Replace astrojs/starlight component`.
+- `.github/workflows/deploy.yml` - This is the official Astro deploy workflow file. The only change is instead of `use: withastro/actionv0`, we use the local action file `uses: ./.github/actions/withastro_action_v0`.
+
+Create `.github/actions/withastro_action_v0/action.yml` and paste the following code
+```yaml
+name: "Astro Deploy"
+description: "A composite action that prepares your Astro site to be deployed to GitHub Pages"
+branding:
+  icon: "box"
+  color: "orange"
+inputs:
+  path:
+    description: "Path of the directory containing your site"
+    required: false
+    default: "."
+  node-version:
+    description: "The node version to use"
+    required: false
+    default: "16"
+  package-manager:
+    description: "If not automatically detectable, you may specify your preferred package manager"
+    required: false
+    default: ""
+  # resolve-dep-from-path:
+  #   description: "If the dependency file is located inside the folder specified by path" 
+  #   type: boolean
+  #   required: false
+  #   default: true 
+
+runs:
+  using: composite
+  steps:
+    - name: Check lockfiles
+      shell: "bash"
+      env:
+        INPUT_PM: ${{ inputs.package-manager }}
+      run: |
+        len=`echo $INPUT_PM | wc -c`
+        if [ $len -gt 1 ]; then
+            echo "PACKAGE_MANAGER=$INPUT_PM" >> $GITHUB_ENV
+        elif [ $(find "." -name "pnpm-lock.yaml") ]; then
+            echo "PACKAGE_MANAGER=pnpm" >> $GITHUB_ENV
+            echo "LOCKFILE=pnpm-lock.yaml" >> $GITHUB_ENV
+        elif [ $(find "." -name "yarn.lock") ]; then 
+            echo "PACKAGE_MANAGER=yarn" >> $GITHUB_ENV
+            echo "LOCKFILE=yarn.lock" >> $GITHUB_ENV
+        elif [ $(find "." -name "package-lock.json") ]; then 
+            echo "PACKAGE_MANAGER=npm" >> $GITHUB_ENV
+            echo "LOCKFILE=package-lock.json" >> $GITHUB_ENV
+        else
+            echo "No lockfile found.
+        Please specify your preferred \"package-manager\" in the action configuration."
+            exit 1
+        fi
+    - name: Setup PNPM
+      if: ${{ env.PACKAGE_MANAGER == 'pnpm' }}
+      uses: pnpm/action-setup@v2.2.4
+      with:
+        version: 7.x.x
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      if: inputs.resolve-dep-from-path == true 
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: ${{ env.PACKAGE_MANAGER }}
+        cache-dependency-path: "${{ inputs.path }}/${{ env.LOCKFILE }}"
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      if: inputs.resolve-dep-from-path == false 
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: ${{ env.PACKAGE_MANAGER }}
+
+    - name: Install
+      shell: "bash"
+      run: |
+        cd ${{ inputs.path }}
+        $PACKAGE_MANAGER install
+      
+    - name: Replace astrojs/starlight component
+      shell: "bash"
+      run: |
+        cp src/components/Header.astro node_modules/@astrojs/starlight/components/Header.astro
+
+    - name: Build
+      shell: "bash"
+      run: |
+        cd ${{ inputs.path }}
+        $PACKAGE_MANAGER run build
+
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: "${{ inputs.path }}/dist/"
+```
 Create `.github/workflows/deploy.yml`
 ```yaml
 name: Deploy to GitHub Pages
@@ -216,7 +331,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
       - name: Install, build, and upload your site
-        uses: withastro/action@v0
+        uses: ./.github/actions/withastro_action_v0
         with:
             # path: . # The root location of your Astro project inside the repository. (optional)
             # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)

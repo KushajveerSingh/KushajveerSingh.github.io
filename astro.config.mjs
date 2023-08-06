@@ -43,7 +43,7 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: 'About', link: '/about' },
-            { label: 'Blog', link: 'https://www.kushajveersingh.com/blog/' },
+            { label: 'Blog', link: '/blog' },
             { label: 'Projects', link: '/projects' },
             { label: 'Work', link: '/work' },
           ]

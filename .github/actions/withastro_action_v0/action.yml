@@ -73,6 +73,11 @@ runs:
       run: |
         cd ${{ inputs.path }}
         $PACKAGE_MANAGER install
+      
+    - name: Replace astrojs/starlight component
+      shell: "bash"
+      run: |
+        cp src/components/Header.astro node_modules/astrojs/starlight/components/Header.astro
 
     - name: Build
       shell: "bash"

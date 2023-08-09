@@ -151,10 +151,10 @@ To show headings like "Work", "Project", "About" in the header use the following
     ```
 4. The changes you made in the previous step, should also be copied to `node_modules/@astrojs/starlight/components/Header.astro`. This header file would be used for the local builds i.e. when you run `npm run dev`. But when deploying to GitHub, we would copy `src/components/Header.astro` to `note_modules` folder.
 
-This needs to be changed everytime you upgrade Starlight.
+This needs to be changed every time you upgrade Starlight.
 
 ### VSCode
-Install [Astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode) extenstion.
+Install [Astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode) extension.
 
 ### ESLint
 ```bash
@@ -192,7 +192,7 @@ module.exports = {
 }
 ```
 
-Install [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extenstion for VSCode and modify the `.vscode/settings.json` file
+Install [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension for VSCode and modify the `.vscode/settings.json` file
 ```json
 {
   "eslint.validate": [
@@ -407,7 +407,7 @@ Commit your changes and site should be deployed.
     - [ ] foo
     - [x] bar
     ```
-- Autolinks. If you write a link www.commonmark.org, then it would be automatically rendered as `<p><a href="http://www.commonmark.org">www.commonmark.org</a></a>`. **Note** By default, it adds `http`.
+- Autolink. If you write a link www.commonmark.org, then it would be automatically rendered as `<p><a href="http://www.commonmark.org">www.commonmark.org</a></a>`. **Note** By default, it adds `http`.
 
 ### Starlight additions
 - The `title` in frontmatter is rendered as `<h1>` and automatically added at the start of the page. So start the headings with `<h2>` tags in your markdown files.
@@ -644,13 +644,13 @@ tableOfContents: false | {
 
 # 'doc' (default)
 # 'splash' - wider layout without sidebars
-tempalte: 'doc' | 'splash'
+template: 'doc' | 'splash'
 
 # Use the provided 'Hero' component at the top of pages
 # (works well with "template: 'splash'")
 hero:
     title: 'Make your docs shine with Starlight'
-    tagline: Everything you need to build a stellar doc webstie.
+    tagline: Everything you need to build a stellar doc website.
     image:
         alt: A really big logo
         file: /assets/logo.png

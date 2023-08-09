@@ -5,5 +5,32 @@
     "astro", // Enable .astro
     "typescript", // Enable .ts
     "typescriptreact" // Enable .tsx
-  ]
+  ],
+  "cSpell.userWords": [
+    "actionv",
+    "astro",
+    "astrojs",
+    "Blockquote",
+    "commonmark",
+    "frontmatter",
+    "Groome",
+    "Hartsfield",
+    "kushajveersingh",
+    "nowrap",
+    "pnpx",
+    "roboto",
+    "starligh",
+    "Strikethrough",
+    "Sublink",
+    "sublinks",
+    "withastro"
+  ],
+  "cSpell.ignoreWords": [
+    "FANTHOM",
+    "Sébastien",
+    "elif",
+    "fontsource",
+    "groometransportation",
+    "lockfiles"
+  ],
 }

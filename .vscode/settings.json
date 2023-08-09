@@ -6,7 +6,15 @@
     "typescript", // Enable .ts
     "typescriptreact" // Enable .tsx
   ],
-  "cSpell.userWords": [
+  "cSpell.ignoreWords": [
+    "FANTHOM",
+    "Sébastien",
+    "elif",
+    "fontsource",
+    "groometransportation",
+    "lockfiles"
+  ],
+  "cSpell.words": [
     "actionv",
     "astro",
     "astrojs",
@@ -23,14 +31,7 @@
     "Strikethrough",
     "Sublink",
     "sublinks",
-    "withastro"
-  ],
-  "cSpell.ignoreWords": [
-    "FANTHOM",
-    "Sébastien",
-    "elif",
-    "fontsource",
-    "groometransportation",
-    "lockfiles"
+    "withastro",
+    "WCAG"
   ],
 }

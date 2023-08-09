@@ -35,6 +35,11 @@ export default defineConfig({
           label: 'Short Notes',
           items: [
             { label: 'Starlight', link: '/short_notes/starlight' },
+            { label: 'UI/UX', items: [
+              { label: 'Design System', link: '/short_notes/ui_ux/material_design' },
+              { label: 'Figma', link: '/short_notes/ui_ux/figma' },
+              { label: 'UI/UX', link: '/short_notes/ui_ux/ui_ux' },
+            ]},
           ],
         },
         { label: 'Currently working on', link: '/currently_working_on' },

@@ -42,7 +42,6 @@ export default defineConfig({
             ]},
           ],
         },
-        { label: 'Currently working on', link: '/currently_working_on' },
         {
           label: 'Header Links',
           collapsed: true,

@@ -1,35 +1,16 @@
 ---
-import { getImage, type LocalImageProps } from 'astro:assets';
-
-type OriginalProps = LocalImageProps;
-
-type Props = OriginalProps & {
-  caption: string | undefined | null;
-}
-
-const props = Astro.props;
-props.src = `../assets/${props.src}`;
-props.caption = props.caption ?? props.alt;
-
-// As a convenience, allow width and height to be string with a number in them, to match HTML's native `img`.
-if (typeof props.width === 'string') {
-	props.width = parseInt(props.width);
-}
-
-if (typeof props.height === 'string') {
-	props.height = parseInt(props.height);
-}
-
-const image = await getImage(props);
+import { Image } from "astro:assets";
+const { src, caption } = Astro.props;
 ---
 
 <figure>
-  <img src={image.src} {...image.attributes} />
-  <figcaption>{props.caption}</figcaption>
+  <Image class="temp" src={src} alt={caption} />
+  <figcaption>{caption}</figcaption>
 </figure>
 
 <style>
   figcaption {
+    margin-top: 1px !important;
     text-align: center;
     font-style: italic;
   }

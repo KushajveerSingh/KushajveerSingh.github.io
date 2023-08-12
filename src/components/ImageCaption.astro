@@ -1,11 +1,19 @@
 ---
-import { Image } from "astro:assets";
-const { src, caption } = Astro.props;
+import { Image, type LocalImageProps } from "astro:assets";
+
+type Props = {
+  src: LocalImageProps['src'];
+  alt?: string;
+  caption?: string;
+}
+let { src, alt, caption } = Astro.props;
+
+alt = caption ?? alt; 
 ---
 
 <figure>
-  <Image class="temp" src={src} alt={caption} />
-  <figcaption>{caption}</figcaption>
+  <Image class="temp" src={src} alt={alt} />
+  {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
 <style>

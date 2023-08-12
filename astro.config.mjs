@@ -31,8 +31,27 @@ export default defineConfig({
       },
 
       sidebar: [
-        { 
+        {
+          label: 'Algorithms',
+          collapsed: true,
+          items: [
+            { label: 'Recursion', link: '/algorithms/recursion'},
+            { label: 'Backtracking', link: '/algorithms/backtracking'},
+          ],
+        },
+        {
+          label: 'System Design',
+          collapsed: true,
+          autogenerate: { directory: 'system_design' },
+        },
+        {
+          label: 'Design Patterns',
+          collapsed: true,
+          autogenerate: { directory: 'design_patterns' },
+        },
+        {
           label: 'Short Notes',
+          collapsed: true,
           items: [
             { label: 'Starlight', link: '/short_notes/starlight' },
             { label: 'UI/UX', items: [

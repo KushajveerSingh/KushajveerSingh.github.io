@@ -1,0 +1,34 @@
+---
+title: Recursion
+order: 1
+---
+
+import ImageCaption from './src/components/ImageCaption.astro';
+import Image_recursion_input_output from '~/assets/algorithms/recursion_input_output.jpg';
+import Image_recursion_subset_string from '~/assets/algorithms/recursion_subset_string.jpg';
+
+**How to identify recursive problem?** Problem specifies choices and based on those choices make decisions.
+
+**Recursion main idea.** Take a step (decision) to make the input (problem) space smaller.
+
+**How to solve recursive problem?** Build the *recursive tree* and then convert it to code.
+
+General idea behind recursive tree
+
+<ImageCaption src={Image_recursion_input_output} alt="How to build recursive tree" />
+
+## Problems
+
+### Generate all subsets of string
+
+**Problem**. Given a string `abc` generate all its subsets `'', a, b, c, ab, bc, ac, abc`.
+
+**Identify recursive problem.** You are given a *choice* whether to include `a` or `b` or `c` in the output or not.
+
+**Recursion idea.** Choose whether to include `a` in the output or not. Then you are left with the string `bc`, which is smaller than the original input string (`abc`).
+
+**Build recursive tree**. Construct the tree by initializing output to empty string and input string to `ab` (not using `abc` for smaller diagram).
+
+<ImageCaption src={Image_recursion_subset_string} alt='Recursive tree for subset string problem with input "ab"' />
+
+**Convert recursive tree to code.**

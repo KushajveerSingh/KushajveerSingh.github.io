@@ -37,17 +37,24 @@ export default defineConfig({
           items: [
             { label: 'Recursion', link: '/algorithms/recursion'},
             { label: 'Backtracking', link: '/algorithms/backtracking'},
+            { label: 'Divide and Conquer', link: '/algorithms/divide_and_conquer' },
+            { label: 'Dynamic Programming', link: '/algorithms/dynamic_programming' },
+            { label: 'Greedy', link: '/algorithms/greedy' },
           ],
         },
         {
           label: 'System Design',
           collapsed: true,
-          autogenerate: { directory: 'system_design' },
+          items: [
+            { label: 'System Design', link: '/system_design/'},
+          ],
         },
         {
           label: 'Design Patterns',
           collapsed: true,
-          autogenerate: { directory: 'design_patterns' },
+          items: [
+            { label: 'Design Patterns', link: '/design_patterns/' },
+          ],
         },
         {
           label: 'Short Notes',

@@ -9,25 +9,345 @@ import Image_recursion_subset_string from '~/assets/algorithms/recursion_subset_
 
 **How to identify recursive problem?** Problem specifies choices and based on those choices make decisions.
 
-**Recursion main idea.** Take a step (decision) to make the input (problem) space smaller.
+**Recursion main idea**. Take a step (decision) to make the input (problem) space smaller.
 
-**How to solve recursive problem?**
-1. Build the *recursive tree* and then convert it to code. General idea behind recursive tree
+## How to solve recursive problems?
 
-    <ImageCaption src={Image_recursion_input_output} alt="How to build recursive tree" caption='General idea behind recursive tree.' />
+Approach 1. Think if you are making any decisions? Use recursive tree. <br />
+Approach 2. If you cannot think of decisions, think if you make the input smaller? Use induction hypothesis (tree and linked list problems).
+
+### Recursive tree
+Use when it is easy to identify the *decisions*.
+
+<ImageCaption src={Image_recursion_input_output} alt="How to build recursive tree" caption='General idea behind recursive tree.' />
+
+### Induction Hypothesis
+Use when it is easy to think about making the input smaller (especially for tree and linked list problems).
+
+Hypothesis
+- Define function `solve(n)` that generates the required output.
+- Call the function with smaller input `solve(n-1)`, and generate the output.
+
+Induction
+- Identify the relationship between `solve(n)` and `solve(n-1)`.
+
+Use Mathematical Induction to prove that your hypothesis is correct. This is a three step process
+1. Check the hypothesis is correct for the base condition.
+2. Assume the hypothesis is true for `k`.
+3. Check if the hypothesis is also true for `k+1` by using the above assumption.
+
+Base condition
+- Smallest valid input, or
+- Smallest invalid input
+
+:::caution
+I am using the term `smallest invalid input` very loosely. If the input space is all numbers greater than 0. Then `smallest valid input = 1` and `smallest invalid input = 0`, even though technically `-Infinity` is the smallest invalid input.
+:::
+
+### Choice diagram
+Discussed in DP.
+
+### Fourth
 
 ## Problems
+
+### Print numbers 1 to n
+
+**Problem**. Given a positive integer `n`, print all numbers from `1` to `n`.
+
+**Identify recursive problem**. Easier to think in terms of making the input smaller.
+
+**Hypothesis approach**
+- Assume the function `solve(n)` prints all numbers from `1` to `n`.
+- Next, check for the next smaller input i.e. `n-1` and `solve(n-1)` prints all numbers from `1` to `n-1`.
+- Next, identify the relationship between `solve(n)` and `solve(n-1)`. In this case, it is something like `solve(n) = solve(n-1) + print_to_stdout(n)`.
+- Next, identify the base case to stop recursion. We can choose the smallest valid input i.e. `1` or the smallest invalid input i.e. `0`.
+
+```python
+def solve(n):
+    if n == 0:
+        return
+    
+    solve(n - 1)
+    print(n)
+
+solve(10)
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+```
+
+### Print numbers n to 1
+
+Extension of the above problem.
+
+**Hypothesis approach**
+- Assume the function `solve(n)` prints all numbers `n` to `1`.
+- Next, check for the next smaller input i.e. `n-1` and `solve(n-1)` prints all numbers from `n-1` to `1`.
+- Next, identify the relationship between `solve(n)` and `solve(n-1)`. In this case, it is something like `solve(n) = print_to_stdout(n) + solve(n-1)`.
+- Use `0` as the base case.
+
+```python
+def solve(n):
+    if n == 0:
+        return
+    
+    print(n)
+    solve(n-1)
+
+solve(10)
+# 10
+# 9
+# 8
+# 7
+# 6
+# 5
+# 4
+# 3
+# 2
+# 1
+```
+
+### Height of binary tree
+
+**Problem**. Height is the maximum distance from root to leaf node.
+
+**Hypothesis approach**
+- Assume the function `solve(node)` returns the height of binary tree where `node` is the `root` node of the tree.
+- Next, check for smaller input. In this case, smaller input refers to the children of `node`, so `solve(left_child_node)` returns the height of the tree rooted at `left_child_node`.
+- Next, identify the relationship between the two functions. `solve(node) = max(solve(left_child_node), solve(right_child_node)) + 1`.
+- Identify base case, which can be either be node with no children or empty node.
+
+```python
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+def solve(node):
+    if node is None:
+        return 0
+
+    height_left = solve(node.left)
+    height_right = solve(node.right)
+
+    height = max(height_left, height_right) + 1
+
+    return height
+
+root = Node(3)
+root.left = Node(9)
+root.right = Node(20)
+root.right.left = Node(15)
+root.right.left.right = Node(7)
+
+print(solve(root))
+# 4
+```
+
+### Sort an array
+
+**Problem**. Given array `[2,3,7,6,4,5,9]`, sort it `[2,3,4,5,6,7,9]`.
+
+**Hypothesis approach**
+- Assume the function `solve(arr, n)` sorts an array of length `n`.
+- Next, check for smaller input. In this case, smaller input refers to array of length `n-1`, so `solve(arr, n-1)` sorts an array of length `n-1`.
+- Next, identify relationship between the two functions. `solve(arr, n) = solve(arr, n-1) + move arr[n-1] to correct position` (`arr[n-1]` because 0-based indexing is being used).
+- Identify base case, which can be empty array or array of length 1.
+
+```python
+def solve(arr, n):
+    if n == 0:
+        return
+
+    solve(arr, n-1)
+
+    # Swap the last element till it is in correct position
+    # For input = [1,2,3,5,6,4], and the last element = 4
+    # Swap (6,4), arr = [1,2,3,5,4,6]
+    # Swap (5,4), arr = [1,2,3,4,5,6]
+    # Now 4 > 3, so need to swap more
+    for i in range(n-1, 0, -1):
+        if arr[i] < arr[i-1]:
+            arr[i-1], arr[i] = arr[i], arr[i-1]
+        else:
+            break
+
+arr = [2,3,7,6,4,5,9]
+solve(arr, len(arr))
+print(arr)
+# [2, 3, 4, 5, 6, 7, 9]
+```
+
+### Sort a stack
+
+**Problem**. Given a stack `[5, 1, 0, 2]`. and create sorted stack `[0, 1, 2, 5]`.
+
+**Hypothesis approach**
+- Assume the function `solve(stack)` sorts a stack of size `n`.
+- Next, check for smaller input. In this case, smaller input refers to stack of size `n-1`, so `solve(smaller_stack)` sorts a stack of size `n-1`.
+- Next, identify relationship between two functions. `solve(stack) = solve(smaller_stack) + insert_top_item_in_correct_position`.
+- Identify base case, which can be empty stack or stack of size 1.
+
+```python
+class Stack:
+    def __init__(self, arr=[]):
+        self.arr = arr
+    def push(self, x):
+        self.arr.append(x)
+    def pop(self):
+        if len(self.arr) > 0:
+            return self.arr.pop()
+    def top(self):
+        return self.arr[-1]
+    def size(self):
+        return len(self.arr)
+
+def solve(stack):
+    if stack.size() == 0:
+        return
+    
+    top = stack.pop()
+    solve(stack)
+
+    # Remove all items greater than 'top' element from the stack
+    temp_stack = Stack()
+    while stack.size() > 0 and top < stack.top():
+        temp_stack.push(stack.pop())
+
+    # Insert 'top' element in correct position and insert the items
+    # removed in the previous step.
+    stack.push(top)
+    while temp_stack.size() > 0:
+        stack.push(temp_stack.pop())
+
+    
+stack = Stack([2,3,7,6,4,5,9])
+solve(stack)
+
+print(stack.arr)
+# [2, 3, 4, 5, 6, 7, 9]
+```
+
+### Delete middle element of stack
+
+**Problem**. Given a stack `[1,2,3,4,5]` delete the middle element of stack. In case of even stack size, delete the right element from the center i.e. `len(stack) // 2 + 1`.
+
+**Hypothesis approach**
+- Assume the function `solve(stack, k)` delete's the element at position `k` (from the bottom) in the stack.
+- Next, check for smaller input. In this case, smaller input refers to stack with the top element popped and `solve(smaller_stack, k)` delete's the element at position `k` in this stack.
+- Next, identify relationship between two functions. `solve(stack, k) = solve(smaller_stack, k) + insert_top_element`.
+- Identify base case, which is stack of size `k`.
+
+```python
+class Stack:
+    def __init__(self, arr=[]):
+        self.arr = arr
+    def push(self, x):
+        self.arr.append(x)
+    def pop(self):
+        if len(self.arr) > 0:
+            return self.arr.pop()
+    def size(self):
+        return len(self.arr)
+
+def solve(stack, k):
+    # Edge case
+    if stack.size() == 0:
+        return
+
+    if stack.size() == k:
+        # Delete 'center' element
+        stack.pop()
+        return
+
+    top = stack.pop()
+    solve(stack, k)
+    stack.push(top)
+
+stack = Stack([1,2,3,4,5])
+solve(stack, stack.size() // 2 + 1)
+
+print(stack.arr)
+# [1, 2, 4, 5]
+```
+
+### Reverse a stack
+
+**Hypothesis approach**
+- Assume the function `solve(stack)` reverse's `stack`.
+- Next, check for smaller input. In this case, smaller input refers to stack with the top element popped and `solve(smaller_stack)` reverse's `smaller_stack`.
+- Next, identify relationship between the two functions.
+    ```
+    stack = [1,2,3,4]
+    top = 4
+    smaller_stack = [1,2,3]
+    solve(smaller_stack) = [3,2,1]
+    ```
+- To insert `top` at the start of stack, we have to make another recursive function.
+    - Assume the function `inner_solve(stack, k)` insert's the element `k` at the start of `stack`.
+    - Next, check for smaller input. In this case, smaller input refers to stack with the top element popped and `inner_solve(smaller_stack, k)` insert's the element `k` at the start of `smaller_stack`.
+    - Next, identify relationship between the two functions. `inner_solve(stack, k) = inner_solve(smaller_stack, k) + insert the top element back`.
+    - Identify base case, which is empty stack.
+- So the relationship becomes `solve(stack) = solve(smaller_stack) then inner_solve(smaller_stack, top)`.
+- Identify base case, which is empty stack.
+
+```python
+class Stack:
+    def __init__(self, arr=[]):
+        self.arr = arr
+    def push(self, x):
+        self.arr.append(x)
+    def pop(self):
+        if len(self.arr) > 0:
+            return self.arr.pop()
+    def size(self):
+        return len(self.arr)
+
+def inner_solve(stack, k):
+    if stack.size() == 0:
+        stack.push(k)
+        return
+    
+    top = stack.pop()
+    inner_solve(stack, k)
+
+    stack.push(top)
+
+def solve(stack):
+    if stack.size() == 0:
+        return
+    
+    top = stack.pop()
+    solve(stack)
+
+    inner_solve(stack, top)
+
+stack = Stack([1,2,3,4,5,6])
+solve(stack)
+
+print(stack.arr)
+# [6, 5, 4, 3, 2, 1]
+```
 
 ### Generate all subsets of string
 
 **Problem**. Given a string `abc` generate all its subsets `'', a, b, c, ab, bc, ac, abc`.
 
-**Identify recursive problem.** You are given a *choice* whether to include `a` or `b` or `c` in the output or not.
+**Identify recursive problem**. You are given a *choice* whether to include `a` or `b` or `c` in the output or not.
 
-**Recursion idea.** Choose whether to include `a` in the output or not. Then you are left with the string `bc`, which is smaller than the original input string (`abc`).
+**Recursion idea**. Choose whether to include `a` in the output or not. Then you are left with the string `bc`, which is smaller than the original input string (`abc`).
 
 **Build recursive tree**. Construct the tree by initializing output to empty string and input string to `ab` (not using `abc` for smaller diagram).
 
 <ImageCaption src={Image_recursion_subset_string} alt='Recursive tree for subset string problem with input "ab"' />
 
-**Convert recursive tree to code.**
+**Convert recursive tree to code**.

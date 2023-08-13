@@ -61,11 +61,10 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: 'Starlight', link: '/short_notes/starlight' },
-            { label: 'UI/UX', items: [
-              { label: 'Design System', link: '/short_notes/ui_ux/material_design' },
-              { label: 'Figma', link: '/short_notes/ui_ux/figma' },
-              { label: 'UI/UX', link: '/short_notes/ui_ux/ui_ux' },
-            ]},
+            { label: 'Design System', link: '/short_notes/design_system' },
+            { label: 'Figma', link: '/short_notes/figma' },
+            { label: 'UI/UX', link: '/short_notes/ui_ux' },
+            { label: 'Other', link: '/short_notes/other' },
           ],
         },
         {

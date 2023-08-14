@@ -64,7 +64,7 @@ export default defineConfig({
             { label: 'Design System', link: '/short_notes/design_system' },
             { label: 'Figma', link: '/short_notes/figma' },
             { label: 'UI/UX', link: '/short_notes/ui_ux' },
-            { label: 'Other', link: '/short_notes/other' },
+            { label: 'Progressive Web App', link: '/short_notes/progressive_web_app' },
           ],
         },
         {

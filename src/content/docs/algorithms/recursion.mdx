@@ -4,12 +4,384 @@ order: 1
 ---
 
 import ImageCaption from '/src/components/ImageCaption.astro';
+import Image_recursion_stack from '~/assets/algorithms/recursion_stack.jpg';
 import Image_recursion_input_output from '~/assets/algorithms/recursion_input_output.jpg';
 import Image_recursion_subset_string from '~/assets/algorithms/recursion_subset_string.jpg';
 
 **How to identify recursive problem?** Problem specifies choices and based on those choices make decisions.
 
 **Recursion main idea**. Take a step (decision) to make the input (problem) space smaller.
+
+## Recursion in stack memory
+
+Consider the following recursive function
+```cpp
+int fun(int n) {
+    if (n == 1) {
+        return 1;
+    }
+    return 1 + fun(n - 1);
+}
+
+int main() {
+    int n = 3;
+    printf("%d", fun(n));
+    return 0;
+}
+```
+
+- `main` function is pushed to the *stack* as it is the first function to execute in a file. This means pushing its activation record to the stack, which includes the locals of the function, parameters of the function, return address to the caller, and along with other things. In the diagram the local variable `n=3` is pushed as the record of `main()`.
+- Inside `main()`, `fun` is called. This means activation record of `fun(3)` is pushed to the *stack*, and the parameter `n=3` would be stored inside it.
+- Inside `fun(3)`, `fun(2)` is called, so its activation record is pushed to the stack and same for `fun(1)`.
+- Inside `fun(1)`, the value 1 is returned. So pop `fun(1)` from the stack and get the address of the previous function to resume execution.
+- The above process is repeated till `main()` is popped from the stack and the program exists.
+
+<ImageCaption src={Image_recursion_stack} caption={'Recursion stack.'} />
+
+
+The space complexity of recursion is the maximum number of functions pushed to the stack. For the example shown above the maximum number of functions pushed to the stack `n` and thus the space complexity of recursion is `O(n)`.
+
+## Types of recursion
+
+1. *Direct recursion*. If the same function is called again.
+
+    ```python
+    def fun():
+        fun()
+    ```
+
+2. *Indirect recursion*. If `fun1` calls `fun2`, and then `fun2` calls `fun1`.
+
+    ```python
+    def fun1():
+        fun2()
+
+    def fun2():
+        fun1()
+    ```
+
+3. *Tail recursion*. Special case of *direct recursion*, where the recursive call (also called *tail call*) is the last thing done by the function.
+
+    Tail calls can be implemented without adding a new stack frame to the call stack, and thus the space complexity becomes constant. This is called *tail-call optimization*. GCC/Clang support tail-recursion optimization. Python does not support this.
+
+    ```python
+    def fun(n):
+        # some code
+        fun(n-1) # or it can be 'return fun()'
+    ```
+
+4. *Non-tail recursion*. Special case of *direct recursion*, where the recursive call is not the last thing done by the function.
+
+    ```python
+    def fun(n):
+        if n == 1:
+            return 1
+        return 1 + fun(n - 1) # After making the recursive call
+                              # 1 needs to be added to the output
+    ```
+
+## Convert non-tail to tail recursive
+
+Use these general steps to convert recursive function to tail recursive function
+1. Find a recursive call that's not a tail call.
+2. Identify what work is being done between that call and its return statement.
+3. Extend the function with an accumulator function `accFn` argument to do that work, with a default value that causes it to do nothing.
+4. Repeat until all recursive calls are tail calls.
+
+**isEven**
+
+Non-tail recursive function
+```python
+def isEven(n):
+    if n == 0:
+        return True
+    return not isEven(n-1)
+```
+
+Convert it to tail-recursive function
+1. Identify the recursive call and the work being done between the call and its return statement. `return not isEven(n-1)`. And the extra work is negation of the output.
+2. Define a function that does this extra work, and pass it as an argument. The default argument of this parameter should be a function that does no work.
+    ```python
+    def do_nothing(x):
+        return x
+
+    def negate(x):
+        return not x
+
+    def isEven(n, accFn = do_nothing):
+        if n == 0:
+            return True
+        return isEven(n-1, negate)
+    ```
+3. Next, make use of `accFn` in the function. And temporarily pass the return statement to `accFn`.
+    ```python
+    def isEven(n, accFn = do_nothing):
+        if n == 0:
+            return accFn(True)
+        return accFn(isEven(n-1, negate))
+    ```
+4. The above function is still not tail-recursive. But now we can compose `accFn` and `negate` to make it a single function.
+    ```python
+    def compose(func1, func2):
+        def inner(*args, **kwargs):
+            return func1(func2(*args, **kwargs))
+        return inner
+
+    def isEven(n, accFn = do_nothing):
+        if n == 0:
+            return accFn(True)
+        return isEven(n-1, compose(accFn, negate))
+    ```
+
+The final code is
+```python
+# Non-tail recursive function
+def isEven(n):
+    if n == 0:
+        return True
+    return not isEven(n-1)
+
+
+# Tail recursive function
+def default_value(x):
+    return x
+
+def extra_work(x):
+    return not x
+
+def compose(a, b):
+    def inner(*args, **kwargs):
+        return a(b(*args, **kwargs))
+    return inner
+
+def isEven(n, accFn = default_value):
+    if n == 0:
+        return accFn(True)
+    return isEven(n-1, compose(accFn, extra_work))
+
+print(isEven(4))
+# True
+```
+
+**sumTo**
+
+Non-tail recursive function
+```python
+def sumTo(n):
+    if n == 0:
+        return 0
+    return n + sumTo(n - 1)
+
+sumTo(10)
+# 55
+```
+
+Convert to tail recursive
+1. Identify the recursive call and the extra work being done
+    - recursive call = `sumTo(n-1)`
+    - extra work = `n + sumTo(n-1)` i.e. add `n` to the output of the recursive call.
+2. Create an argument and pass all the extra work to that
+    ```python
+    def sumTo(n, prev_sum = 0):
+        if n == 0:
+            return prev_sum
+        return sumTo(n - 1, prev_sum + n)
+    ```
+3. The default value should be based on what is returned in the base case. For `n=0`, 0 should be returned.
+
+This is the preferred approach of converting non-tail recursive function to recursive function. This examples shows how to compose the data instead of explicitly composing functions.
+
+The previous example if *isEven* can also be done using this
+1. Identify the recursive call and the extra work being done
+    - recursive call = `isEven(n-1)`
+    - extra work = `not isEven(n-1)` i.e. negate the output of the recursive call.
+2. Create an argument and pass all the extra work to that
+    ```python
+    def isEven(n, prev_result = True):
+        if n == 0:
+            return prev_result
+        return isEven(n-1, not prev_result)
+    ```
+3. The default value should be based on what is returned in the base case. As `0` is considered even, the default value is `True`.
+
+Consider the problem of computing binomial coefficient.
+```python
+def binomial(n, k):
+    if k == 0:
+        return 1
+    return n * binomial(n-1, k-1) // k
+```
+
+Move all the extra work to a function. The extra work in this case is
+```python
+out = binomial(n-1, k-1)
+out = out * n
+out = out // k
+```
+
+Now create a function that does this extra work
+```python
+def extra_work(out, lmul, rdiv):
+    out = out * lmul
+    out = out // rdiv
+    return out
+```
+
+Pass this function as an argument
+```python
+def binomial(n, k, lmul=1, rdiv=1):
+    if k == 0:
+        return extra_work(1, lmul, rdiv)
+    return extra_work(n * binomial(n-1, k-1) // k, lmul, rdiv)
+```
+
+Use the new function to eliminate the extra work
+```python
+def binomial(n, k, lmul=1, rdiv=1):
+    if k == 0:
+        return extra_work(1, lmul, rdiv)
+    return binomial(n-1, k-1, n*lmul, k*rdiv)
+```
+
+Since the work function is small, we can just make it inline
+```python
+def binomial(n, k, lmul=1, rdiv=1):
+    if k == 0:
+        return lmul * 1 // rdiv
+    return binomial(n-1, k-1, n*lmul, k*rdiv)
+```
+
+## Convert tail recursive to iterative
+
+:::tip
+Use this [online tool](https://pythontutor.com/visualize.html#mode=edit) to check the call stack frame in Python. Useful to check the difference between recursive and iterative function.
+:::
+
+1. Wrap everything in an infinite loop.
+2. Change the function arguments into variable declarations
+
+```python
+# non-tail recursive
+def sumTo(n):
+    if n == 0:
+        return 0
+    return n + sumTo(n - 1)
+
+# tail recursive
+def sumTo(n, prev_sum = 0):
+    if n == 0:
+        return prev_sum
+    return sumTo(n - 1, prev_sum + n)
+
+# iterative
+def sumTo(n, prev_sum = 0):
+    while True:
+        if n == 0:
+            return prev_sum
+        n, prev_sum = n - 1, prev_sum + n
+```
+
+```python
+# non-tail recursive
+def isEven(n):
+    if n == 0:
+        return True
+    return not isEven(n-1)
+
+# tail recursive
+def isEven(n, prev_result = True):
+    if n == 0:
+        return prev_result
+    return isEven(n-1, not prev_result)
+    
+# iterative
+def isEven(n, prev_result = True):
+    while True:
+        if n == 0:
+            return prev_result
+        n, prev_result = n - 1, not prev_result
+```
+
+```python
+# non-tail recursive
+def factorial(n):
+    if n < 2:
+        return 1
+    return n * factorial(n-1)
+
+# tail recursive
+def factorial(n, prev_result = 1):
+    if n < 2:
+        return prev_result
+    return factorial(n-1, prev_result * n)
+
+# iterative
+def factorial(n, prev_result = 1):
+    while True:
+        if n < 2:
+            return prev_result
+        n, prev_result = n - 1, prev_result * n
+```
+
+```python
+# non-tail recursive
+def find_val_or_next_smallest(bst, x):
+    if bst is None:
+        return None
+    elif bst.val == x:
+        return x
+    elif bst.val > x:
+        return find_val_or_next_smallest(bst.left, x)
+    else:
+        right_best = find_val_or_next_smallest(bst.right, x)
+        if right_best is None:
+            return bst.val
+        return right_best
+
+# tail recursive
+def find_val_or_next_smallest(bst, x, acc=None):
+    if bst is None:
+        return acc
+    elif bst.val == x:
+        return x
+    elif bst.val > x:
+        return find_val_or_next_smallest(bst.left, x, acc)
+    else:
+        return find_val_or_next_smallest(bst.right, x, bst.val)
+
+# iterative
+def find_val_or_next_smallest(bst, x, acc=None):
+    while True:
+        if bst is None:
+            return acc
+        elif bst.val == x:
+            return x
+        elif bst.val > x:
+            bst, x, acc = bst.left, x, acc
+        else:
+            bst, x, acc = bst.right, x, bst.val
+```
+
+```python
+# non-tail recursive
+def binomial(n, k):
+    if k == 0:
+        return 1
+    return n * binomial(n-1, k-1) // k
+
+# tail recursive
+def binomial(n, k, lmul=1, rdiv=1):
+    if k == 0:
+        return extra_work(1, lmul, rdiv)
+    return binomial(n-1, k-1, n*lmul, k*rdiv)
+
+# iterative
+def binomial(n, k, lmul=1, rdiv=1):
+    while True:
+        if k == 0:
+            return lmul // rdiv
+        n, k, lmul, rdiv = n-1, k-1, lmul*n, k*rdiv
+```
 
 ## How to solve recursive problems?
 
@@ -336,6 +708,45 @@ solve(stack)
 
 print(stack.arr)
 # [6, 5, 4, 3, 2, 1]
+```
+
+### K-th symbol in grammar
+
+[leetcode link](https://leetcode.com/problems/k-th-symbol-in-grammar/).
+
+**Problem**. Given two integers `n` and `k`, where `n` represents row number and `k` column number in a table (1-indexed). Base case (n=1, k=1), the table has value `0`. For `n=2` row, replace `0` in previous row with `(0,1)` and `1` with `(1,0)`. So second row becomes `[0,1]`. Similarly, third row becomes `[0,1,1,0]`. Return the value in cell `n,k`.
+
+**Hypothesis approach**
+- Assume the function `solve(n, k)` return's the k-th value in the n-th row.
+- Next, check for smaller input. In this case, smaller input refers to the previous row i.e. `n-1`. So `solve(n-1, k // 2)` returns `k // 2` value in `n-1` row.
+- Next, identify the relationship between the two function. `solve(n, k) = flip_number_from solve(n-1, k // 2)`.
+- Identify base case, which is `n = 1`, `k = 1`.
+
+```python
+def solve(n, k):
+    if n == 1 and k == 1:
+        return 0
+
+    # (1,1)
+    # (2,1), (2,2)
+    # 1 and 2 needs to be mapped to 1. This can be done using (k-1) // 2 + 1
+    previous_bit = solve(n-1, (k-1) // 2 + 1)
+    
+    # In case of left_child i.e. (2,1) use the previous bit otherwise flip the
+    # bit. Because 0 becomes 0,1 and 1 becomes 1,0. In both cases, the left
+    # child is same as parent.
+    if k % 2 == 1:
+        bit = previous_bit
+    else:
+        if previous_bit == 0:
+            bit = 1
+        else:
+            bit = 0
+
+    return bit
+
+print(solve(2,1))
+# 0
 ```
 
 ### Generate all subsets of string

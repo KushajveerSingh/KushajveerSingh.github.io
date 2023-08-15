@@ -393,6 +393,27 @@ Use when it is easy to identify the *decisions*.
 
 <ImageCaption src={Image_recursion_input_output} alt="How to build recursive tree" caption='General idea behind recursive tree.' />
 
+Convert recursive tree to code
+```python
+def solve(inp, out):
+    # Define base condition, which is mostly when the input becomes empty
+    if something:
+        # code
+        return
+    
+    # Make decision to generate left tree
+    solve(smaller_input_left, new_output_left)
+
+    # Make decision to generate right tree
+    solve(smaller_input_right, new_output_right)
+
+
+inp = ORIGINAL_INPUT
+out = EMPTY_OUTPUT
+
+solve(inp, out)
+```
+
 ### Induction Hypothesis
 Use when it is easy to think about making the input smaller (especially for tree and linked list problems).
 
@@ -415,11 +436,6 @@ Base condition
 :::caution
 I am using the term `smallest invalid input` very loosely. If the input space is all numbers greater than 0. Then `smallest valid input = 1` and `smallest invalid input = 0`, even though technically `-Infinity` is the smallest invalid input.
 :::
-
-### Choice diagram
-Discussed in DP.
-
-### Fourth
 
 ## Problems
 
@@ -749,6 +765,39 @@ print(solve(2,1))
 # 0
 ```
 
+### Tower of Hanoi
+
+**Problem**. Given three rods and `N` disks. All the `N` disks are in the first rod in ascending order (with the largest being at the bottom). Print all the moves to move all the `N` disks to the third rod. A smaller disk cannot be put under bigger disk, and you can only move one disk at a time.
+
+**Hypothesis approach**
+- Assume the function `solve(n)` moves `n-1` disks to the other rod (not the 3rd) while preserving the original order.Then the `n-th` disk is moved to rod 3.
+- Now check for smaller input. In this case it refers to a stack of `n-1` disks. So `solve(n-1)`, moves `n-2` disks to the other rod (not the 3rd) and  move `n-1`th disk to rod 3.
+- Next, identify the relationship between the two functions. `solve(n) = move nth disk to rod 3 + solve(n-1)`.
+- Identify base case, which is empty stack of disks or a single disk (which can be moved to rod 3 in a single step).
+
+```python
+def solve(n, from_rod=1, to_rod=3, helper_rod=2):
+    if n == 0:
+        return
+    
+    # Step 1. Move all rods from "from" to "to" using "helper"
+    # Step 2. Move 'n' rod to "to"
+    # Step 3. Move all rods from "helper" to "to" using "from"
+
+    solve(n-1, from_rod, helper_rod, to_rod)
+    print(f'Move disk {n} from rod {from_rod} to {to_rod}')
+    solve(n-1, helper_rod, to_rod, from_rod)
+
+solve(3)
+# Move disk 1 from rod 1 to 3
+# Move disk 2 from rod 1 to 2
+# Move disk 1 from rod 3 to 2
+# Move disk 3 from rod 1 to 3
+# Move disk 1 from rod 2 to 1
+# Move disk 2 from rod 2 to 3
+# Move disk 1 from rod 1 to 3
+```
+
 ### Generate all subsets of string
 
 **Problem**. Given a string `abc` generate all its subsets `'', a, b, c, ab, bc, ac, abc`.
@@ -761,4 +810,84 @@ print(solve(2,1))
 
 <ImageCaption src={Image_recursion_subset_string} alt='Recursive tree for subset string problem with input "ab"' />
 
-**Convert recursive tree to code**.
+**Convert recursive tree to code**
+```python
+def solve(inp, out):
+    if len(inp) == 0:
+        print(out)
+        return
+    
+    # Make left tree (include 'a')
+    solve(inp[1:], out +  inp[0])
+
+    # Make right tree (do not include 'a')
+    solve(inp[1:], out)
+
+inp = 'abc'
+out = ''
+solve(inp, out)
+# abc
+# ab
+# ac
+# a
+# bc
+# b
+# c
+# 
+```
+
+The above code can be made more efficient by passing index of string, rather than modifying the string
+```python
+def solve(inp, inp_index, out):
+    if inp_index == len(inp):
+        print(out)
+        return
+    
+    solve(inp, inp_index+1, out + inp[inp_index])
+    solve(inp, inp_index+1, out)
+
+inp = 'abc'
+out = ''
+solve(inp, 0, out)
+# abc
+# ab
+# ac
+# a
+# bc
+# b
+# c
+# 
+```
+
+### Print unique subsets
+
+[leetcode link](https://leetcode.com/problems/subsets-ii)
+
+**Problem**. Given a list of numbers, generate all unique subsets.
+
+Extension of above problem, but not we need to use a set to remove redundant items.
+
+```python
+output_set = set()
+
+def solve(nums, index=0, out=''):
+    if index == len(nums):
+        output_set.add(out)
+        return
+
+    solve(nums, index+1, out + f'_{nums[index]}')
+    solve(nums, index+1, out)
+
+nums = [4,1,4]
+nums.sort() # necessary to to handle the case [4,1], [1,4]
+
+solve(nums)
+
+# Convert strings to list of numbers
+out = []
+for v in output_set:
+    out.append([int(x) for x in v.split('_')[1:]])
+
+print(out)
+# [[], [4, 4], [1, 4, 4], [4], [1, 4], [1]]
+```

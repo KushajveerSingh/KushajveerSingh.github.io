@@ -7,6 +7,9 @@ import ImageCaption from '/src/components/ImageCaption.astro';
 import Image_recursion_stack from '~/assets/algorithms/recursion_stack.jpg';
 import Image_recursion_input_output from '~/assets/algorithms/recursion_input_output.jpg';
 import Image_recursion_subset_string from '~/assets/algorithms/recursion_subset_string.jpg';
+import Image_recursion_underscore_between_chars from '~/assets/algorithms/recursion_underscore_between_chars.jpg';
+import Image_recursion_balanced_parenthesis from '~/assets/algorithms/recursion_balanced_parenthesis.jpg';
+import Image_recursion_n_bit_numbers from '~/assets/algorithms/recursion_n_bit_numbers.jpg';
 
 **How to identify recursive problem?** Problem specifies choices and based on those choices make decisions.
 
@@ -388,9 +391,10 @@ def binomial(n, k, lmul=1, rdiv=1):
 Approach 1. Think if you are making any decisions? Use recursive tree. <br />
 Approach 2. If you cannot think of decisions, think if you make the input smaller? Use induction hypothesis (tree and linked list problems).
 
-### Recursive tree
+### Input-Output method
 Use when it is easy to identify the *decisions*.
 
+Build a recursive tree
 <ImageCaption src={Image_recursion_input_output} alt="How to build recursive tree" caption='General idea behind recursive tree.' />
 
 Convert recursive tree to code
@@ -413,6 +417,11 @@ out = EMPTY_OUTPUT
 
 solve(inp, out)
 ```
+
+### Extended Input-Output
+Extension of previous where input and output are of different data type. For example, input can be number and output is a string.
+
+Build recursive tree in this case also, but you would have to track some other parameter along with it.
 
 ### Induction Hypothesis
 Use when it is easy to think about making the input smaller (especially for tree and linked list problems).
@@ -798,6 +807,29 @@ solve(3)
 # Move disk 1 from rod 1 to 3
 ```
 
+### Josephus problem
+
+[leetcode_link](https://leetcode.com/problems/find-the-winner-of-the-circular-game/description/)
+
+**Problem**. There are `n` people in a circle (numbered 1 to n). Starting from the first person, kill the `k-th` person and repeat till only one person is left.
+
+**Hypothesis approach**
+- Assume the function `solve(n, k)` gives the last remaining person.
+- Now `solve(n-1, k)` gives the last remaining person if there were `n-1` people.
+- Next, identify the relationship between the two functions. If we know the winner for `n-1` and `k`, then the winner of `n` and `k` is `solve(n,k) = solve(n-1,k) + k`. To make the numbers wrap back to 1, since they are in a circle take modulo.
+- Base, case if when there is only 1 person and they are the winner.
+
+```python
+def solve(n, k):
+    if n == 1:
+        return 0
+    
+    return (solve(n-1, k) + k) % n
+
+solve(6, 5) + 1 # Add 1 to convert to 1-based indexing
+# 1
+```
+
 ### Generate all subsets of string
 
 **Problem**. Given a string `abc` generate all its subsets `'', a, b, c, ab, bc, ac, abc`.
@@ -890,4 +922,140 @@ for v in output_set:
 
 print(out)
 # [[], [4, 4], [1, 4, 4], [4], [1, 4], [1]]
+```
+
+### Add underscore between characters
+
+**Problem**. Given a string `abc`, generate all permutations with spaces between characters `a_b_c, a_bc, ab_c, abc`.
+
+**Identify recursive problem**. You are given a choice where to put underscore after a character or not.
+
+**Build recursive tree**
+
+<ImageCaption src={Image_recursion_underscore_between_chars} alt='Recursive tree for add underscore between characters' />
+
+**Convert recursive tree to code**
+```python
+def solve(inp, inp_index=0, out=''):
+    if inp_index == len(inp) - 1:
+        out = out + inp[inp_index]
+        print(out)
+        return
+    
+    solve(inp, inp_index+1, out + inp[inp_index] + '_')
+    solve(inp, inp_index+1, out + inp[inp_index])
+
+inp = 'abc'
+solve(inp)
+# a_b_c
+# a_bc
+# ab_c
+# abc
+```
+
+### Change case of letters in string
+
+[leetcode_link](https://leetcode.com/problems/letter-case-permutation/)
+
+**Problem**. Given a string containing lowercase letters, uppercase characters and digits. Generate all permutations of the string where each character can be changed with its uppercase/lowercase letter. E.g. for `a1B2`, the output is `['a1b2', 'a1B2', 'A1b2', 'A1B2']`.
+
+```python
+def solve(inp, inp_index=0, out=''):
+    if inp_index == len(inp):
+        print(out)
+        return
+    
+    c = inp[inp_index]
+    inp_index += 1
+
+    if c >= '0' and c <= '9':
+        solve(inp, inp_index, out + c)
+    else:
+        solve(inp, inp_index, out + c.lower())
+        solve(inp, inp_index, out + c.upper())
+
+inp = 'a1B2'
+solve(inp)
+# a1b2
+# a1B2
+# A1b2
+# A1B2
+```
+
+### Generate all balanced parenthesis
+
+[leetcode_link](https://leetcode.com/problems/generate-parentheses/)
+
+**Problem**. Given `n` generate all combinations of balanced parenthesis.
+
+**Identify recursive problem**. Given a string with `2*n` places, we need to place `n` opening brackets and `n` closing brackets. So we have a choice to put opening/closing bracket at each position and we make a decision to decide which one to place.
+
+**Build recursive tree**
+- Maintain the number of open brackets and closed brackets left to add.
+- If both are equal, then only open bracket can be added.
+- If number of open bracket = 0, then only closed bracket can be added.
+- If number of open brackets less than closed brackets, then either of them can be added.
+
+<ImageCaption src={Image_recursion_balanced_parenthesis} alt='Recursive tree for generating balanced parenthesis' />
+
+**Convert recursive tree to code**
+```python
+def solve(o, c, out=''):
+    if o == 0 and c == 0:
+        print(out)
+        return
+    
+    if o == 0:
+        solve(o, c-1, out + ')')
+    elif o == c:
+        solve(o-1, c, out + '(')
+    elif o < c:
+        solve(o-1, c, out + '(')
+        solve(o, c-1, out + ')')
+
+n = 3
+solve(o=3, c=3)
+# ((()))
+# (()())
+# (())()
+# ()(())
+# ()()()
+```
+
+### Binary num with more 1's than 0's
+
+**Problem**. Given a number `n` as input. Generate all `n-digit` binary numbers where then number of 1's greater than number of 0's in all the prefixes of the number. If `n=5`, then one possible output is `11010`, and it prefixes are `1, 11, 110, 1101, 11010` and in all the prefixes number of 1's greater than number of 0's.
+
+**Identify recursive problem**. Given `n` places, we want to place either 0/1 in each of the places based on a decision.
+
+**Build recursive tree**.
+- Maintain the number of 1's and number of 0's inserted.
+- Number of 1's should always be greater than number of 0's at each step (to ensure the prefix condition).
+
+<ImageCaption src={Image_recursion_n_bit_numbers} alt='Recursive tree for binary num with more 1s than 0s'/>
+
+**Convert recursive tree to code**
+```python
+def solve(n, num_1=0, num_0=0, out=''):
+    if n == 0:
+        print(out)
+        return
+    
+    if num_1 == num_0:
+        solve(n-1, num_1+1, num_0, out + '1')
+    elif num_1 > num_0:
+        solve(n-1, num_1+1, num_0, out + '1')
+        solve(n-1, num_1, num_0+1, out + '0')
+
+solve(5)
+# 11111
+# 11110
+# 11101
+# 11100
+# 11011
+# 11010
+# 11001
+# 10111
+# 10110
+# 10101
 ```

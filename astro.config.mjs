@@ -43,28 +43,12 @@ export default defineConfig({
           ],
         },
         {
-          label: 'System Design',
-          collapsed: true,
-          items: [
-            { label: 'System Design', link: '/system_design/'},
-          ],
-        },
-        {
-          label: 'Design Patterns',
-          collapsed: true,
-          items: [
-            { label: 'Design Patterns', link: '/design_patterns/' },
-          ],
-        },
-        {
           label: 'Short Notes',
           collapsed: true,
           items: [
             { label: 'Starlight', link: '/short_notes/starlight' },
+            { label: 'Docusaurus', link: '/short_notes/docusaurus' },
             { label: 'Design System', link: '/short_notes/design_system' },
-            { label: 'Figma', link: '/short_notes/figma' },
-            { label: 'UI/UX', link: '/short_notes/ui_ux' },
-            { label: 'Progressive Web App', link: '/short_notes/progressive_web_app' },
           ],
         },
         {
@@ -75,6 +59,7 @@ export default defineConfig({
             { label: 'Blog', link: '/blog' },
             { label: 'Projects', link: '/projects' },
             { label: 'Work', link: '/work' },
+            { label: 'Notes', link: '/notes'}
           ]
         },
       ],

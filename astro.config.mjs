@@ -47,7 +47,6 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: 'Starlight', link: '/short_notes/starlight' },
-            { label: 'Docusaurus', link: '/short_notes/docusaurus' },
             { label: 'Design System', link: '/short_notes/design_system' },
           ],
         },

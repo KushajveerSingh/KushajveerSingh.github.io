@@ -1197,4 +1197,20 @@ solve(5)
 # 10101
 ```
 
-### 
+### Reverse linked list
+
+[leetcode link](https://leetcode.com/problems/reverse-linked-list/)
+
+**Hypothesis approach**
+- Assume the function `solve(head)` reverse's the list with `head` marking start of the list.
+- Next, check for smaller input. In this case, smaller input refers to list starting with `head.next`.
+- Next, identify the relationship between the two functions.
+    ```
+    orig_input = 1 -> 2 -> 3
+    smaller_input = 2 -> 3
+
+    solve(smaller_input) = 3 -> 2
+
+    solve(orig_input) = solve(smaller_input) + add '1' to the end
+    ```
+- Base case is empty list.

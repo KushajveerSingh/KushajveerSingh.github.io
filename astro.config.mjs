@@ -42,6 +42,7 @@ export default defineConfig({
             { label: 'Divide and Conquer', link: '/algorithms/divide_and_conquer' },
             { label: 'Dynamic Programming', link: '/algorithms/dynamic_programming' },
             { label: 'Greedy', link: '/algorithms/greedy' },
+            { label: 'Linked List', link: '/algorithms/linked_list' },
           ],
         },
         {

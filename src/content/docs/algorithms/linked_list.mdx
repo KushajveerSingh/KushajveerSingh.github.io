@@ -1,0 +1,92 @@
+---
+title: Linked List
+---
+
+### Reverse list
+
+[leetcode_link](https://leetcode.com/problems/reverse-linked-list/)
+
+```python
+def solve(head):
+    if head is None:
+        return head
+
+    prev = None
+    while head:
+        # need to store next element for reference
+        next_node = head.next
+
+        # do the swap
+        head.next = prev
+        prev = head
+
+        # move pointer
+        head = next_node
+    
+    return prev
+```
+
+### Check if list is palindrome
+
+[leetcode_link](https://leetcode.com/problems/palindrome-linked-list/description/)
+
+```python
+def solve(head):
+    if head is None:
+        return
+    
+    pointer = head
+    fast_pointer = head
+
+    prev = None
+    while fast_pointer and fast_pointer.next:
+        fast_pointer = fast_pointer.next.next
+
+        # Reverse the first half of the list
+        next_node = pointer.next
+        pointer.next = prev
+        prev = pointer
+        pointer = next_node
+    
+    # prev = first half of the list (reversed)
+    # pointer = second half od the list
+
+    # Handle odd length (as pointer is at center)
+    if fast_pointer:
+        pointer = pointer.next
+
+    is_palindrome = True
+    while pointer:
+        if prev.val != pointer.val:
+            is_palindrome = False
+            break
+        
+        prev = prev.next
+        pointer = pointer.next
+
+    return is_palindrome
+```
+
+## Remove all occurances of val
+
+[leetcode_list](https://leetcode.com/problems/remove-linked-list-elements/description/)
+
+```python
+def solve(head, val):
+    root = head
+    prev = None
+    while head:
+        if head.val == val:
+            if prev:
+                # delete the node, prev remains the same
+                prev.next = head.next
+                head = prev.next
+            else:
+                # handle the case where val is the first node
+                root = head.next
+                head = root
+        else:
+            # just move to the next node
+            prev = head
+            head = head.next
+```

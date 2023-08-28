@@ -1,0 +1,132 @@
+---
+title: Rust docs
+---
+
+General info
+
+- `rustup` - command line tool for managing Rust versions and associated tools (updater)
+- `rustc` - compiler
+- `cargo` - package manager to download dependencies and the frontend to the compiler
+- `rustfmt` - to format rust code
+- `clippy` - linter to analyze source code for bugs
+
+## Setup
+
+### Install
+
+```bash
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
+
+Installs `rustup`, `rustc`, `cargo`, `rustfmt`, `clippy`. You will also need a _linker_, which you can get from _C compiler_.
+
+Pass these env variables as per your need
+
+- `RUSTUP_HOME` (`~/.rustup`) - where rustup will store metadata
+- `CARGO_HOME` (`~/.cargo`)
+- `cargo`, `rustc`, `rustup` - these commands are located at `~/.cargo/bin` and would be added to PATH variables automatically during install
+
+Use `rustc --version` to verify install (after restarting the shell).
+
+### Update
+
+`rustup update`
+
+### Uninstall
+
+`rustup self uninstall`
+
+### VSCode
+
+Use the _rust-analyzer_ LSP. Install it using `ext install rust-lang.rust-analyzer`.
+
+- `editor.inlayHints.enabled` - show inferred types, return values, named parameters in light text
+- Hovering on variable, function, type, or keyword will give you info on that item including documentation, signature.
+- `editor.semanticTokenColorCustomizations` - semantic syntax highlighting. Mutable variables are underlined.
+- `rust-analyzer.check.command` - set to `clippy` to use `cargo clippy` when you save a file and display clippy errors and warning directly in the editor.
+
+Vscode shortcuts
+
+- Auto completions (can be triggered manually using `Ctrl-Space`).
+- To manually show quick fixes use `Ctrl + .`.
+- Change a variable name by hovering over the name and press `F2` (or select _Rename Symbol_).
+- Use `Ctrl-Shift-I` to format document manually or use `editor.formatOnSave` and `editor.formatOnPaste`.
+
+Install `CodeLLDB` extension for debugging.
+
+- select `Debug: Allow Breakpoints Everywhere`
+- Use `Rust Analyzer: Debug` or select the `Debug` Codelens.
+
+### Clippy
+
+`cargo clippy` - Run clippy.
+
+`cargo clippy --fix` - automatically apply lint suggestions (`--fix` implies `--all-targets`).
+
+`cargo clippy -- -D warnings` - build will fail when encountering warnings.
+
+Add clippy to CI
+
+```yaml
+language: rust
+rust:
+  - stable
+  - beta
+before_script:
+  - rustup component add clippy
+script:
+  - cargo clippy
+  # if you want the build job to fail when encountering warnings, use
+  - cargo clippy -- -D warnings
+  # in order to also check tests and non-default crate features, use
+  - cargo clippy --all-targets --all-features -- -D warnings
+  - cargo test
+  # etc.
+```
+
+### rustfmt
+
+`cargo fmt` - run the formatter for the given directory
+
+`rustfmt filename` - format a single file
+
+Create `rustfmt.toml` or `.rustfmt.toml` to configure the rustfmt.
+
+Add rustfmt to CI
+
+```yaml
+language: rust
+before_script:
+  - rustup component add rustfmt
+script:
+  - cargo build
+  - cargo test
+  - cargo fmt --all -- --check
+```
+
+## Hello, World
+
+```bash
+touch main.rs
+```
+
+Add the code
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+```bash
+rustc main.rs
+./main
+```
+
+## Hello, Cargo
+
+Cargo is used to build your code, download dependencies, and build those dependencies (libraries).
+
+`cargo new project_name` - initializes a git repo also. But if already inside a git repo, it does not.
+
+`cargo new project_name vcs=none` - to initialize a project without git.

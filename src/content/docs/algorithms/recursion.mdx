@@ -446,6 +446,143 @@ Base condition
 I am using the term `smallest invalid input` very loosely. If the input space is all numbers greater than 0. Then `smallest valid input = 1` and `smallest invalid input = 0`, even though technically `-Infinity` is the smallest invalid input.
 :::
 
+## Time complexity
+
+### Common patterns
+```python
+def func(n):
+    if n == 0:
+        return 1
+    return 1 + func(n-1)
+```
+The recurrence relation is `T(n) = T(n-1)`. So the function is called recursively `n` times and thus `O(n)`.
+
+---
+
+```python
+def func(n):
+    if n == 0:
+        return 1
+    return 1 + func(n - 5)
+```
+The recurrence relation is `T(n) = T(n-5)`. At each recursive call we subtract 5, so in the end we only end up doing `n/5` calls and thus `O(n)`.
+
+---
+
+```python
+def func(n):
+    if n == 0:
+        return 1
+    return 1 + func(n/5)
+```
+At each recursive call we divide by 5. So we start with `n`, then `n/5`, `n/25`, `n/125` and so on. In total we keep dividing till we cannot divide by 5, so we need to find `x` (the total number of steps in this process) in `n = 5**x`, and taking `log` on both sides we get `x = log(n) base 5`.
+
+And this `T(n) = T(n/k)` is logarithmic base `k` (O(logn)). And by dropping constants we can write it as base 2.
+
+---
+
+```python
+def func(n):
+    if n == 0:
+        return
+    func(n-1)
+    func(n-1)
+```
+The recurrence relation is `T(n) = 2T(n-1)`. For each recursive call, we make two further calls and thus it is exponential `O(2^n)`.
+
+---
+
+```python
+def func(n):
+    for i in range(n):
+        pass
+
+    if n == 0:
+        return 1
+    return 1 + func(n-1)
+```
+The recurrence relation is `T(n) = T(n-1) + n`. You can expand this recurrence `T(n) = T(n-2) + n-1 + n` and so on. In the end you get `O(n^2)`.
+
+### Substitution method
+1. Make a guess.
+2. Use induction to prove if the guess is right.
+
+- Example `T(n) = 2T(n/2) + n`, n > 1
+- Guess `T(n) = O(nlogn)`
+- Prove using induction
+    - Assume `T(n)` is true i.e. `T(n) <= cn logn`
+    - Now `T(n/2) <= c(n/2)log(n/2)` or `T(n/2) <= cn log(n/2)`
+    - Use it in the original recurrence relation
+    - `T(n) <= cnlog(n/2) + n`
+    - `T(n) <= cnlog(n) - cnlog(2) + n`
+    - `T(n) <= cnlog(n) + n(1-c)`
+    - Therefore, `T(n) <= cnlog(n)` for all `c >= 1`
+- Next prove the base conditions and find for what values of n does this recurrent hold (assume some value of c). In this case, let `c=2`, then `n>=2`.
+
+### Iterative method
+1. Brute force method where you substitute the recurrent part until a pattern is observed (you basically add everything up, and remove the constants).
+
+- `T(n) = T(n-1) + n`
+- Substitute `T(n-1)`, `T(n) = T(n-2) + n-1 + n`
+- Keep repeating and you get `T(n) = O(n^2)`.
+
+### Recursive tree
+Used when the input is split into two smaller inputs like `T(n) = 2T(n/2) + cn`, where we make two recursive calls with half the input for each.
+
+Draw the recurrence tree till the base case, and sum the time takes at all levels to get the overall time complexity.
+
+### Master Theorem
+
+```
+T(n) = aT(n/b) + f(n)
+
+x = n^(log_b(a))
+
+if f(n) < x, then T(n) = n^log_b(a)
+if f(n) = x, then T(n) = f(n)log(n)
+if f(n) > x, then T(n) = f(n)
+```
+
+`T(n/b)` means the input gets smaller by a factor of `b` at each step. This can happen for logarithmic steps. And thus we get `log_b(n)`. 
+
+Think of the following recurrence (similar to binary search)
+```python
+def func(n):
+    if n == 0:
+        return 1
+    return func(n/2)
+```
+
+---
+
+`aT(n/b)` means at each step we are doing `a` recursive calls, with input of size `n/b`. This is exponential and we get a total of `a^(log_b(n))` calls.
+
+Think of the following recurrence (draw the recursive tree, and you will why it is exponential)
+```python
+def func(n):
+    if n == 0:
+        return 1
+    func(n-1)
+    func(n-1)
+```
+
+---
+
+`a^(log_b(n)) = n^(log_b(a))`. This is how we get `x` in the master theorem. To prove this, take `log_b` of both sides
+```
+a^(log_b(n))        | n^(log_b(a))
+log_b(a^(log_b(n))) | log_b(n^log_b(a))
+log_b(n)log_b(a)    | log_b(a)log_b(n)
+log_b(a)log_b(n)    | log_b(a)log_b(n)
+```
+---
+
+If time complexity of `aT(n/b) > f(n)`, then it dominates big-O and we get final time complexity the same as `a(T(n/b))` which is `n^log_b(a)`.
+
+If time complexity of `aT(n/b) < f(n)`, then `f(n)` dominates big-O and we get final time complexity as `f(n)`.
+
+If the time complexity of `aT(n/b) = f(n)`, then at each step we do `f(n)` which has the same time complexity as `aT(n/b)` which is `n^(log_b(a))`. Since there are `log_b(a)` steps, the total time complexity if `n^(log_b(a)) log_b(a)`.
+
 ## Problems
 
 ### Print numbers 1 to n
@@ -1059,3 +1196,5 @@ solve(5)
 # 10110
 # 10101
 ```
+
+### 

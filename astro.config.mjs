@@ -55,8 +55,12 @@ export default defineConfig({
             { label: 'Tailwind CSS', link: '/short_notes/tailwindcss' },
             { label: 'Express', link: '/short_notes/express' },
             { label: 'EJS', link: '/short_notes/ejs' },
-            { label: 'CPU working', link: '/short_notes/cpu' },
+            { label: 'ESLint', link: '/short_notes/eslint' },
+            { label: 'Prettier', link: '/short_notes/prettier' },
+            { label: 'pnpm', link: '/short_notes/pnpm' },
+            { label: 'nvm (Node.js)', link: '/short_notes/nvm_nodejs' },
             { label: 'TOML', link: '/short_notes/toml' },
+            { label: 'CPU working', link: '/short_notes/cpu' },
           ],
         },
         {

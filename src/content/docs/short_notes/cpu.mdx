@@ -5,6 +5,7 @@ title: CPU Working
 ## Basics
 
 **CPU**. When a machine a powered on, CPU starts executing instructions.
+
 - **Instruction** - binary data: a byte or two to represent what instruction to run (**opcode**), followed by the data needed to run the instruction.
 - **Machine code** - a series of these binary instructions in a row.
 - **Assembly** - a helpful syntax for reading and writing machine code (rather than writing raw bits). Assembly is always compiled to the binary that the CPU knows how to read.
@@ -23,21 +24,26 @@ add ebx, 10
 Instructions aren't always represented 1:1 in machine code as shown above. For example, `add eax 512` translates to `05 00 02 00 00` with `05` being the opcode and rest of the string being the data `512`.
 
 **RAM**. Used to store all the data used by the programs running on the computer (including program code, core operating system code).
+
 - CPU can only read machine code from the RAM.
 
 **Instruction pointer**. CPU stores an instruction pointer which points to the location in RAM where it's going to fetch the next instruction. After executing each instruction, the CPU moves the pointer and repeats (i.e. fetch-execute).
+
 - The pointer moves forward to immediately after the instruction in RAM, to point to the next instruction.
 - Some instruction can control where the instruction pointer moves (like conditionals, gotos).
-- The values is stored in *register*.
+- The values is stored in _register_.
 
 **Registers**. Small storage blocks that are extremely fast for the CPU to read and write to.
+
 - Some registers are directly accessible.
 - Other registers are only used internally by the CPU, but can often be updated or read using specialized instructions. For example, instruction pointer can't be read directly but can be updated (with a jump instruction).
 
 **Kernel**. When the system is booted, the instruction pointer starts at the kernel.
+
 - Kernel has near-full access to memory, peripherals, and other resources.
 
 CPU can be in two modes
+
 - **Kernel mode**. CPU is allowed to execute any supported instruction and access any memory (kernel and drivers run in this mode).
 - **User mode**. CPU is allowed to execute a subset of instructions, I/O and memory access is limited, and many CPU settings are locked (applications run here).
 - The mode value is stored in a register.
@@ -45,16 +51,80 @@ CPU can be in two modes
 Processors start in kernel mode. Before executing a program, the kernel initiates the switch to user mode.
 
 **Syscall**. This allows programs running in user mode to access I/O, allocate memory, and interact with the operating system.
+
 - The syscall is made to the kernel, and the OS implement's its own security protections to prevent programs from doing anything malicious.
 - A system call is a special procedure that lets a program start a transition from user space to kernel space, jumping from the program's code to OS code.
 
 **Software interrupts**. The jump from user space to kernel space is done using software interrupts.
-- During the boot process, the operating system stores a table called *interrupt vector table* (IVT) in RAM and registers it with the CPU.
+
+- During the boot process, the operating system stores a table called _interrupt vector table_ (IVT) in RAM and registers it with the CPU.
 - IVT maps interrupt numbers to handler code pointers.
-- Now userland programs can use an instruction like *INT* which tells the processor to look up the given interrupt number in the IVT, switch to kernel mode, and then jump the instruction pointer to the memory address stored in the IVT.
-- After, the code finished an instruction like *IRET* is used to tell the CPU to switch back to user mode and return the instruction pointer to where it was when the interrupt was triggered.
+- Now userland programs can use an instruction like _INT_ which tells the processor to look up the given interrupt number in the IVT, switch to kernel mode, and then jump the instruction pointer to the memory address stored in the IVT.
+- After, the code finished an instruction like _IRET_ is used to tell the CPU to switch back to user mode and return the instruction pointer to where it was when the interrupt was triggered.
 - This keeps everything secure. Only way for a program in user mode to execute privileged instructions is through software interrupts. And these interrupts are preconfigured by the OS with where in the OS code to jump to.
 - In order to pass data to these interrupts, like when reading a file, you need to pass the filename also. This data is stored in registers or stack, before the syscall is made.
 
 ## Multitasking
 
+On a single core processor, you can fake parallelism by letting processes take turns. Cycle through the processes and run a couple instructions from each one, then they all can be responsive without any single process hogging the CPU.
+
+To take control back from program use **Hardware interrupts**
+
+- Before jumping to program code, the OS sets the timer chip to trigger an interrupt after some period of time.
+- The OS switches to user mode and jumps to the next instruction of the program.
+- When the timer elapses, it triggers a hardware interrupt to switch to kernel mode and jump to OS code.
+- The OS can now save where the program left off, load a different program, and repeat the process.
+
+**Preemption** - the interruption of a process
+
+**Preemptive multitasking** - name of above fake multitasking process
+
+Time after which to preempt
+
+- Fixed time. Give each process equal amount of time to run before preempting.
+- Target latency. This is used in practice. Given 15 ms and 10 processes, each process would get 15/10 or 1.5 ms to run. There is also a lower bound on this value, so as to prevent quick process switching, as process switching is expensive.
+- Round-robin scheduling is used in practice, which uses target latency. Linux uses completely fair scheduler to prioritize tasks and divide CPU time.
+
+Also, modern kernels, including Linux, are preemptive kernels. This means kernel code can also be interrupted and scheduled just like userland processes.
+
+## How to run a program
+
+`execve` - this system call loads a program and if successful replaces the current process with that program. `execve` internally is just calls `execveat` with by passing 'argv' and 'envp' (environment variable).
+
+```
+# User space
+Run ./file.bin
+    |
+    v
+execve("./file.bin", ...)
+    |
+    v
+SYSCALL instruction
+    |
+    v
+# Kernel space
+Load and set up binary
+    |
+    v
+Try a binfmt. If not supported, try another.
+    |
+    v
+Start new process (replaces current)
+```
+
+## Memory
+
+CPU does not read and write to physical memory address in RAM. Rather, it's pointing to a location in virtual memory space.
+
+CPU talks to a chip called _memory management unit_ (MMU). MMU works likes a translator with a dictionary (page table) that translates locations in virtual memory to locations in RAM (paging).
+
+- If CPU wants to read from the address `0xfffaf`.
+- It asks MMu to translate that address.
+- MMU looks up in the dictionary, discovers the matching physical address is `0x53a4b`, and send the number back to the CPU.
+- CPU then reads the data from the RAM.
+
+When computer first boots up, memory accesses go directly to physical RAM. Immediately after startup, the OS creates the translation dictionary and tells the CPU to start using the MMU.
+
+Entries in page table are called pages, and each one represents how a certain chunk of virtual memory maps to RAM. This is a fixed size. x86-64 uses 4KiB page size, meaning each page specifies the mapping for a block of memory 4,096 bytes long.
+
+Page table stored in RAM, and each entry's size is on the order of a couple of bytes, so the page table dosen't take up too much space.

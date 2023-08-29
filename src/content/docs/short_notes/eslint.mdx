@@ -1,0 +1,58 @@
+---
+title: ESLint
+---
+
+Tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs.
+
+## Install
+
+`npm init @eslint/config` and then you can run `npx eslint file.js`.
+
+## eslint.config.js
+
+```js
+module.exports = [
+  {
+    rules: {},
+  },
+];
+```
+
+`.eslintrc.{js,yml,json}` can also be used.
+
+Every config file contains
+
+- `files` - array of glob patterns indicating the files that the config object should apply to.
+- `ignores` - array of glob patterns indicating the files that the config object should not apply to.
+- `languageOptions` - configure javascript
+  - `ecmaVersion` - default is 'latest'
+  - `sourceType` - default is 'module' for 'js' files
+- `plugins` - name-value mapping of plugin names to plugin objects.
+- `rules` - config rules.
+- `settings` - name-value pairs that should be available to all rules.
+
+### rules
+
+```json
+{
+  "rules": {
+    "semi": ["error", "always"]
+  }
+}
+```
+
+Error levels
+
+- "off"
+- "warn"
+- "error"
+
+### extends
+
+```json
+{
+  "extends": "eslint:recommended"
+}
+```
+
+All the rules from the `eslint:recommended` would be turned on.

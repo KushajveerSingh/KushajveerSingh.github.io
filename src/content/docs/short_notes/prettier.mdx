@@ -1,0 +1,55 @@
+---
+title: Prettier
+---
+
+Code formatter for JS, JSX, TS, HTML, CSS, JSON, Markdown, YAML.
+
+It works by disregarding the original styling by parsing it away and re-printing the parsed AST with its own rules.
+
+## Usage
+
+```
+npm install --save-dev --save-exact prettier
+```
+
+and configure in `.prettierc.json`. Add `.prettierignore` for file to ignore.
+
+`npx prettier . --write` to format all files.
+
+To use with ESLint add `npm install --save-dev eslint-config-prettier` and in `eslintrc`
+
+```json
+{
+  "extends": ["other configs", "prettier"]
+}
+```
+
+## Ignore
+
+Use `// prettier-ignore` before the line to exclude it from formatting.
+
+In JSX use `{/* prettier-ignore */}`.
+
+In HTML use `<!-- prettier-ignore -->` or `<!-- prettier-ignore-attribute -->`.
+
+In CSS use `/* prettier-ignore */`.
+
+In Markdown use `<!-- prettier-ignore -->`.
+
+## Options
+
+```json
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false, // use spaces instead of tabs
+  "semi": true, // use semicolons at end of line
+  "singleQuote": false, // JSX quotes ignore this option
+  "quoteProps": "as-needed", // quote property names only when needed
+  "jsxSingleQuote": false,
+  "trailingComma": "all", // add them whenever possible
+  "bracketSpacing": true, // add space between brackets
+  "bracketSameLine": false, // if false, put '>' of a multi-line HTML at new line
+  "arrowParens": "always" // add parenthesis to single parameter arrow function
+}
+```

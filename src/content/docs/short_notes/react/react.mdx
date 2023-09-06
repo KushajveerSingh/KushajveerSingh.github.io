@@ -1,0 +1,154 @@
+---
+title: React
+---
+
+- Component names start with capital letter.
+
+## JSX
+
+### className
+Specify class name using `className`, and then you can add the style in css file and use link tag to include it in the html.
+
+```jsx
+return (
+  <img
+    className="avatar"
+    src={user.imgUrl}
+  />
+)
+```
+
+### style
+To add inline style pass an object to `style` as `style={obj}` or `style={{ width: ... }}`.
+
+```jsx
+return (
+  <img
+    className="avatar"
+    src={user.imgUrl}
+    style={{
+      width: user.imageSize,
+    }}
+  />
+)
+```
+
+### Conditionals
+
+Approach 1. Outside JSX
+```jsx
+if (isLoggedIn) {
+  content = <AdminPanel />;
+} else {
+  content = <LoginForm />;
+}
+
+return <div>{content}</div>;
+```
+
+Approach 2. Inside JSX
+```jsx
+return (
+  <div>
+    {isLoggedIn ? (
+        <AdminPanel />
+    ) : (
+        <LoginForm />
+    )}
+  </div>
+)
+
+// or without else condition
+return (
+  <div>
+    {isLoggedIn && <AdminPanel />}
+  </div>
+)
+```
+
+### for-loop / map
+From a performance perspective
+- Map is slower as it involves function calls for each element in the array. But this difference is negligible for small to moderately sized arrays.
+- For loop does not involve any function call. So if you are using for-loop, it will automatically scale to larger inputs, and give you free performance.
+
+Respect immutability when using for-loop, do not modify the original array. When using `map` we cannot modify the original array, and reflect this when using for-loop also.
+
+`key` value
+- use id provided associated with the item as the key (like database id).
+- use `index` as the last resort for the `key` value
+
+Using map
+```jsx
+const arr = [
+  { title: "Cabbage", id: 1 },
+  { title: "Garlic", id: 2 },
+  { title: "Apple", id: 3 }
+];
+
+return (
+  <ul>
+    {arr.map((item, index) => {
+      return <li key={index}>{item['title']}</li>
+    })}
+  </ul>
+);
+```
+
+Using for loop
+```jsx
+const listItems = Array(arr.length);
+for (let i = 0; i < arr.length; i++) {
+  listItems[i] = <li key={i}>{arr[i]['title']}</li>;
+}
+
+return (
+  <ul>
+    {listItems}
+  </ul>
+);
+```
+
+### Event handlers
+```jsx
+return (
+  <button onClick={handleClick}>
+    Click me
+  </button>
+);
+```
+
+### props
+To share data between components.
+```jsx
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => setCount(count+1);
+
+  return (
+    <>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </>
+  );
+}
+
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+### Immutability
+Instead of changing the original data, create a copy and change that. This is the general approach used in React.
+
+Benefits of immutability
+- Makes complex features easier to implement.
+- Let's you keep previous versions of the data intact, and reuse them later.
+- By default, all child components are re-rendered automatically, when the state of the parent component changes, including the child components that weren't affected by the change. Immutability makes it very cheap for components to compare whether their data has changed or not, and thus avoid the re-render.
+
+Other
+- when you call a 'set' function in a component, React automatically updated the child components inside too.

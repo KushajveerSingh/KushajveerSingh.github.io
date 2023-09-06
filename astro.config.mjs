@@ -49,6 +49,8 @@ export default defineConfig({
           label: 'Short Notes',
           collapsed: true,
           items: [
+            { label: 'HTML', autogenerate: { directory: 'short_notes/html' } },
+            { label: 'React', autogenerate: { directory: 'short_notes/react' } },
             { label: 'Starlight', link: '/short_notes/starlight' },
             { label: 'Design System', link: '/short_notes/design_system' },
             { label: 'PostCSS', link: '/short_notes/postcss' },

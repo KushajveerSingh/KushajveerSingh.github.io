@@ -6,6 +6,20 @@ title: Linked List
 
 [leetcode_link](https://leetcode.com/problems/reverse-linked-list/)
 
+**Hypothesis approach**
+- Assume the function `solve(head)` reverse's the list with `head` marking start of the list.
+- Next, check for smaller input. In this case, smaller input refers to list starting with `head.next`.
+- Next, identify the relationship between the two functions.
+    ```
+    orig_input = 1 -> 2 -> 3
+    smaller_input = 2 -> 3
+
+    solve(smaller_input) = 3 -> 2
+
+    solve(orig_input) = solve(smaller_input) + add '1' to the end
+    ```
+- Base case is empty list.
+
 ```python
 def solve(head):
     if head is None:
@@ -69,7 +83,7 @@ def solve(head):
 
 ## Remove all occurances of val
 
-[leetcode_list](https://leetcode.com/problems/remove-linked-list-elements/description/)
+[leetcode_link](https://leetcode.com/problems/remove-linked-list-elements/description/)
 
 ```python
 def solve(head, val):
@@ -91,5 +105,91 @@ def solve(head, val):
             head = head.next
     
     return root
+```
+
+## Print immutable linked list in reverse
+
+[leetcode_link](https://leetcode.com/problems/print-immutable-linked-list-in-reverse/description/)
+
+You can only use `node.printValue()` and `node.getNext()` methods, and have to print the linked list in reverse order.
+
+```python
+# Time = O(n^2), Space = O(1)
+def solve(head):
+    # Get length of list
+    length = 0
+    node = head
+    while node:
+        length += 1
+        node = node.getNext()
+
+    # Iterate to length and print the last node and repeat with length - 1
+    while length > 0:
+        node = head
+
+        for _ in range(length - 1):
+            node = node.getNext()
+        node.printValue()
+
+        length -= 1
+```
+
+```python
+# Time = O(n), Space = O(sqrt(n))
+def solve(head):
+    # Get length of list
+    length = 0
+    node = head
+    while node:
+        length += 1
+        node = node.getNext()
+
+    # Use SQRT decomposition to store sqrt(n) size blocks and print them in reverse
+    length_sqrt = math.floor(math.sqrt(length)) # floor/ceil does not matter
+    while length > 0:
+        node = head
+
+        orig_length = length
+        length = max(0, length - length_sqrt)
+
+        for _ in range(length):
+            node = node.getNext()
+
+        # Create block of size sqrt(n)
+        block = []
+        for _ in range(length, orig_length):
+            block.append(node)
+            node = node.getNext()
+        
+        # Print block in reverse
+        for i in range(len(block)-1, -1, -1):
+            block[i].printValue()
+```
+
+```python
+# Time = O(n logn), Space = O(logn)
+def solve(head):
+    helper(head, None)
+
+# Use divide and conquer (similar to merge sort). Print the right value before left value
+def helper(start_node, end_node):
+    if start_node is None or start_node == end_node:
+        return
+    
+    if start_node.getNext() == end_node:
+        start_node.printValue()
+        return
+
+    # Use two slow/fast pointer to find the middle of the list
+    slow = start_node
+    fast = start_node
+
+    while fast != end_node and fast.getNext() != end_node:
+        slow = slow.getNext()
+        fast = fast.getNext().getNext()
+    
+    # Call the function first with right side, and then left side
+    helper(slow, end_node)
+    helper(start_node, slow)
 ```
 

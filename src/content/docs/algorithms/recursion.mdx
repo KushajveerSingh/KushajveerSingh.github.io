@@ -1197,20 +1197,38 @@ solve(5)
 # 10101
 ```
 
-### Reverse linked list
+### Generate contest matches
 
-[leetcode link](https://leetcode.com/problems/reverse-linked-list/)
+[leetcode_link](https://leetcode.com/problems/output-contest-matches/description/)
 
-**Hypothesis approach**
-- Assume the function `solve(head)` reverse's the list with `head` marking start of the list.
-- Next, check for smaller input. In this case, smaller input refers to list starting with `head.next`.
-- Next, identify the relationship between the two functions.
-    ```
-    orig_input = 1 -> 2 -> 3
-    smaller_input = 2 -> 3
+**Problem**. In a match between teams `1` to `n`, you matach 1 plays n, 2 plays n-2 and so on. Then in the second round again the stronger team `(1,n)` plays with `(n//2,n//2+1)`.
+```
+Input: n = 8
+Output: "(((1,8),(4,5)),((2,7),(3,6)))"
+Explanation:
+First round: (1, 8),(2, 7),(3, 6),(4, 5)
+Second round: ((1, 8),(4, 5)),((2, 7),(3, 6))
+Third round: (((1, 8),(4, 5)),((2, 7),(3, 6)))
+Since the third round will generate the final winner, you need to output the answer (((1,8),(4,5)),((2,7),(3,6))).
+```
 
-    solve(smaller_input) = 3 -> 2
+**Recursion idea**
+- Convert input to list. So [1,2,3,4,...,n]
+- `solve(l)`, generates the required string for the above list
+- `solve(new_l)`, generate the requirers string the list created from `solve(l)` and so on till the length of the list becomes 1.
 
-    solve(orig_input) = solve(smaller_input) + add '1' to the end
-    ```
-- Base case is empty list.
+```python
+def solve(l):
+    new_l = []
+    for i in range(len(l)//2):
+        new_l.append(f'({l[i]},{len(l)-i-1})')
+    
+    if len(new_l) == 1:
+        return new_l[0]
+    
+    return solve(new_l)
+
+n = 8
+l = [i for i in range(1, n+1)]
+print(solve(l))
+```

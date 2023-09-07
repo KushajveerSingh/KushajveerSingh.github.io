@@ -43,6 +43,7 @@ export default defineConfig({
             { label: 'Dynamic Programming', link: '/algorithms/dynamic_programming' },
             { label: 'Greedy', link: '/algorithms/greedy' },
             { label: 'Linked List', link: '/algorithms/linked_list' },
+            { label: 'Binary (Search) Tree', link : '/algorithms/binary_tree_and_search' },
           ],
         },
         {

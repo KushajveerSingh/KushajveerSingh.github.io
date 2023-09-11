@@ -37,6 +37,7 @@ export default defineConfig({
           label: 'Algorithms',
           collapsed: true,
           items: [
+            { label: 'Leetcode', autogenerate: { directory: 'algorithms/leetcode' } },
             { label: 'Recursion', link: '/algorithms/recursion' },
             { label: 'Backtracking', link: '/algorithms/backtracking' },
             { label: 'Divide and Conquer', link: '/algorithms/divide_and_conquer' },
@@ -44,6 +45,7 @@ export default defineConfig({
             { label: 'Greedy', link: '/algorithms/greedy' },
             { label: 'Linked List', link: '/algorithms/linked_list' },
             { label: 'Binary (Search) Tree', link : '/algorithms/binary_tree_and_search' },
+            { label: 'Math', link : '/algorithms/math' },
           ],
         },
         {

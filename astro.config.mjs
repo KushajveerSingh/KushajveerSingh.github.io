@@ -68,6 +68,7 @@ export default defineConfig({
             { label: 'CPU working', link: '/short_notes/cpu' },
           ],
         },
+        { label: 'Investing', autogenerate: { directory: 'investing' }, collapsed: true },
         {
           label: 'Rust',
           collapsed: true,

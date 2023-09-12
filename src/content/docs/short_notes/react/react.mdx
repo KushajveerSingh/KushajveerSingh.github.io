@@ -2,7 +2,7 @@
 title: React
 ---
 
-- Component names start with capital letter.
+- Use the minimum state to represent a component and do not repeat state. If a state can be computed from existing state, then compute it, do not duplicate it.
 
 ## JSX
 
@@ -77,6 +77,13 @@ Respect immutability when using for-loop, do not modify the original array. When
 - use id provided associated with the item as the key (like database id).
 - use `index` as the last resort for the `key` value
 
+How list re-rendering works
+- When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key.
+- If the current list has a key that didn't exist before, React creates a new component.
+- If the current list is missing a key that existed in the previous list, React destroys the previous component.
+- If the two keys match, the corresponding component is removed.
+- This helps the components keep state, between re-renders. If the component key changes, the component will be destroyed and re-created with a new state.
+
 Using map
 ```jsx
 const arr = [
@@ -150,5 +157,131 @@ Benefits of immutability
 - Let's you keep previous versions of the data intact, and reuse them later.
 - By default, all child components are re-rendered automatically, when the state of the parent component changes, including the child components that weren't affected by the change. Immutability makes it very cheap for components to compare whether their data has changed or not, and thus avoid the re-render.
 
-Other
-- when you call a 'set' function in a component, React automatically updated the child components inside too.
+## Setup React without Next.js
+
+### For entire subroute
+If you have a website deployed at `example.com` (tech stack does not matter), and want to implement all routes starting with `example.com/some-app/` fully with React, use these steps
+- Use a React framework and specify `/some-app` as the base path in the framework's configuration.
+- Configure the server/proxy so that all requests under `/some-app/` are handled by React app.
+- If you do not want the React to run on a server, use static export to generate HTML/CSS/JS and place them at `/some-app/`.
+
+### As part of existing page
+If you have your existing tech stack, and want to use React to render interactive React components somewhere on the page
+- Check if `<div />` gives an error in your JS code. If it does, then use [Babel React preset](https://babeljs.io/docs/babel-preset-react) to handle this.
+- Setup Vite to enable `import/export` syntax and use [vite-express](https://github.com/szymmis/vite-express) plugin to add support for Express.
+
+To check if the above steps worked
+- `npm install react react-dom`, and add this to your main JS file
+```jsx
+import { createRoot } from 'react-dom/client';
+
+document.body.innerHTML = '<div id="app"></div>';
+
+const root = createRoot(document.getElementById('app'));
+root.render(<h1>Hello, world</h1>);
+```
+
+## TypeScript
+
+### Props
+```tsx
+interface MyComponentProps {
+  title: string;
+  disabled: boolean;
+}
+
+function MyComponent({ title, disabled }: MyComponentProps) {
+  ...
+}
+```
+
+### useState
+```tsx
+// Type is inferred in this case
+const [enabled, setEnabled] = useState(false);
+
+// Explicitly provide a type
+const [enabled, setEnabled] = useState<boolean>(false);
+
+// Provide type for different possibilities of props
+type RequestState =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success', data: any }
+  | { status: 'error', error: Error };
+
+const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' });
+```
+
+### useReducer
+```tsx
+interface State {
+  count: number
+}
+type CounterAction =
+  | { type: 'reset' }
+  | { type: 'setCount'; value: State['count'] }
+
+const initialState: State = { count: 0 };
+
+function stateReducer(state: State, action: CounterAction): State {
+  switch (action.type) {
+    case ...:
+      ...
+    default:
+      throw new Error('Unknown action');
+  }
+}
+
+export default function App() {
+    const [state, dispatch] = useReducer(stateReducer, initialState);
+}
+```
+
+### useContext
+```tsx
+type theme = 'light' | 'dark' | 'system';
+const ThemeContext = createContext<Theme>('system');
+```
+
+### useMemo
+```tsx
+// Type inferred from return type of the function, but can be explicity
+// provided also
+const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
+```
+
+### useCallback
+```tsx
+// Although type can be automatically inferred from the return value of the
+// function, but in strict mode, you need to provide the type
+const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
+  setValue(event.currentTarget.value);
+}, [setValue]);
+```
+
+### DOM Events
+A type is provided for the most popular events from the DOM in `@types/react`, and you can use that as `React.ChangeEvent<HTMLInputElement>`.
+
+If an event type is not provided by React, use `React.SyntheticEvent` type which is base for all events.
+
+### Children
+When describing the children on a component
+- Use `React.ReactNode`, which is a union of all the possible types that can be passed as children in JSX.
+    ```tsx
+    interface ModalRendererProps {
+      title: string;
+      children: React.ReactNode;
+    }
+    ```
+- Use `React.ReactElement` which is only JSX elements and not JavaScript primitives.
+
+You cannot describe that the children are a certain type of JSX like `<li>`.
+
+### Style props
+To add type to the inline style object use `React.CSSProperties` as the type.
+
+## Component
+- Component names start with capital letter.
+- Component should follow single responsibility principle. If it ends up growing, it should be decomposed into subcomponents.
+- Never define a component inside another component.

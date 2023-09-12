@@ -13,28 +13,28 @@ sidebar: { label: 1 - 50 }
 
 **Idea**
 - Time = `O(n)`, Space = `O(n)`
-    - Iterate array and store current value and index in hashmap.
-    - When iterating if `target - current_value` is in hashmap, return the indices.
+- Iterate array and store current value and index in hashmap.
+- When iterating if `target - current_value` is in hashmap, return the indices.
 
-    ```python
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # Key = "first_num"
-        # Value = index of "first_num" in "nums"
-        d = {}
+```python
+def twoSum(self, nums: List[int], target: int) -> List[int]:
+    # Key = "first_num"
+    # Value = index of "first_num" in "nums"
+    d = {}
 
-        for i in range(len(nums)):
-            first_num = nums[i]
-            second_num = target - first_num
+    for i in range(len(nums)):
+        first_num = nums[i]
+        second_num = target - first_num
 
-            if second_num in d:
-                first_num_index = i
-                second_num_index = d[second_num]
-                return [first_num_index, second_num_index]
+        if second_num in d:
+            first_num_index = i
+            second_num_index = d[second_num]
+            return [first_num_index, second_num_index]
 
-            d[first_num] = i
-        
-        return "Not found"
-    ```
+        d[first_num] = i
+    
+    return "Not found"
+```
 
 ### 2. Add Two Numbers
 
@@ -47,42 +47,41 @@ sidebar: { label: 1 - 50 }
 
 **Idea**
 - Time = `O(max(l1.length, l2.length))`, Space = `O(1)`
-    - Iterate through the lists simultaneously
+- Iterate through the lists simultaneously
+```python
+def addTwoNumbers(self, l1: [ListNode], l2: [ListNode]) -> [ListNode]:
+    def add_vals(l1, l2, carry):
+        # val = carry + l1.val + l2.val
+        val = carry
+        if l1 is not None:
+            val += l1.val
+            l1 = l1.next
+        if l2 is not None:
+            val += l2.val
+            l2 = l2.next
 
-    ```python
-    def addTwoNumbers(self, l1: [ListNode], l2: [ListNode]) -> [ListNode]:
-        def add_vals(l1, l2, carry):
-            # val = carry + l1.val + l2.val
-            val = carry
-            if l1 is not None:
-                val += l1.val
-                l1 = l1.next
-            if l2 is not None:
-                val += l2.val
-                l2 = l2.next
+        # Handle carry
+        if val >= 10:
+            val = val - 10
+            carry = 1
+        else:
+            carry = 0
 
-            # Handle carry
-            if val >= 10:
-                val = val - 10
-                carry = 1
-            else:
-                carry = 0
-
-            # Return the modified lists, carry, and a new node with the 'val'
-            return l1, l2, carry, ListNode(val)
+        # Return the modified lists, carry, and a new node with the 'val'
+        return l1, l2, carry, ListNode(val)
 
 
-        l1, l2, carry, root = add_vals(l1, l2, 0)
-        head = root
+    l1, l2, carry, root = add_vals(l1, l2, 0)
+    head = root
 
-        while (l1 is not None) or (l2 is not None) or (carry != 0):
-            l1, l2, carry, node = add_vals(l1, l2, carry)
+    while (l1 is not None) or (l2 is not None) or (carry != 0):
+        l1, l2, carry, node = add_vals(l1, l2, carry)
 
-            head.next = node
-            head = head.next
+        head.next = node
+        head = head.next
 
-        return root
-    ```
+    return root
+```
 
 ### 3. Longest Substring Without Repeating Characters
 
@@ -90,34 +89,33 @@ sidebar: { label: 1 - 50 }
 
 **Idea**
 - Time = `O(n)`, Space = `O(1)` or `O(possible chars)`.
-    - Maintain a hashmap, that stores the last occurance of a character.
-    - Iterate through the string, and keep updating the last occurance of the current character to the current index.
-    - There are two cases now
-        - If the character is not in the hashmap, then it means it is part of substring.
-        - If the character is in the hashmap, but its last occurance is before the "start" of the substring, then it is part of the current substring.
-        - If the character is in the hashmap, and its last occurance if after the "start" of the current substring, then it means we reached the end of current substring, and need to start the next substring from the last occurance of that char.
+- Maintain a hashmap, that stores the last occurrence of a character.
+- Iterate through the string, and keep updating the last occurrence of the current character to the current index.
+- There are two cases now
+    - If the character is not in the hashmap, then it means it is part of substring.
+    - If the character is in the hashmap, but its last occurrence is before the "start" of the substring, then it is part of the current substring.
+    - If the character is in the hashmap, and its last occurrence if after the "start" of the current substring, then it means we reached the end of current substring, and need to start the next substring from the last occurrence of that char.
+```python
+def lengthOfLongestSubstring(self, s: str) -> int:
+    substring_start = 0
+    max_substring_length = 0
+    d = {} # Key = char, Value = last seen index of char
 
-    ```python
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        substring_start = 0
-        max_substring_length = 0
-        d = {} # Key = char, Value = last seen index of char
+    for i in range(len(s)):
+        c = s[i]
 
-        for i in range(len(s)):
-            c = s[i]
-
-            if c not in d:
+        if c not in d:
+            max_substring_length = max(max_substring_length, i - substring_start + 1)
+        else:
+            if d[c] < substring_start:
                 max_substring_length = max(max_substring_length, i - substring_start + 1)
             else:
-                if d[c] < substring_start:
-                    max_substring_length = max(max_substring_length, i - substring_start + 1)
-                else:
-                    substring_start = d[c] + 1
+                substring_start = d[c] + 1
 
-            d[c] = i
+        d[c] = i
 
-        return max_substring_length
-    ```
+    return max_substring_length
+```
 
 ### 4. Median of Two Sorted Arrays
 
@@ -151,88 +149,207 @@ sidebar: { label: 1 - 50 }
     - The partition in `arr2` would be at `median - i` i.e. `2 - 1 = 1`. And we get the second array as `arr2 = 3 | 4 5`.
     - If we were to continue with this, then we would get the result as the element to the left of median (too lazy to check by hand).
 - To handle both odd and even case compute middle of second array as `(M + N + 1) // 2 - i`.
+```python
+def findMedianSortedArrays(self, arr1: List[int], arr2: List[int]) -> float:
+    if len(arr1) > len(arr2):
+        return self.findMedianSortedArrays(arr2, arr1)
+    
+    low, high = 0, len(arr1)
+    while low <= high:
+        arr1_mid = (low + high) // 2
+        arr2_mid = (len(arr1) + len(arr2) + 1) // 2 - arr1_mid
 
-    ```python
-    def findMedianSortedArrays(self, arr1: List[int], arr2: List[int]) -> float:
-        if len(arr1) > len(arr2):
-            return self.findMedianSortedArrays(arr2, arr1)
-        
-        low, high = 0, len(arr1)
-        while low <= high:
-            arr1_mid = (low + high) // 2
-            arr2_mid = (len(arr1) + len(arr2) + 1) // 2 - arr1_mid
+        # Handle edge cases
+        arr1_left_min = -1e9 if arr1_mid == 0 else arr1[arr1_mid - 1]
+        arr1_right_max = 1e9 if arr1_mid == len(arr1) else arr1[arr1_mid]
 
-            # Handle edge cases
-            arr1_left_min = -1e9 if arr1_mid == 0 else arr1[arr1_mid - 1]
-            arr1_right_max = 1e9 if arr1_mid == len(arr1) else arr1[arr1_mid]
+        arr2_left_min = -1e9 if arr2_mid == 0 else arr2[arr2_mid - 1]
+        arr2_right_max = 1e9 if arr2_mid == len(arr2) else arr2[arr2_mid]
 
-            arr2_left_min = -1e9 if arr2_mid == 0 else arr2[arr2_mid - 1]
-            arr2_right_max = 1e9 if arr2_mid == len(arr2) else arr2[arr2_mid]
-
-            # For the median we need to meet the following conditions
-            # - arr1_left_min <= arr1_right_max (done, as arr is sorted)
-            # - arr1_left_min <= arr2_right_max
-            # - arr2_left_min <= arr2_right_max (done, as arr is sorted)
-            # - arr2_left_min <= arr2_right_max
-            if arr1_left_min <= arr2_right_max and arr2_left_min <= arr1_right_max:
-                if (len(arr1) + len(arr2)) % 2 == 0:
-                    return (max(arr1_left_min, arr2_left_min) + min(arr1_right_max, arr2_right_max)) / 2
-                return max(arr1_left_min, arr2_left_min)
-            elif arr1_left_min > arr2_right_max:
-                high = arr1_mid - 1
-            else:
-                low = arr1_mid + 1
-    ```
+        # For the median we need to meet the following conditions
+        # - arr1_left_min <= arr1_right_max (done, as arr is sorted)
+        # - arr1_left_min <= arr2_right_max
+        # - arr2_left_min <= arr2_right_max (done, as arr is sorted)
+        # - arr2_left_min <= arr2_right_max
+        if arr1_left_min <= arr2_right_max and arr2_left_min <= arr1_right_max:
+            if (len(arr1) + len(arr2)) % 2 == 0:
+                return (max(arr1_left_min, arr2_left_min) + min(arr1_right_max, arr2_right_max)) / 2
+            return max(arr1_left_min, arr2_left_min)
+        elif arr1_left_min > arr2_right_max:
+            high = arr1_mid - 1
+        else:
+            low = arr1_mid + 1
+```
 
 ### 5. Longest Palindrome Substring
 
-[leetcode_link](https://leetcode.com/problems/longest-palindromic-substring/)
+[link](https://leetcode.com/problems/longest-palindromic-substring/)
 
 **Idea**
 - Time = `O(n^2)`, Space = `O(1)`. There are `2n-1` centers, and each center can be expanded to the complete string length of `n`, so `n*(2n-1)` gives time complexity.
-    - Find the center of length 2 and length 3 palindromes, and expand the substring from there.
+- Find the center of length 2 and length 3 palindromes, and expand the substring from there.
+```python
+def longestPalindrome(self, s: str) -> str:
+    max_length = 1
+    max_left, max_right = 0, 0
 
-    ```python
-    def longestPalindrome(self, s: str) -> str:
-        max_length = 1
-        max_left, max_right = 0, 0
+    # Find all even length palindromes
+    for i in range(len(s)-1):
+        if s[i] == s[i+1]:
+            length = 0
+            left, right = i, i + 1
+            while left >= 0 and right <= len(s) - 1:
+                if s[left] == s[right]:
+                    length += 2
+                    left -= 1
+                    right += 1
+                else:
+                    break
+            
+            if length > max_length:
+                max_length = length
+                max_left = max(0, left + 1)
+                max_right = min(len(s)-1, right - 1)
 
-        # Find all even length palindromes
-        for i in range(len(s)-1):
-            if s[i] == s[i+1]:
-                length = 0
-                left, right = i, i + 1
-                while left >= 0 and right <= len(s) - 1:
-                    if s[left] == s[right]:
-                        length += 2
-                        left -= 1
-                        right += 1
-                    else:
-                        break
-                
-                if length > max_length:
-                    max_length = length
-                    max_left = max(0, left + 1)
-                    max_right = min(len(s)-1, right - 1)
+    
+    # Find all odd length palindromes
+    for i in range(len(s)-2):
+        if s[i] == s[i+2]:
+            length = 1
+            left, right = i, i + 2
+            while left >= 0 and right <= len(s) - 1:
+                if s[left] == s[right]:
+                    length += 2
+                    left -= 1
+                    right += 1
+                else:
+                    break
+            
+            if length > max_length:
+                max_length = length
+                max_left = max(0, left + 1)
+                max_right = min(len(s)-1, right - 1)
+    
+    return s[max_left:max_right+1]
+```
 
+### 6. Zigzag Conversion
+
+[link](https://leetcode.com/problems/zigzag-conversion/)
+
+**Problem** - Given a string in zigzag order, print it line by line as shown below
+```
+Input = PAYPALISHIRING with numRows = 4
+
+# P     I    N -> +6, +6, +6, +6
+# A   L S  I G -> +4, +2, +4, +2
+# Y  A  H R    -> +2, +4, +2, +4
+# P     I      -> +6, +6, +6, +6
+```
+
+**Idea**
+- Time = `O(n)`, Space = `O(1)`
+- Observe the pattern in the right side.
+- For the first row, it is +6, +6 i.e. (numRows - 1) * 2
+- Then for the next rows it doing -2 to the first jump, and +2 to the second jump (starting from 0)
+- In the last row, it is again +6, +6.
+```python
+class Solution:
+    def iterate_string(self, jump1, jump2, start_index):
+        use_jump1 = True
+        i = start_index
+
+        while i < len(self.s):
+            self.out += self.s[i]
+
+            if use_jump1:
+                i += jump1
+                use_jump1 = False
+            else:
+                i += jump2
+                use_jump1 = True
         
-        # Find all odd length palindromes
-        for i in range(len(s)-2):
-            if s[i] == s[i+2]:
-                length = 1
-                left, right = i, i + 2
-                while left >= 0 and right <= len(s) - 1:
-                    if s[left] == s[right]:
-                        length += 2
-                        left -= 1
-                        right += 1
-                    else:
-                        break
-                
-                if length > max_length:
-                    max_length = length
-                    max_left = max(0, left + 1)
-                    max_right = min(len(s)-1, right - 1)
+
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+
+        self.s = s
+        self.out = ''
+        val = (numRows - 1) * 2
+
+        # First row
+        self.iterate_string(val, val, 0)
         
-        return s[max_left:max_right+1]
-    ```
+        # Middle rows with +2, -2
+        jump1 = val
+        jump2 = 0
+        start = 0
+        while jump1 != 2:
+            jump1 -= 2
+            jump2 += 2
+            start += 1
+            
+            self.iterate_string(jump1, jump2, start)
+            
+        # Last row
+        self.iterate_string(val, val, numRows-1)
+
+        return self.out
+```
+
+### 7. Reverse integer
+
+[link](https://leetcode.com/problems/reverse-integer/description/)
+
+**Problem**. Given a 32-bit integer reverse the digits, and if the number overflows return 0
+
+**Idea**
+- Time = `O(1)`, Space = `O(1)`. Constant in terms of the number of digits in the number. Since the number is bounded by 32-bits, it can only have `math.floor(math.log10(MAX_INT))` digits which is constant.
+```python
+def reverse(self, x: int) -> int:
+    if x == 0:
+        return x
+
+    MIN_INT = -2**31
+    MAX_INT = 2**31 - 1
+    MAX_LENGTH = math.floor(math.log10(MAX_INT)) + 1
+
+    out = 0
+    if x >= 0:
+        is_positive = True
+        NUM = MAX_INT
+    else:
+        is_positive = False
+        NUM = MIN_INT
+        x = -x
+
+    x_length = math.floor(math.log10(x)) + 1
+    check_next = True
+
+    for i in range(x_length):
+        digit = x % 10
+        x = x // 10
+
+        if x_length == MAX_LENGTH and check_next:
+            max_digit = (NUM // 10**(x_length - i - 1)) % 10 # Find the digit from the reverse order in NUM
+
+            if not is_positive:
+                max_digit = 9 - max_digit  # Because of 2's complement
+            if digit > max_digit:
+                return 0
+            if digit < max_digit:
+                check_next = False
+        
+        out = 10 * out + digit
+
+    if is_positive:
+        return out
+    return -out
+```
+
+### 8. String to Integer (atoi)
+
+[link](https://leetcode.com/problems/string-to-integer-atoi/)
+
+**Problem**. Convert a string to 32-bit signed integer. 

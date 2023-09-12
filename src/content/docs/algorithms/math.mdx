@@ -1,0 +1,34 @@
+---
+title: Math
+---
+
+## Problems
+
+### Smallest number with given digit product
+
+[leetcode link](https://leetcode.com/problems/smallest-number-with-given-digit-product/description/)
+
+**Problem**. Given integer `n`, return the smallest integer such that the product of its digit isequal to `n`. Example for `n = 105`, the number `357` as `3*5*7 = 105`.
+
+```python
+def solve(n):
+    if n <= 9:
+        return str(n)
+    
+    # Save divisors starting from 9
+    divisors = []
+    digit = 9
+
+    while digit >= 2:
+        if n % digit == 0:
+            n = n // digit
+            divisors.append(str(digit))
+        else:
+            digit -= 1
+
+    if n > 1:
+        # It means, the number contains prime divisors greater than 9
+        return "-1"
+    
+    return "".join(divisors[::-1])
+```

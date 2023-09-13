@@ -352,4 +352,150 @@ def reverse(self, x: int) -> int:
 
 [link](https://leetcode.com/problems/string-to-integer-atoi/)
 
-**Problem**. Convert a string to 32-bit signed integer. 
+**Problem**. Convert a string to 32-bit signed integer.
+
+**Idea**
+- Time = `O(n)`, Space = `O(1)`
+- Just follow the rules outlined in the problem statement and convert them to code nothing special.
+- Some things to note, your code should handle '+42', '-42', '42', '00042'.
+```python
+def myAtoi(self, s: str) -> int:
+    MAX_INT = 2**31 - 1
+    MIN_INT = 2**31
+
+    i = 0
+    # Remove leading whitespace
+    while i < len(s):
+        if s[i] == ' ':
+            i += 1
+        else:
+            break
+    
+    # Check number is positive or negative
+    is_positive = None
+    if i < len(s):
+        if s[i] == '+':
+            is_positive = True
+            i += 1
+        elif s[i] == '-':
+            i += 1
+            is_positive = False
+        elif s[i] >= '0' and s[i] <= '9':
+            is_positive = True
+        else:
+            is_positive = True
+
+    # Remove leading zeros
+    while i < len(s):
+        if s[i] != '0':
+            break
+        i += 1
+
+    # Get the number and ignore everything after that
+    num = ''
+    while i < len(s):
+        if s[i] >= '0' and s[i] <= '9':
+            num += s[i]
+            i += 1
+        else:
+            break
+    
+    # Handle empty string
+    if len(num) == 0:
+        num = '0'
+    
+    target = None
+    if is_positive:
+        target = str(MAX_INT)
+    else:
+        target = str(MIN_INT)
+
+    out = None
+    if len(num) > len(target):
+        # Clear overflow
+        if is_positive:
+            out = MAX_INT
+        else:
+            out = -MIN_INT
+    elif len(num) < len(target):
+        # Can never overflow
+        out = 0
+        for i in range(len(num)):
+            out = out * 10 + int(num[i])
+
+        if not is_positive:
+            out = -out
+    else:
+        # Check if overflow occurs
+        overflow = False
+        for i in range(len(num)):
+            if num[i] > target[i]:
+                overflow = True
+                break
+            elif num[i] < target[i]:
+                break
+
+        if overflow:
+            # Overflow occurred
+            if is_positive:
+                out = MAX_INT
+            else:
+                out = -MIN_INT
+        else:
+            # No overflow occurred
+            out = 0
+            for i in range(len(num)):
+                out = out * 10 + int(num[i])
+            
+            if not is_positive:
+                out = -out
+    
+    return out
+```
+
+### 9. Palindrome number
+
+[link](https://leetcode.com/problems/palindrome-number/)
+
+**Problem**
+- Check number is palindrome without converting to string.
+
+**Idea**
+- Time = `O(1)`, Space = `O(1)`, as the number is bounded to 32-bits.
+    - Check the first and last digit and repeat to center and use `math.floor(math.log10(x)) + 1` to get length of number.
+    ```python
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        if x == 0:
+            return True
+
+        l = math.floor(math.log10(x)) + 1
+        
+        for i in range(l // 2):
+            left_digit = (x // 10**(l-i-1)) % 10
+            right_digit = (x // 10**(i)) % 10
+            
+            if left_digit != right_digit:
+                return False
+        return True
+    ```
+- You could have also tried reversing the number as shown below. But this has the problem that the number might overflow, and you would have to do additional checks for that.
+    ```python
+    # This code will result in overflow
+    new_num = 0
+    orig_x = x
+    while x != 0:
+        digit = x % 10
+        new_num = new_num * 10 + digit
+        x = x // 10
+    
+    return orig_x == new_num
+    ```
+
+### 10. Regular Expression Matching
+
+[link](https://leetcode.com/problems/regular-expression-matching/)
+
+**Problem**
+- Support `.` (match any character) and `*` (match zero or more of the preceding character)

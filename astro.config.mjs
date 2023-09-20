@@ -52,7 +52,7 @@ export default defineConfig({
           label: 'Notes',
           collapsed: true,
           items: [
-            { label: 'CSS', collapsed: true, autogenerate: { directory: 'notes/css' } },
+            { label: 'CSS', collapsed: true, autogenerate: { directory: 'nnotes/css' } },
           ],
         },
         {

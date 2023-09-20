@@ -49,6 +49,13 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Notes',
+          collapsed: true,
+          items: [
+            { label: 'CSS', collapsed: true, autogenerate: { directory: 'notes/css' } },
+          ],
+        },
+        {
           label: 'Short Notes',
           collapsed: true,
           items: [

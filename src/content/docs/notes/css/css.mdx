@@ -1,0 +1,178 @@
+---
+title: CSS
+sidebar: { order: 1 }
+---
+
+import ImageCaption from '/src/components/ImageCaption.astro';
+import Image_css_boxmodel from '~/assets/notes/css/css_boxmodel.png';
+
+Default user agent stylesheets used by browsers
+- [Chromium](https://chromium.googlesource.com/chromium/blink/+/master/Source/core/css/html.css)
+- [Firefox](https://searchfox.org/mozilla-central/source/layout/style/res/html.css)
+- [Webkit](https://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css)
+
+## Handle conflicts
+Order in which CSS rules are applied in case of conflicts
+
+1. Styles defined further down override the style above. So an `inline` will override `style` and a style defined below `link` will override `link`.
+    - Use `!important` to create an exception to the above rule.
+
+    This is really useful to define fallback styles for browsers
+    ```css
+    .my-element {
+    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 1rem + 3vw, 2rem);
+    }
+    ```
+
+    In this case, if `clamp` is supported by browsers then the second style is used, otherwise the first font-size is used. This works because CSS ignores invalid values.
+
+    In the next example, `button` will have `pink` color.
+    ```html
+    <style>
+    button { background-color: yellow; }
+    </style>
+    <button>Button</button>
+    <style>
+    button { background-color: pink; }
+    </style>
+    ```
+
+2. Specificity. To determine which CSS selector is the most specific, using a weighted scoring system.
+    - Id selector is more specific than Class selector and Class selector is more specific than html tag selector.
+
+        Heading will have red color.
+        ```css
+        /* <h1 class="my-element">Heading</h1> */
+        .my-element { color: red; }
+        h1 { color: blue; }
+        ```
+
+        Due to this reason it is generally not recommended to attach styles to an `id`, as it can make it difficult to overwrite style with something else.
+
+        Also, avoid complex selector lists like `a.my-class.another-class[href]:hover`, as specificity is cumulative, and complex selector lists can increase specificity thus making it harder to overwrite the style.
+
+3. Origin. CSS comes from multiple sources. Below list shows least specific to most specific
+    - User agent base styles - by browsers
+    - Local user styles - by operating system, browser extensions.
+    - Authored CSS - written by you
+    - Authored `!important` - `!important` defined by the author of CSS
+    - Local user styles `!important` - `!important` defined by operating system or browser extension
+    - User agent `!important` - `!important` defined in the default CSS, provided by the browser.
+
+4. Importance. The order of importance from least to most important
+    - Normal rule type like `background`
+    - `animation`
+    - `!important`
+    - `transition`
+## Box model
+Everything displayed by CSS is a box. THe behavior of box depends on
+- `display` value
+- dimensions
+- content inside the box (includes nested boxes also)
+
+You can change how content affects the box in two ways
+- Extrinsic sizing
+    - There is a limit to how much content can be part of the box. When the content is too large overflow occurs, and you can control how to handle overflowed content using `overflow`.
+- Intrinsic sizing - let the browser make decisions for you based on content size.
+    - This is default behavior, and overflow is hard to occur.
+
+<ImageCaption src={Image_css_boxmodel} alt='Box model' width={600} />
+
+Four main areas of content box
+- Content box. Discussed above
+- Padding box. Controlled by `padding` and is inside the box. Also, the scrollbars would be in this area (if using `overflow: auto` or `overflow: scroll`)
+- Border box  - Controlled by `border`. The edge of border box marks the end of box that you can visually see. Used to visually frame an element.
+- Margin box - Controlled by `margin`, and is the space around the box. `outline` and `box-shadow` occupy this space also (these are painted on top of box, so do they do not affect the size of the box).
+
+How to control box model
+- First, browsers apply a user agent stylesheet to HTML documents i.e. set the defaults in case no CSS is provided.
+- Browser sets the `display` property of each HTML element by default, and this can be `block` for `<div>`, `list-item` for `<li>`, `inline` for `<span>`.
+- Different `display` values
+    - `inline`, `inline-block` - take as much space as the content. In `inline` other elements don't respect block margin, while in `inline-block` the other elements would respect the block margin.
+    - `block` - fill the inline space. It will take all the width of the parent container, and will not allow other elements to sit beside it horizontally.
+
+How to calculate size of box
+- `box-sizing: content-box` - Default. In this case, `width`, `height` apply to content box. So, padding, border, margin would add to the size of the box and it becomes hard to manage.
+- `box-sizing: border-box` - `width`, `height` apply to border box. So, adding padding, border would make the content box smaller.
+
+Set `box-sizing: border-box` as
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+## Selectors
+
+### Simple
+- `*` - match any element.
+- `p` - type selector that match HTML element directly.
+- `.my-class` - class selector matches any element that has class applied to it.
+- `#my-id` - id selector, to match a single id on the page.
+- `[data-type='primary']` - attribute selector to select any attribute with the given value. Or use `[data-type]` to just target data attribute. These can also target html attributes like `href` and its value.
+    - `[data-type='primary' s]` - the value is checked with case-sensitivity
+    - `[data-type='primary' i]` - the value is checked with case-insensitivity
+    - `[href*='example.com']` - value contains a substring
+    - `[href^='https']` - value starts with given string
+    - `[href$='.com']` - value ends with given string
+    - `[lang]` - select the element that attribute `lang`
+- Use comma for group selector
+    ```css
+    strong,
+    em,
+    .my-class,
+    [lang] {
+      color: red;
+    }
+    ```
+
+### Pseudo-classes
+To target specific platform state, like when an element is hovered, in interacted with, or when one of the child elements is in a certain state.
+```css
+a:hover { }
+
+p:n-th-child(even) { }
+```
+
+### Pseudo-element
+Think of them as inserting new elements using CSS
+```css
+.my-element::before {
+  content: 'Prefix - ';
+}
+```
+
+Use `::selection` to style the content highlighted by user.
+
+### Combinator
+Sits between two selectors like `p > strong`. Used to select items based on their position in the document.
+- ` ` - use space to select child elements like `p strong` targets all `strong` inside `p`.
+- `+` - next sibling to target element that immediately follows another element. Generally used with `*` to add `margin-top` to a list as `.top + * { }`. In this case, it does not matter what element appears in `.top`.
+    ```html
+    <!-- .top + p { margin-top: 10px } -->
+    <div class="top box">
+      <p>No margin added, since it is the first child</p>
+      <p>Margin added, since it is the next-sibling</p>
+      <p>Margin added, since it is the next-sibling</p>
+    </div>
+    ```
+- `~` - subsequent-sibling. Select elements that share the same parent, and come after a specified element. Used to change the color of toggle switch. `selector1 ~ selector2 { }`, `selector1` is the reference element, and `selector2` is the target element, and styles are applied to all instances of `selector2` that come after an element matched by `selector1`.
+    ```html
+    <ul>
+      <li>Item 1</li>
+      <li class="active">Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+    </ul>
+    ```
+
+    In the above example `li.active - li` applies to item 3, 4, 5.
+- `>` - only apply to direct children.
+
+### Compound selector
+`a.my-class` target's `.my-class` if it was on an `<a>` element.
+

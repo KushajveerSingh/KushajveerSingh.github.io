@@ -1,0 +1,32 @@
+{
+  "editor.scrollBeyondLastColumn": 8,
+  "editor.trimAutoWhitespace": true,
+  "editor.linkedEditing": true,
+
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.rulers": [80],
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#ffffff49"
+  },
+
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.stickyScroll.enabled": true,
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+
+  "[markdown]": {
+    "editor.tabSize": 4
+  },
+
+  "[mdx]": {
+    "editor.tabSize": 4
+  }
+}

@@ -109,20 +109,20 @@ const config: Config = {
               html: `<div style="padding-bottom: 10px;"></div>`,
             },
             {
-              label: 'Archived Posts',
-              href: '/blog/archive',
+              label: 'Archive',
+              to: 'https://kushajveersingh.com/blog/archive',
             },
             {
               label: 'RSS.xml',
-              href: '/blog/rss.xml',
+              to: 'https://kushajveersingh.com/blog/rss.xml',
             },
             {
               label: 'Atom.xml',
-              href: '/blog/atom.xml',
+              to: 'https://kushajveersingh.com/blog/atom.xml',
             },
             {
               label: 'Feed.json',
-              href: '/blog/feed.xml',
+              to: 'https://kushajveersingh.com/blog/feed.json',
             },
           ],
         },

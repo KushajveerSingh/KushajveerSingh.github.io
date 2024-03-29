@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkushajveersingh=self.webpackChunkkushajveersingh||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"All posts","items":[{"title":"index","permalink":"/blog/index","unlisted":false}]}')}}]);

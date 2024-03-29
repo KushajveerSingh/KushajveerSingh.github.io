@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://kushajveersingh.com/blog</id>
+    <title>Kushajveer Singh Blog</title>
+    <updated>2024-03-29T06:08:38.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://kushajveersingh.com/blog"/>
+    <subtitle>TODO add description for blog</subtitle>
+    <icon>https://kushajveersingh.com/favicon.ico</icon>
+    <rights>Copyright © 2024 Kushajveer Singh Blog. All rights reserved.</rights>
+    <entry>
+        <title type="html"><![CDATA[index]]></title>
+        <id>https://kushajveersingh.com/blog/index</id>
+        <link href="https://kushajveersingh.com/blog/index"/>
+        <updated>2024-03-29T06:08:38.000Z</updated>
+        <summary type="html"><![CDATA[Testing]]></summary>
+        <content type="html"><![CDATA[<p>Testing</p>]]></content>
+        <author>
+            <name>Kushajveer Singh</name>
+            <uri>https://kushajveersingh.com/</uri>
+        </author>
+        <category label="testing" term="testing"/>
+    </entry>
+</feed>

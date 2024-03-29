@@ -1,0 +1,23 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Kushajveer Singh Blog",
+    "home_page_url": "https://kushajveersingh.com/blog",
+    "description": "TODO add description for blog",
+    "items": [
+        {
+            "id": "https://kushajveersingh.com/blog/index",
+            "content_html": "<p>Testing</p>",
+            "url": "https://kushajveersingh.com/blog/index",
+            "title": "index",
+            "summary": "Testing",
+            "date_modified": "2024-03-29T06:08:38.000Z",
+            "author": {
+                "name": "Kushajveer Singh",
+                "url": "https://kushajveersingh.com/"
+            },
+            "tags": [
+                "testing"
+            ]
+        }
+    ]
+}

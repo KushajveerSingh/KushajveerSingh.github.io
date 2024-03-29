@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkushajveersingh=self.webpackChunkkushajveersingh||[]).push([[583],{6866:(e,r,s)=>{s.r(r),s.d(r,{default:()=>n});var i=s(781),t=s(4848);function n(){return(0,t.jsx)(i.A,{title:"Kushajveer Singh portfolio page",description:"Full stack software engineer",children:"Migrating my site to over here."})}}}]);

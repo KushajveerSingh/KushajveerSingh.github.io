@@ -109,20 +109,44 @@ const config: Config = {
               html: `<div style="padding-bottom: 10px;"></div>`,
             },
             {
-              label: 'Archive',
-              to: 'https://kushajveersingh.com/blog/archive',
+              html: `
+              <a
+                href="https://kushajveersingh.com/blog/archive"
+                class="footer__link-item"
+              >
+                Archive
+              </a>
+              `,
             },
             {
-              label: 'RSS.xml',
-              to: 'https://kushajveersingh.com/blog/rss.xml',
+              html: `
+              <a
+                href="https://kushajveersingh.com/blog/rss.xml"
+                class="footer__link-item"
+              >
+                RSS.xml
+              </a>
+              `,
             },
             {
-              label: 'Atom.xml',
-              to: 'https://kushajveersingh.com/blog/atom.xml',
+              html: `
+              <a
+                href="https://kushajveersingh.com/blog/atom.xml"
+                class="footer__link-item"
+              >
+                Atom.xml
+              </a>
+              `,
             },
             {
-              label: 'Feed.json',
-              to: 'https://kushajveersingh.com/blog/feed.json',
+              html: `
+              <a
+                href="https://kushajveersingh.com/blog/feed.json"
+                class="footer__link-item"
+              >
+                Feed.json
+              </a>
+              `,
             },
           ],
         },

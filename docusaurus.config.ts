@@ -105,6 +105,25 @@ const config: Config = {
               label: 'Blog',
               href: '/blog',
             },
+            {
+              html: `<div style="padding-bottom: 10px;"></div>`,
+            },
+            {
+              label: 'Archived Posts',
+              href: '/blog/archive',
+            },
+            {
+              label: 'RSS.xml',
+              href: '/blog/rss.xml',
+            },
+            {
+              label: 'Atom.xml',
+              href: '/blog/atom.xml',
+            },
+            {
+              label: 'Feed.json',
+              href: '/blog/feed.xml',
+            },
           ],
         },
         {
@@ -187,8 +206,8 @@ const config: Config = {
   scripts: [
     {
       src: 'https://beamanalytics.b-cdn.net/beam.min.js',
-      async: true,
       'data-token': '7b93b436-c2e2-4be3-b042-8e41b6afdaf6',
+      async: true,
     },
   ],
 };

@@ -1,33 +1,141 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  title: 'Kushajveer Singh',
+  url: 'https://kushajveersingh.com/',
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  favicon: 'favicon.ico',
+
+  i18n: {
+    defaultLocale: 'en-US',
+    locales: ['en-US'],
+  },
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenAnchors: 'throw',
+  onBrokenMarkdownLinks: 'throw',
+  onDuplicateRoutes: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+  tagline:
+    'Full Stack Software Engineer with 7 years of experience in architecting and deploying end-to-end software solutions for internal tools and dashboards, with a focus on creating fail -safe systems optimized for performance and memory efficiency.',
+
+  organizationName: 'KushajveerSingh',
+  projectName: 'KushajveerSingh.github.io',
+  deploymentBranch: 'gh-pages',
+
+  themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',
+      // respectPrefersColorScheme: true,
+    },
+
+    // FOr meta, og:image, twitter:image
+    image: 'profile.jpeg',
+
+    metadata: [],
+
+    navbar: {
+      title: 'Kushajveer Singh',
+      logo: {
+        alt: 'Kushajveer Singh profile picture',
+        src: 'profile.jpeg',
+      },
+      hideOnScroll: true,
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'notes',
+          position: 'left',
+          label: 'Notes',
+        },
+        { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          type: 'dropdown',
+          label: 'Social',
+          position: 'right',
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/KushajveerSingh',
+            },
+            {
+              label: 'Twitter',
+              href: 'https://twitter.com/Kkushaj',
+            },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/kushaj/',
+            },
+            {
+              label: 'Instagram',
+              href: 'https://www.instagram.com/kushajveersingh/',
+            },
+          ],
+        },
+      ],
+    },
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Main',
+          items: [
+            {
+              label: 'Home',
+              to: '/',
+            },
+          ],
+        },
+        {
+          title: 'Notes',
+          items: [
+            {
+              label: 'Notes',
+              to: '/notes',
+            },
+          ],
+        },
+        {
+          title: 'Blog',
+          items: [
+            {
+              label: 'Blog',
+              href: '/blog',
+            },
+          ],
+        },
+        {
+          title: 'Social',
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/KushajveerSingh',
+            },
+            {
+              label: 'Twitter',
+              href: 'https://twitter.com/Kkushaj',
+            },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/kushaj/',
+            },
+            {
+              label: 'Instagram',
+              href: 'https://www.instagram.com/kushajveersingh/',
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Kushajveer Singh. All rights reserved.`,
+    },
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+    },
+  } satisfies Preset.ThemeConfig,
 
   presets: [
     [
@@ -35,17 +143,33 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/tree/main/',
+          routeBasePath: 'notes',
+          sidebarCollapsed: false,
+          remarkPlugins: [],
+          rehypePlugins: [],
+          showLastUpdateTime: true,
         },
         blog: {
+          blogTitle: 'title for seo',
+          blogDescription: 'description for seo',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'All posts',
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          postsPerPage: 'ALL',
+          remarkPlugins: [],
+          rehypePlugins: [],
+          feedOptions: {
+            type: 'all',
+            limit: false,
+            title: 'Kushajveer Singh Blog',
+            description: 'TODO add description for blog',
+            copyright: `Copyright © ${new Date().getFullYear()} Kushajveer Singh Blog. All rights reserved.`,
+            language: 'en-US',
+          },
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -54,80 +178,19 @@ const config: Config = {
     ],
   ],
 
-  themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
-    navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
-      items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-        },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
+  markdown: {
+    format: 'mdx',
+    mermaid: true,
+    remarkRehypeOptions: {},
+  },
+
+  scripts: [
+    {
+      src: 'https://beamanalytics.b-cdn.net/beam.min.js',
+      async: true,
+      'data-token': '7b93b436-c2e2-4be3-b042-8e41b6afdaf6',
     },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-    },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
-  } satisfies Preset.ThemeConfig,
+  ],
 };
 
 export default config;

@@ -201,6 +201,7 @@ const config: Config = {
           blogSidebarTitle: 'All posts',
           showReadingTime: true,
           postsPerPage: 'ALL',
+          showLastUpdateTime: true,
           remarkPlugins: [],
           rehypePlugins: [],
           feedOptions: {
@@ -216,6 +217,11 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        sitemap: {
+          lastmod: 'date',
+          changefreq: null,
+          priority: null,
         },
       } satisfies Preset.Options,
     ],

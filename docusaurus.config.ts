@@ -2,6 +2,9 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const remarkPlugins: any[] = [];
+const rehypePlugins: any[] = [];
+
 const config: Config = {
   title: 'Kushajveer Singh',
   url: 'https://kushajveersingh.com/',
@@ -28,11 +31,9 @@ const config: Config = {
 
   themeConfig: {
     colorMode: {
-      defaultMode: 'dark',
-      // respectPrefersColorScheme: true,
+      respectPrefersColorScheme: true,
     },
 
-    // FOr meta, og:image, twitter:image
     image: 'profile.jpeg',
 
     metadata: [],
@@ -43,7 +44,6 @@ const config: Config = {
         alt: 'Kushajveer Singh profile picture',
         src: 'profile.jpeg',
       },
-      hideOnScroll: true,
       items: [
         {
           type: 'docSidebar',
@@ -54,7 +54,7 @@ const config: Config = {
         { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'dropdown',
-          label: 'Social',
+          label: 'Socials',
           position: 'right',
           items: [
             {
@@ -76,8 +76,16 @@ const config: Config = {
           ],
         },
       ],
+      hideOnScroll: true,
     },
+
+    prism: {
+      theme: prismThemes.palenight,
+      darkTheme: prismThemes.palenight,
+    },
+
     footer: {
+      copyright: `Copyright © ${new Date().getFullYear()} Kushajveer Singh. All rights reserved.`,
       style: 'dark',
       links: [
         {
@@ -86,6 +94,16 @@ const config: Config = {
             {
               label: 'Home',
               to: '/',
+            },
+            {
+              html: `
+              <a
+                href="https://kushajveersingh.com/sitemap.xml"
+                class="footer__link-item"
+              >
+                Sitemap
+              </a>
+              `,
             },
           ],
         },
@@ -107,6 +125,16 @@ const config: Config = {
             },
             {
               html: `<div style="padding-bottom: 10px;"></div>`,
+            },
+            {
+              html: `
+              <a
+                href="https://kushajveersingh.com/blog/tags"
+                class="footer__link-item"
+              >
+                Tags
+              </a>
+              `,
             },
             {
               html: `
@@ -172,11 +200,11 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Kushajveer Singh. All rights reserved.`,
     },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 3,
     },
   } satisfies Preset.ThemeConfig,
 
@@ -185,38 +213,42 @@ const config: Config = {
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          path: 'notes',
           editUrl:
-            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/tree/main/',
+            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/edit/main/',
           routeBasePath: 'notes',
+          sidebarPath: './sidebars.ts',
           sidebarCollapsed: false,
-          remarkPlugins: [],
-          rehypePlugins: [],
+          remarkPlugins: remarkPlugins,
+          rehypePlugins: rehypePlugins,
           showLastUpdateTime: true,
         },
         blog: {
-          blogTitle: 'title for seo',
-          blogDescription: 'description for seo',
+          editUrl:
+            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/edit/main/',
+          blogTitle: 'Kushajveer Singh blog',
+          blogDescription: 'Blog',
           blogSidebarCount: 'ALL',
           blogSidebarTitle: 'All posts',
-          showReadingTime: true,
           postsPerPage: 'ALL',
-          showLastUpdateTime: true,
-          remarkPlugins: [],
-          rehypePlugins: [],
+          remarkPlugins: remarkPlugins,
+          rehypePlugins: rehypePlugins,
+          showReadingTime: true,
           feedOptions: {
             type: 'all',
             limit: false,
             title: 'Kushajveer Singh Blog',
-            description: 'TODO add description for blog',
+            description: 'Blog',
             copyright: `Copyright © ${new Date().getFullYear()} Kushajveer Singh Blog. All rights reserved.`,
             language: 'en-US',
           },
-          editUrl:
-            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/tree/main/',
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        pages: {
+          include: ['**/*.{tsx}'],
         },
         sitemap: {
           lastmod: 'date',
@@ -230,8 +262,9 @@ const config: Config = {
   markdown: {
     format: 'mdx',
     mermaid: true,
-    remarkRehypeOptions: {},
   },
+
+  headTags: [],
 
   scripts: [
     {
@@ -240,6 +273,8 @@ const config: Config = {
       async: true,
     },
   ],
+
+  themes: ['@docusaurus/theme-mermaid'],
 };
 
 export default config;

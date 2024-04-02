@@ -10,5 +10,6 @@
     "kisstkondoros.vscode-gutter-preview",
     "ms-vscode.vscode-typescript-next",
     "unifiedjs.vscode-mdx",
+    "github.vscode-github-actions"
   ]
 }

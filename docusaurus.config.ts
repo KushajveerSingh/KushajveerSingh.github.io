@@ -179,7 +179,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Social',
+          title: 'Socials',
           items: [
             {
               label: 'GitHub',
@@ -246,9 +246,6 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
-        },
-        pages: {
-          include: ['**/*.{tsx}'],
         },
         sitemap: {
           lastmod: 'date',

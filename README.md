@@ -65,3 +65,4 @@ toc_max_heading_level: 3
     -   add navbar fields to data.ts
     -   add all socials
     -   move socials to data.ts
+    -   organize duplication in footer links, and move copyright to data.ts

@@ -1,5 +1,51 @@
 # KushajveerSingh.github.io
 
+## Pages
+
+-   Create in `src/pages`. It is recommended to create a directory for each page, to keep all the styles, components in the same place. Like `src/pages/support/index.tsx`.
+-   Import styles using `import styles from './styles.module.css';`.
+-   Files prefixed with underscore, would be ignored and no route will be created.
+-   `.tsx` page
+
+    ```tsx
+    import Layout from '@theme/Layout'; // for navbar, footer
+
+    export default function Page(): JSX.Element {
+        return (
+            <Layout>
+                <div>Hello World</div>
+            </Layout>
+        );
+    }
+    ```
+
+-   `.mdx` page
+
+    ```mdx
+    ---
+    title: Kushajveer Singh
+    hide_table_of_contents: true
+    ---
+
+    Hello world
+    ```
+
+## Docs
+
+-   Each document can be tagged like in a blog post.
+-   Every document has an id. For `docs/guide/hello.md` the id is `guide/hello`. Is id used for refering document when creating sidebar.
+-   The following URLs will all resolve to `docs/Guides`
+    -   `/docs/Guides/index.md`
+    -   `/docs/Guides/README.md`
+    -   `/docs/Guides/Guides.md`
+-   `slug` can be used to change the url of the document. It can be absolute or relative to the current folder.
+    -   `slug: /myslug` - absolute from base url.
+    -   `slug: myslug`, `slug: ./../myslug` - relative to current folder.
+-   Recommended to make file system mirror the sidebar structure, and use `slug` to customize the url of each document.
+    -   Docusaurus supports number prefix patterns i.e. it will remove the number prefix from the doc id, title, label, URL paths. So you can name your files like `01-Intro.md`.
+    -   The above approach has a downside, that when you update the file name, all other file names also need to be updated, which can affect hyperlinks as well.
+    -   Instead you can provide sidebar position using `sidebar_position: 2` frontmatter.
+
 ## Markdown docs frontmatter
 
 ```

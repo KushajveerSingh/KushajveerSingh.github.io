@@ -5,6 +5,15 @@ import type * as Preset from '@docusaurus/preset-classic';
 const remarkPlugins: any[] = [];
 const rehypePlugins: any[] = [];
 
+const docs_obj = {
+  editUrl:
+    'https://github.com/KushajveerSingh/KushajveerSingh.github.io/edit/main/',
+  sidebarCollapsed: false,
+  remarkPlugins: remarkPlugins,
+  rehypePlugins: rehypePlugins,
+  showLastUpdateTime: true,
+};
+
 const config: Config = {
   title: 'Kushajveer Singh',
   url: 'https://kushajveersingh.com/',
@@ -46,10 +55,24 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'notes',
+          to: 'notes/',
           position: 'left',
           label: 'Notes',
+        },
+        {
+          to: 'work/',
+          position: 'left',
+          label: 'Work',
+        },
+        {
+          to: 'projects/',
+          position: 'left',
+          label: 'Projects',
+        },
+        {
+          to: 'certifications/',
+          position: 'left',
+          label: 'Certifications',
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
@@ -77,6 +100,13 @@ const config: Config = {
         },
       ],
       hideOnScroll: true,
+    },
+
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+        hideable: true,
+      },
     },
 
     prism: {
@@ -113,6 +143,33 @@ const config: Config = {
             {
               label: 'Notes',
               to: '/notes',
+            },
+          ],
+        },
+        {
+          title: 'Work',
+          items: [
+            {
+              label: 'Work',
+              to: '/work',
+            },
+          ],
+        },
+        {
+          title: 'Projects',
+          items: [
+            {
+              label: 'Projects',
+              to: '/projects',
+            },
+          ],
+        },
+        {
+          title: 'Certifications',
+          items: [
+            {
+              label: 'Certifications',
+              to: '/certifications',
             },
           ],
         },
@@ -213,15 +270,10 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: 'notes',
-          editUrl:
-            'https://github.com/KushajveerSingh/KushajveerSingh.github.io/edit/main/',
+          ...docs_obj,
+          path: 'docs/notes',
           routeBasePath: 'notes',
-          sidebarPath: './sidebars.ts',
-          sidebarCollapsed: false,
-          remarkPlugins: remarkPlugins,
-          rehypePlugins: rehypePlugins,
-          showLastUpdateTime: true,
+          sidebarPath: './docs/sidebars/notes.ts',
         },
         blog: {
           editUrl:
@@ -253,6 +305,39 @@ const config: Config = {
           priority: null,
         },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        ...docs_obj,
+        id: 'work',
+        path: 'docs/work',
+        routeBasePath: 'work',
+        sidebarPath: './docs/sidebars/work.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        ...docs_obj,
+        id: 'projects',
+        path: 'docs/projects',
+        routeBasePath: 'projects',
+        sidebarPath: './docs/sidebars/projects.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        ...docs_obj,
+        id: 'certifications',
+        path: 'docs/certifications',
+        routeBasePath: 'certifications',
+        sidebarPath: './docs/sidebars/certifications.ts',
+      },
     ],
   ],
 

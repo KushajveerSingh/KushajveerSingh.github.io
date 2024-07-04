@@ -343,6 +343,16 @@ const config: Config = {
         sidebarPath: './docs/sidebars/certifications.ts',
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        ...docs_obj,
+        id: 'todo',
+        path: 'docs/todo',
+        routeBasePath: 'todo',
+        sidebarPath: './docs/sidebars/todo.ts',
+      },
+    ],
   ],
 
   markdown: {

@@ -1,5 +1,63 @@
 # KushajveerSingh.github.io
 
+## Frontmatter
+
+### Docs
+
+```
+title:
+description:
+image:
+slug:
+draft: false
+unlisted: false (hidden, not indexed, excluded from sitemap)
+
+
+id: (file path without extension) unique document ID
+pagination_label: text used in next/prev
+sidebar_label: text used in sidebar
+sidebar_position: a number
+hide_title: (false) to not show 'title' as h1
+hide_table_of_contents: false
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+pagination_next: id of document you want next, or 'null' to hide next button
+pagination_prev: same as above
+custom_edit_url: pass null to disable editing, or provide a custom url
+tags: undefined
+last_update: to override last update author/date
+```
+
+### Blog
+
+```
+title:
+description:
+image:
+slug:
+authors: kushaj
+date:
+tags: []
+draft: false
+unlisted: false
+
+hide_table_of_contents: false
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+last_update: undefined
+```
+
+### Pages
+
+```
+title:
+description:
+image:
+draft: false
+unlisted: false
+hide_table_of_contents: false
+```
+
 ## TODO
 
 -   modify src/css/custom.css to use tailwind theme or a custom theme
@@ -303,64 +361,6 @@ themeConfig: {
         }
     },
 }
-```
-
-## Frontmatter
-
-### Docs
-
-```
-title:
-description:
-image:
-slug:
-draft: false
-unlisted: false (hidden, not indexed, excluded from sitemap)
-
-
-id: (file path without extension) unique document ID
-pagination_label: text used in next/prev
-sidebar_label: text used in sidebar
-sidebar_position: a number
-hide_title: (false) to not show 'title' as h1
-hide_table_of_contents: false
-toc_min_heading_level: 2
-toc_max_heading_level: 3
-pagination_next: id of document you want next, or 'null' to hide next button
-pagination_prev: same as above
-custom_edit_url: pass null to disable editing, or provide a custom url
-tags: undefined
-last_update: to override last update author/date
-```
-
-### Blog
-
-```
-title:
-description:
-image:
-slug:
-authors: kushaj
-date:
-tags: []
-draft: false
-unlisted: false
-
-hide_table_of_contents: false
-toc_min_heading_level: 2
-toc_max_heading_level: 3
-last_update: undefined
-```
-
-### Pages
-
-```
-title:
-description:
-image:
-draft: false
-unlisted: false
-hide_table_of_contents: false
 ```
 
 ## Docusaurus components

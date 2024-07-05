@@ -9,12 +9,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'learning_resources/digital_content',
         'learning_resources/coding_interview',
+        'learning_resources/overemployment',
       ],
-    },
-    {
-      type: 'category',
-      label: 'Project Ideas',
-      items: ['project_ideas/index'],
     },
   ],
 };

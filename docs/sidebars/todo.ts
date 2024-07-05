@@ -6,7 +6,10 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Learning Resources',
-      items: ['learning_resources/data_structures_and_algorithms'],
+      items: [
+        'learning_resources/digital_content',
+        'learning_resources/coding_interview',
+      ],
     },
     {
       type: 'category',

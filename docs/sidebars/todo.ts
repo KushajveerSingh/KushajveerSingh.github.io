@@ -8,6 +8,7 @@ const sidebars: SidebarsConfig = {
       label: 'Learning Resources',
       items: [
         'learning_resources/digital_content',
+        'learning_resources/web_development',
         'learning_resources/coding_interview',
         'learning_resources/overemployment',
       ],

@@ -15,6 +15,11 @@ const sidebars: SidebarsConfig = {
         'learning_resources/overemployment',
       ],
     },
+    {
+      type: 'category',
+      label: 'Other',
+      items: ['other/relevant_websites'],
+    },
   ],
 };
 

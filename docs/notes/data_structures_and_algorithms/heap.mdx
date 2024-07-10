@@ -1,0 +1,105 @@
+---
+title: Heap
+sidebar_position: 2
+---
+
+TODO
+
+-   Complete sorting section of notes
+-   Complete random alogorithms section of notes before stack
+-   Search all uses cases of min/max heap
+-   python heapq, use as min/max heap
+
+This playlist has heap in the opposite order
+
+-   In my notes and Python, top of the heap is 0th index element
+-   In the playlist, top of the heap is the last element in the array
+-   This causes the switch in min/max heap
+
+## Identification
+
+These two must be given
+
+1. "K"
+2. "smallest" or "largest"
+
+Also, the heap questions are mostly focused on sorting. The question can be solved using sorting in $O(nlogn)$. But with heap we can reduce the complexity to O(nlogk).
+
+-   K + smallest -> max_heap
+-   K + largest -> min_heap
+
+This is because, when you want to get the K smallest elements, you push the other elements (that are larger than K) to the top of the heap and remove them. This way your heap has size K.
+
+Problem - kth smallest element
+arr = [7, 10, 4, 3, 20, 15]
+k = 3
+
+Make max heap of size k = 3
+
+-   Top element is max of arr of size 3
+-   [7, _, _]
+-   [7, 10, _]
+-   [4, 7, 10]
+-   [3, 4, 7]
+-   [3, 4, 7]
+-   [3, 4, 7]
+-   Here top of the heap is the rightmost element
+
+## kth smallest element
+
+-   make max-heap and return top in the end
+
+## return k largest elements in arr
+
+-   make min-heap and return the heap in the end
+
+## sort a k sorted array (or a nearly sorted array)
+
+k-sorted means, a value at index x, can be present in any index \[x - k, x + k\] in the sorted array.
+
+make a min-heap of size k + 1, and that should be sufficient.
+
+whenever the heap overflows, that element can be placed in the sorted array.
+
+For arr = [6, 5, 3, 2, 8, 10, 9] and k = 3
+
+-   [_, _, _, _]
+-   [6, _, _, _]
+-   [6, 5, _, _]
+-   [6, 5, 3, _]
+-   Now the next 2 would be at the top, so put it in the output array and repeat
+
+## k closest numbers
+
+arr = 5, 6, 7, 8, 9
+k = 3
+x = 7
+Fund 3 numbers from the array that are closes to 7
+
+subtract 7 from all elements in the array, and then find the 3 minimum numbers (use max-heap)
+
+for negative numbers you would have to take the absolute difference. And then store a pair in the heap this time `<orig_number, x - orig_number>`.
+
+## top k frequent numbers
+
+-   Use hasmap to get element, frequency pair
+-   Then use heap to get the greatest k elements
+
+## frequency sort
+
+-   the least frequent elements should come first and so on
+-   Similar to previous problem, but use the heap on frequency and put those number of elements in the output array.
+
+## connect ropes to minimise the cost
+
+arr = [1, 2, 3, 4, 5]
+elements of arr give length of each rope
+
+we want to connect these ropes, and minimize the cost of that. If 4,5 are connected then new rope length = 9, so cost is 9.
+
+Keep connecting the minimum pairs, till only 1 is left.
+
+## sum of elements between k1 smallest and k2 smallest numbers
+
+-   just find the k1, k2 elements
+-   traverse the array and get the sum

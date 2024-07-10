@@ -20,6 +20,7 @@ const sidebars: SidebarsConfig = {
       label: 'Other',
       items: ['other/relevant_websites'],
     },
+    'working',
   ],
 };
 

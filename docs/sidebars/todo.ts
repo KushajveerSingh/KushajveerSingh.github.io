@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
       items: ['other/relevant_websites'],
     },
     'working',
+    'ipad'
   ],
 };
 

@@ -28,5 +28,43 @@
 
   "[mdx]": {
     "editor.tabSize": 4
-  }
+  },
+  "cSpell.words": [
+    "APISIX",
+    "Beejs",
+    "clonezilla",
+    "coursera",
+    "curlie",
+    "Davinci",
+    "Deque",
+    "designsystems",
+    "digitalnomad",
+    "Fairlight",
+    "Faris",
+    "fastai",
+    "Fastify",
+    "Grigork",
+    "GSAP",
+    "Ilya",
+    "Immer",
+    "learnprompting",
+    "Mailchimp",
+    "minigrammer",
+    "openapi",
+    "overemployed",
+    "OWASP",
+    "Protopie",
+    "readabilityguidelines",
+    "Rolldown",
+    "rspack",
+    "Sentinal",
+    "timeshift",
+    "Turbopack",
+    "uplot",
+    "valibot",
+    "vinxi",
+    "WCAG",
+    "webpagetest",
+    "wireframes"
+  ]
 }

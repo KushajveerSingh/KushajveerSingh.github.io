@@ -10,9 +10,9 @@ const sidebars: SidebarsConfig = {
         'learning_resources/digital_content',
         'learning_resources/web_development',
         'learning_resources/devops',
-        'learning_resources/coding_interview',
+        'learning_resources/employment',
         'learning_resources/books',
-        'learning_resources/overemployment',
+        'learning_resources/coding_interview',
       ],
     },
     {
@@ -20,8 +20,6 @@ const sidebars: SidebarsConfig = {
       label: 'Other',
       items: ['other/relevant_websites'],
     },
-    'working',
-    'ipad'
   ],
 };
 

@@ -15,3 +15,7 @@ Notes repo
 -   Create a template for head tags for markdown frontmatter
 
 Move exploring-cpp-development to this repo
+
+internal page - Create a version thing, where you can track what version of the software is the documentation for. This can be a separate page.
+
+internal page - Create a separate page to track all the software being used in different projects, which can be used for easier updates later.

@@ -19,9 +19,6 @@ export default defineConfig({
       title: 'Kushajveer Singh Sooch',
       description:
         'Full-stack software engineer. Love hiking & orienteering, painting in various mediums, and occasionally crafting origami.',
-      logo: {
-        src: './src/assets/profile.jpeg',
-      },
 
       editLink: {
         baseUrl: 'https://github.com/KushajveerSingh/notes/edit/main/',

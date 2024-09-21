@@ -1,5 +1,7 @@
 ---
 title: Digital Content
+sidebar:
+    order: 20
 ---
 
 ## Digital photography

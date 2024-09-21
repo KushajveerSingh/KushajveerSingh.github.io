@@ -7,9 +7,7 @@ Notes repo
 
 -   Reread starlight.md for corrections and after prettier-plugin.
 -   Add astro.config options.
--   Move the repo to .github.io. As this would make it easier to add projects and stuff like that in the future.
--   On homepage, create an option to "view projects".
--   The projects should have a showcase page and then documentation part.
+-   On homepage, create a dialog of what this website is about. These are the things that I currently know in depth (also link to the relevant projects for that). And then, here are the projects that I have worked. This should be about half a page summary of the projects, which then redirect to the main project showcase and detail page. And a separate link for the documentation, which would be maintained in this repo as well.
 -   Copy todo from .github.io
 -   Add head tags after reading html docs to astro.config.mjs
 -   Create a template for head tags for markdown frontmatter

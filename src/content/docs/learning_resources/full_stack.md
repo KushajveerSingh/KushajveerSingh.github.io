@@ -1,5 +1,7 @@
 ---
-title: Web Development
+title: Full Stack
+sidebar:
+    order: 30
 ---
 
 ## UI/UX
@@ -48,35 +50,64 @@ title: Web Development
     -   Adobe Spectrum
     -   Atlassian
 
-## Diagram
-
--   PlanUML
--   c4model.com
--   diagrams.minigrammer.com
-
-## Presentation
-
--   [Marp](https://marp.app/) for Markdown presentation
-
-## Prompting
-
--   learnprompting.com
--   r/PromptEngineering [post](https://www.reddit.com/r/PromptEngineering/comments/18hhvi3/resources_that_dramatically_improved_my_prompting/0)
-
 ## Frontend
 
--   HTML
-    -   MDN
-        -   HTML
-        -   Web Media Technologies
-        -   SVG
-        -   Text Fragments
-        -   Manifest
-    -   web.dev/learn
-        -   Learn HTML
-        -   Learn Images
-        -   Learn Forums
-    -   MDN Glossary
+### MDN Miscellaneous
+
+-   [ ] [link](https://developer.mozilla.org/en-US/docs/Glossary) Glossary
+-   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn) Guides
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web) Complete beginners start here
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/HTML) HTML - Structuring the web
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/CSS) CSS - Styling the web
+        -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/CSS_FAQ) CSS FAQ
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/JavaScript) JavaScript - Dynamic client-side scripting
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Forms) Web forms - Working with user data
+        -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Forms/User_input_methods) User input methods and controls
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Accessibility) Accessibility - Make the web usable by everyone
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Performance) Performance - Making websites fast and responsive
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/MathML) MathML - Writing mathematics with MathML
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Games) Developing games for the web
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing) Tools and testing
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Server-side) Server-side website programming
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn/Common_questions) Further resources
+-   [ ] Reference
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Performance) Web performance
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/OpenSearch) OpenSearch description format
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Privacy) Privacy on the web
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/SVG) SVG: Scalable Vector Graphics
+        -   [ ] Check comparison to .ico files
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Security) Security on the web
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/URI) URIs
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/WebDriver) WebDriver
+-   [ ] [link](https://web.dev/) web.dev
+    -   [ ] [link](https://web.dev/learn/performance) Learn Performance
+    -   [ ] [link](https://web.dev/learn/privacy) Learn Privacy
+    -   [ ] [link](https://web.dev/learn/testing) Learn Testing
+    -   [ ] [link](https://web.dev/case-studies) Case studies
+
+### HTML
+
+-   [ ] [link](https://html.spec.whatwg.org/dev/) WHATWG Spec for Web Devs
+-   MDN Reference
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/HTML) HTML: HyperText Markup Language
+        -   [ ] References
+        -   [ ] Guides
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Media) Web media technologies
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) Progressive web apps
+    -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Manifest) Web app manifests
+-   [ ] [link](https://web.dev/learn) wev.dev learn
+    -   [ ] [link](https://web.dev/learn/html) Learn HTML
+    -   [ ] [link](https://web.dev/learn/images) Learn Images
+    -   [ ] [link](https://web.dev/learn/forms) Learn Forms
+    -   [ ] [link](https://web.dev/learn/pwa) Learn PWA
+
+---
+
+web.dev/explore (after js) \
+web.dev/patterns (after js)
+
+Other
+
 -   CSS
     -   MDN CSS
     -   DesignCourse
@@ -112,7 +143,9 @@ title: Web Development
     -   r/accessibility
 -   Good [posts](https://adrianroselli.com/posts) by Adrian Roselli
 -   JavaScript
+    -   Eloquent js [link](https://eloquentjavascript.net/)
     -   Modern JavaScript Tutorial
+    -   MDN Reference: Event reference
     -   Utility libraries
         -   jQuery
         -   lodash
@@ -184,6 +217,7 @@ title: Web Development
     -   List all the web technologies being used
     -   [Can I Use](https://caniuse.com/)
     -   Test suite for web-platform-tests [link](https://web-platform-tests.org/index.html)
+-   https://browsersl.ist/
 
 ## Frontend frameworks
 
@@ -244,6 +278,7 @@ Frameworks
 ## API
 
 -   HTTP
+    -   Mozialla HTTP observatory [link](https://github.com/mozilla/http-observatory)
     -   HTTP-1
         -   (book) HTTP: The Definitive Guide
         -   MDN - HTTP

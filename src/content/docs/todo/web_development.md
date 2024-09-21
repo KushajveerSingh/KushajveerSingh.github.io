@@ -1,3 +1,0 @@
----
-title: Full Stack Development
----

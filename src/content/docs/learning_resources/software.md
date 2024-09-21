@@ -1,5 +1,7 @@
 ---
 title: Coding Interview
+sidebar:
+    order: 50
 ---
 
 ## Data Structures and Algorithms

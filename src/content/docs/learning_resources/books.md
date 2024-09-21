@@ -1,5 +1,7 @@
 ---
 title: Books
+sidebar:
+    order: 10
 ---
 
 ## Programming
@@ -8,5 +10,5 @@ title: Books
 
 ## Other
 
--   Range: Whye Generalists Triumph in a Specialized World
+-   Range: Why Generalists Triumph in a Specialized World
 -   Negotiating the Nonnegotiable: How to Resolve Your Most Emotionally Charged Conflicts

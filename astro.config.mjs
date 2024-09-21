@@ -32,7 +32,10 @@ export default defineConfig({
         {
           label: 'Internal',
           items: [
-            { label: 'Todo', autogenerate: { directory: 'todo' } },
+            {
+              label: 'Learning Resources',
+              autogenerate: { directory: 'learning_resources' },
+            },
             'project_ideas',
             'working',
           ],

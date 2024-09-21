@@ -1,5 +1,7 @@
 ---
 title: DevOps
+sidebar:
+    order: 40
 ---
 
 -   Ansible
@@ -7,8 +9,11 @@ title: DevOps
 -   Docker, podman
 -   Linux (dd, clonezilla, timeshift) (security hardening, systemd)
 -   Kubernetes
+
     -   Argo CD (Declarative GitOps CD)
     -   Istio (service mesh)
+
+-   [DNS performance check](https://www.dnsperf.com/)
 
 ## CI/CD
 

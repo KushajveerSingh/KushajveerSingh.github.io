@@ -1,54 +1,62 @@
 ---
 title: Full Stack
-sidebar:
-    order: 30
+slug: learning_resources/full_stack
 ---
 
 ## UI/UX
 
--   [Figma](https://www.figma.com/)
-    -   [docs](https://help.figma.com)
--   [Protopie](https://www.protopie.io/)
--   [DesignCourse](https://designcourse.com/)
-    -   UI/UX
-    -   Rapid Refactors
--   Google UX Design Professional Certificate [coursera](https://www.coursera.org/professional-certificates/google-ux-design)
-    -   Foundations of UX Design
-    -   Start the UX Process
-    -   Build wireframes and low-fidelity prototypes
-    -   Conduct UX research
-    -   Create high-fidelity designs
-    -   Build dynamic UI for website
-    -   Design a UX for social good
--   Books
-    -   Refactoring UI
-    -   Don't make me thing
-    -   The Design of Everyday things
-    -   The design of future things
-    -   About face: The essentials of interaction design
-    -   readabilityguidelines.co.uk
-    -   Laws of ux
-    -   Letting go of words
-    -   100 things every designer needs to know about people
-    -   Lean UX
-    -   Articulating design decisions
-    -   Atomic design
-    -   Laying the foundations (design systems)
--   Popular design systems
-    -   designsystems.com
-    -   Google Material
-    -   Apple Human Interfaces
-    -   Salesforce Lightning
-    -   Shopify Polaris
-    -   Ant Design
-    -   Microsoft Fluent
-    -   Uber
-    -   Mailchimp
-    -   Spotify
-    -   Liquid
-    -   IBM Carbon
-    -   Adobe Spectrum
-    -   Atlassian
+### Tools
+
+-   [ ] [Figma](https://www.figma.com/)
+    -   [ ] [docs](https://help.figma.com)
+-   [ ] [Protopie](https://www.protopie.io/)
+
+### Courses
+
+-   [ ] [DesignCourse](https://designcourse.com/)
+    -   [ ] UI/UX
+    -   [ ] Rapid Refactors
+-   [ ] Google UX Design Professional Certificate [coursera](https://www.coursera.org/professional-certificates/google-ux-design)
+    -   [ ] Foundations of UX Design
+    -   [ ] Start the UX Process
+    -   [ ] Build wireframes and low-fidelity prototypes
+    -   [ ] Conduct UX research
+    -   [ ] Create high-fidelity designs
+    -   [ ] Build dynamic UI for website
+    -   [ ] Design a UX for social good
+
+### Books
+
+-   [ ] Refactoring UI
+-   [ ] Don't make me thing
+-   [ ] The Design of Everyday things
+-   [ ] The design of future things
+-   [ ] About face: The essentials of interaction design
+-   [ ] readabilityguidelines.co.uk
+-   [ ] Laws of ux
+-   [ ] Letting go of words
+-   [ ] 100 things every designer needs to know about people
+-   [ ] Lean UX
+-   [ ] Articulating design decisions
+-   [ ] Atomic design
+-   [ ] Laying the foundations (design systems)
+
+### Design systems
+
+-   [ ] designsystems.com
+-   [ ] Google Material
+-   [ ] Apple Human Interfaces
+-   [ ] Salesforce Lightning
+-   [ ] Shopify Polaris
+-   [ ] Ant Design
+-   [ ] Microsoft Fluent
+-   [ ] Uber
+-   [ ] Mailchimp
+-   [ ] Spotify
+-   [ ] Liquid
+-   [ ] IBM Carbon
+-   [ ] Adobe Spectrum
+-   [ ] Atlassian
 
 ## Frontend
 
@@ -103,9 +111,6 @@ sidebar:
 
 ---
 
-web.dev/explore (after js) \
-web.dev/patterns (after js)
-
 Other
 
 -   CSS
@@ -141,6 +146,8 @@ Other
     -   DHD Trusted Tester Certification
     -   Deque University
     -   r/accessibility
+    -   Problem: with accessibility with math equations (can maybe can extend to chemistry)
+    -   Make a tool like stark to check accessibility with wcag spec and other specs you can find.
 -   Good [posts](https://adrianroselli.com/posts) by Adrian Roselli
 -   JavaScript
     -   Eloquent js [link](https://eloquentjavascript.net/)
@@ -218,6 +225,10 @@ Other
     -   [Can I Use](https://caniuse.com/)
     -   Test suite for web-platform-tests [link](https://web-platform-tests.org/index.html)
 -   https://browsersl.ist/
+
+web.dev/explore
+
+web.dev/patterns
 
 ## Frontend frameworks
 

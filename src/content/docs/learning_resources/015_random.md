@@ -1,7 +1,6 @@
 ---
 title: Random
-sidebar:
-    order: 11
+slug: learning_resources/random
 ---
 
 ## Diagram

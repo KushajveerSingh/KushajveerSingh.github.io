@@ -1,7 +1,6 @@
 ---
 title: Books
-sidebar:
-    order: 10
+slug: learning_resources/books
 ---
 
 ## Programming

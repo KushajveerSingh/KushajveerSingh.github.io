@@ -1,7 +1,6 @@
 ---
 title: Digital Content
-sidebar:
-    order: 20
+slug: learning_resources/digital_content
 ---
 
 ## Digital photography

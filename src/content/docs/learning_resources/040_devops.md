@@ -1,7 +1,6 @@
 ---
 title: DevOps
-sidebar:
-    order: 40
+slug: learning_resources/devops
 ---
 
 -   Ansible
@@ -103,3 +102,28 @@ sidebar:
 ## Linux tools
 
 -   [Nushell](https://www.nushell.sh/) - use this as shell (Bourne -> Bash -> Z shell -> Fish -> Nushell)
+
+## Git
+
+Pro git
+Git man pages
+Altassian git docs
+Github docs
+
+Trunk based devlopment
+Gitflow
+Github flow
+Gitlab flow
+
+O reiley git section
+
+Gitops and kubernetes book by manning
+The path to gitops book
+Argo cd
+Flux
+Jenkins
+
+Gitops fundamentals course by codefresh
+Gitops at scale course by codefresh
+
+awesome argo github repo

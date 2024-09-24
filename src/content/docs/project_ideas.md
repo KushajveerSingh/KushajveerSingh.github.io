@@ -3,12 +3,6 @@ title: Project Ideas
 pagefind: false
 ---
 
-## (Prettier) - Plugin to disable codeblock formatting
-
--   Create a Prettier plugin, that disables formatting of codeblocks in Markdown.
--   Also, see if the logic can be extended to format the codeblock based upon the language used by the codeblock. And provide an option which can be provided in the backticks to disable formatting manually.
--   Look into Prettier markdown code, to see if various formatting options can be disabled manually.
-
 ## (Starlight) - Sidebar utils plugin
 
 **Motivation**\
@@ -21,6 +15,12 @@ Other stuff
 
 -   Add option to collapse sidebar like Docusaurus and look for other features provided by Docusaurus sidebar.
 -   Look at other Starlight plugins related to sidebar.
+
+## (Prettier) - Plugin to disable codeblock formatting
+
+-   Create a Prettier plugin, that disables formatting of codeblocks in Markdown.
+-   Also, see if the logic can be extended to format the codeblock based upon the language used by the codeblock. And provide an option which can be provided in the backticks to disable formatting manually.
+-   Look into Prettier markdown code, to see if various formatting options can be disabled manually.
 
 ## (Prettier) - Configurable Formatter
 
@@ -50,7 +50,12 @@ Other stuff
 -   Use the Chrome JS parser to get the AST.
 -   If AST is the way to fo formatting, then look into all the programming languages out there and integrate their AST into the project, and then provide an option to format each node. This would make the project a universal formatter.
 
-## (Other) Project version and info tracker
+## (HTML) - Analyze DOM
+
+-   There are chrome extensions that deal with analyzing DOM like number of nodes. Consolidate all the extensions into one script/extension.
+-   Chrome console shows DOM after JD render. Ctrl-U shows HTML returned by the server. In the chrome DOM, spaces and newline nodes are not shows. In your project show these as well.
+
+## (Other) - Project version and info tracker
 
 **Motivation**\
 Make it easier to track the dependency of packages used across multiple projects, thus helping with version upgrades. And the same reasoning for personal info, like the tagline I use across all social media.

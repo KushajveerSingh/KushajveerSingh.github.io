@@ -12,6 +12,12 @@ import starlightImageZoom from 'starlight-image-zoom';
 export default defineConfig({
   site: 'https://KushajveerSingh.github.io',
   trailingSlash: 'always',
+
+  markdown: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+
   integrations: [
     tailwind({ applyBaseStyles: true }),
 
@@ -34,7 +40,17 @@ export default defineConfig({
           items: [
             {
               label: 'Learning Resources',
-              autogenerate: { directory: 'learning_resources' },
+              items: [
+                'learning_resources/books',
+                'learning_resources/random',
+                'learning_resources/digital_content',
+                'learning_resources/full_stack',
+                'learning_resources/devops',
+                'learning_resources/software',
+                'learning_resources/job',
+                'learning_resources/cpp',
+                'learning_resources/apple',
+              ],
             },
             'project_ideas',
             'working',

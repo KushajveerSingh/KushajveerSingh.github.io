@@ -1,7 +1,6 @@
 ---
-title: Coding Interview
-sidebar:
-    order: 50
+title: Software
+slug: learning_resources/software
 ---
 
 ## Data Structures and Algorithms

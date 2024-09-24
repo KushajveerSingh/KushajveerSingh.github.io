@@ -36,6 +36,17 @@ export default defineConfig({
           items: ['documentation/starlight'],
         },
         {
+          label: 'Books',
+          items: [
+            {
+              label: 'General Programming',
+              items: [
+                'books/general_programming/the_pragmatic_programmer_your_journey_to_mastery',
+              ],
+            },
+          ],
+        },
+        {
           label: 'Internal',
           items: [
             {

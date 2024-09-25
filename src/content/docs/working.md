@@ -25,3 +25,8 @@ pagefind: false
 -   add education (master, undergrad, school)
 -   add skill section
 -   add project section
+
+## template repo
+
+-   add starlight
+-   add the smaller extra files (editorconfig, .vscode)

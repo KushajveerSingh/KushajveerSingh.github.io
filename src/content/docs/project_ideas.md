@@ -87,3 +87,11 @@ Other stuff
 ## (HTML) - Formatter
 
 Create HTML formatter module for Configurable formatter.
+
+## (Template) - Template repo
+
+-   Create a template repo on github that you will use for all future side projects.
+-   Create a script that walks through all the setup, and can read the config from a JSON file for example. So you should be able to recreate the entire repo using the JSON file and the script.
+-   Also, if people want to make changes to the existing repo, see if the script can be adjusted for that as well.
+-   Use GoLang, HTMX, Tailwind as the tech stack.
+-   Along side the interactive tutorial script, have detailed documentation as well.

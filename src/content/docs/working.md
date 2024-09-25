@@ -6,7 +6,7 @@ pagefind: false
 ### documentation/starlight.md
 
 -   make prettier plugin
--   Reread starlight.md for corrections after prettier-plugin.
+-   remove prettier-ignore comments, after plugin
 -   After reading html docs, Create a template for head tags for markdown frontmatter
 
 ### index.md
@@ -31,6 +31,6 @@ So final html tools
 -   minifier
 -   linter
 -   formatter
--   dom analyzer
+-   dom analyzer - use to test performance of minifer like queryselector performance and number of nodes
 
 In case of modern SSR frameworks, you need to get all the routes and then run the linter on the generated html. As in SSR, all the html is hidden in JS and linter would be of no use.

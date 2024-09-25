@@ -95,3 +95,4 @@ Create HTML formatter module for Configurable formatter.
 -   Also, if people want to make changes to the existing repo, see if the script can be adjusted for that as well.
 -   Use GoLang, HTMX, Tailwind as the tech stack.
 -   Along side the interactive tutorial script, have detailed documentation as well.
+-   If you just want documentation, then the repo can be used to generate that as well. If you just want to write HTML files, then it can be used as well.

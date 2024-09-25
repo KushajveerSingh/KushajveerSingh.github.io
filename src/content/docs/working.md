@@ -30,3 +30,7 @@ pagefind: false
 
 -   add starlight
 -   add the smaller extra files (editorconfig, .vscode)
+
+## project_ideas.md
+
+-   read yellow notebook and other notebook, and move relevant things here

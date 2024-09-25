@@ -27,6 +27,8 @@ Other stuff
 **Motivation**\
 Unopinionated prettier alternative. In Markdown, prettier would currently format codeblocks and that would mess up JS code. And the way to avoid this is by adding prettier ignore comments, which is annoying.
 
+Split the project into core module and language specific modules.
+
 **Goal**
 
 -   It should be drop in replacement.
@@ -66,3 +68,22 @@ Other stuff
 
 -   There are chrome extensions that deal with analyzing DOM like number of nodes. Consolidate all the extensions into one script/extension.
 -   Chrome console shows DOM after JD render. Ctrl-U shows HTML returned by the server. In the chrome DOM, spaces and newline nodes are not shows. In your project show these as well.
+
+## (HTML) - Linter
+
+-   In the spec, there are ton of recommendations, plus errors which browsers respect. And all this information can be converted to linting rules.
+-   For each tag look into
+    -   how many times they can appear in the DOM. Like `<title>` can only appear once and in the `<head>`.
+    -   the possible attribute values, and no duplication of attributes.
+-   Security best practices, should also be integrated. This includes how to get rid of all security attacks like cross-site, and more (as mentioned in the spec).
+-   For SSR framework, get all the routes and then run the linter on the generated HTML. Since in SSR, all HTML is hidden in JS and linter would not be of much use.
+
+## (HTML) - Minifier
+
+-   For each tag, use the spec to minify to the extreme.
+-   Add an option to further compress the output using popular compression techniques and show the output size comparison using various all the comparison options.
+-   Use DOM analyzer, to test the effectiveness of the minifier, in terms of `querySelector` performance, number of nodes, and other relevant stuff.
+
+## (HTML) - Formatter
+
+Create HTML formatter module for Configurable formatter.

@@ -127,3 +127,7 @@ Gitops fundamentals course by codefresh
 Gitops at scale course by codefresh
 
 awesome argo github repo
+amannn/action-semantic-pull-request
+conventional commits
+
+devops handbooks to how create world class agility, reliability and security in technology organizations book

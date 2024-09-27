@@ -25,3 +25,7 @@ pagefind: false
 -   add education (master, undergrad, school)
 -   add skill section
 -   add project section
+
+## project_ideas.md
+
+-   read yellow and other notebook and move relevant project ideas here

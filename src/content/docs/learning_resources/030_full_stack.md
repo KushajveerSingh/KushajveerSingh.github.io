@@ -179,6 +179,8 @@ Other
         -   chromium docs
         -   chrome university 2019 playlist
         -   [round up of web browser internals resources](https://developer.chrome.com/blog/round-up-of-web-browser-internals-resources)
+        -   Gecko documentation far better than chromium [link](https://firefox-source-docs.mozilla.org/index.html)
+        -   Read other major browser engine docs
     -   Chrome developer
         -   Dev tools
         -   Lighthouse

@@ -48,7 +48,7 @@ next: false
 -   `_italic*` - _italic_
 -   `~~strikethrough~~` - ~~strikethrough~~
 -   `[link to home page](../../)` - [link to homepage](/)
--   `![image-alt-text](./images/starlight_image_demo.jpeg)` - ![image-alt-text](./images/starlight_image_demo.jpeg)
+-   `![image-alt-text](../../assets/profile.jpeg)` - ![image-alt-text](../../../assets/profile.jpeg)
 -   `[link to markdown headings](#markdown)` - [link to markdown headings](#markdown)
 
 ### Table

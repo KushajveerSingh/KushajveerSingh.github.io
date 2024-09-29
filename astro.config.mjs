@@ -54,13 +54,19 @@ export default defineConfig({
               items: [
                 'learning_resources/books',
                 'learning_resources/random',
+                'learning_resources/certifications',
                 'learning_resources/digital_content',
                 'learning_resources/full_stack',
                 'learning_resources/devops',
                 'learning_resources/software',
                 'learning_resources/job',
-                'learning_resources/cpp',
-                'learning_resources/apple',
+                'learning_resources/money',
+                {
+                  label: 'Programming Languages',
+                  autogenerate: {
+                    directory: 'learning_resources/programming_languages',
+                  },
+                },
               ],
             },
             'project_ideas',

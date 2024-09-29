@@ -1,0 +1,57 @@
+---
+title: Go
+---
+
+-   https://github.com/dariubs/GoBooks
+-   Go docs
+    -   Getting started
+    -   Developing modules
+    -   A Tour of Go
+    -   Language Specification
+    -   Effective Go
+    -   Using and Understanding Go
+    -   References
+    -   Accessing databases
+-   Go By examples
+-   John Arundel books
+    -   For the love of Go
+    -   The power of Go Tools
+    -   The Power of go tests
+    -   Know go generics
+    -   Explore go cryptography
+-   O'Reiley books
+    -   Learning Go: An idiomatic approach to real-world problems
+    -   Efficient Go: Data-driven performance optimization
+    -   Cloud native Go: Building Reliable Services in Unreliable
+    -   Go cookbook: expert solutions for commonly needed go tasks
+    -   Concurrency in go: tools and techniques for developers
+-   Alex edwards books
+    -   Let's go
+    -   Let's go further
+-   checkmarx.gitbooks.io/go-scp
+-   Spaceship Go A journey into the standard library
+-   learn how to build an API First SAAS Web App in Go
+-   12 factor applications with docker and go
+-   Manning books
+    -   100 go mistakes and how to avoid them
+    -   go in action
+    -   build an orchestrator in go (from scratch)
+    -   grpc microservices in go
+    -   Shipping in go
+-   Microservices with go by alexandra
+-   Go with the domain: Building modern business software in go
+-   Everday go by alex ellis
+-   Corey scott
+    -   Beyond effective go Part 1
+    -   Beyond effective go part 2
+    -   Dependency injection in Go
+    -   Powerful command line applications in go
+-   Thorsten Ball
+    -   Writing an interpreter in go
+    -   Writing a compiler in go
+-   Crafting interpreters
+-   Event driven architecture in golang
+-   Domain driven design with golang
+-   Black hat go by tom steele
+-   network programming in go
+-   Anthony gg youtube

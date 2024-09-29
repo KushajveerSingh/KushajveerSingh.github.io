@@ -1,6 +1,5 @@
 ---
 title: Apple
-slug: learning_resources/apple
 ---
 
 ## Yet to explore

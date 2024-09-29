@@ -3,19 +3,34 @@ title: Project Ideas
 pagefind: false
 ---
 
+## Common things
+
+-   Start each project with a day spent on project planning, scope (including features), rough estimate.
+-   Do the first iteration of the project, which includes building a "hello, world" equivalent. This should include all the things, other than the actual core features (like deployment, docs, source control, ...).
+-   Refine the original estimate.
+-   After feature completion, do a review of the code base to ensure DRY, Orthogonality, ... principles are being followed. Refer to the following resources
+    -   [The Pragmatic Programmer](../books/general_programming/the_pragmatic_programmer_your_journey_to_mastery/)
+-   Do an iteration focused on performance optimization. This is where subsections of code are analyzed to, improve performance.
+
 ## Astro
 
 ### Asset shortcut plugin
 
 -   Make referencing asset folder easier. Currently to access the images, you have to use `../../assets`. But we can use `~` to reference `assets` by default.
 -   This is also true, when using `baseUrl`. As all the relative links have to add `baseUrl`.
+-   Using relative URLs should also be improved by this plugin. And this should take into account `baseUrl`, `trailingSlash` values as well.
+-   Modify Kushajveer.github.io repo after the project is implemented.
 
 ## Starlight
 
-### Docusaurus clone
+### Documentation clone
 
--   There are a tone of features in Docusaurus (and other static site generators) that are missing in Starlight.
+-   There are a tone of features in Docusaurus (and other static site generators like hugo, eleventy, gatsby, jekyll, material for mkdocs, sphinx, read the docs, asciidoc, bookstack, confluence) that are missing in Starlight.
 -   Clone starlight and create a new theme, with all these features included.
+-   Include remarkplugins, rehypeplugins.
+-   Add blog support (plus additional starlight plugins).
+-   Add protected pages for internal docs.
+-   Integrate all TODO from code in a single page.
 
 ### Sidebar utils plugin
 
@@ -37,6 +52,7 @@ Other stuff
 -   Create a Prettier plugin, that disables formatting of codeblocks in Markdown.
 -   Also, see if the logic can be extended to format the codeblock based upon the language used by the codeblock. And provide an option which can be provided in the backticks to disable formatting manually.
 -   Look into Prettier markdown code, to see if various formatting options can be disabled manually.
+-   Modify KushajveerSingh.github.io with relevant changes after finishing the project (remove prettier-ignore comments).
 
 ### Configurable Formatter
 
@@ -85,6 +101,7 @@ Other stuff
 -   For SSR framework, get all the routes and then run the linter on the generated HTML. Since in SSR, all HTML is hidden in JS and linter would not be of much use.
 -   Check HTML xmlns for XML, for stricter parsing.
 -   `<p><p>Text</p></p>` - Linter can look into unnecessary tags as well. What is nested div's are used, but the code be replaced with just one div.
+-   After reading best UI practices, see if these guidelines can be translated to a linter.
 -   Ensure all the tags are closed. Every tag (should probably) have a certain number of valid tags that can be nested inside of it. This information might be helpful for guessing if the tag was closed or not. When using the HTML parser, you have to look into if the AST returned includes auto-closing nodes added by the parser, which is what we don't want. The reason why we don't want auto-closing tags, is it sometimes results in weird behavior.
 
     -   This website lists [most common errors](https://htmlparser.info/conformance-checkers/).
@@ -108,14 +125,16 @@ Create HTML formatter module for Configurable formatter.
 -   For the streaming HTMl, build a visualization tool to show how the DOM looks over time. The streaming should be at 1 character increment levels. And then of course you can provide a batch size option.
 -   Show where the parser got halted. Like script, link, style tags halt the HTML parser. How can this information be made available to the users.
 
-## Spellcheck program
+## Other
+
+### Spellcheck program
 
 -   When using VSCode [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) extension, there are so many false positives.
 -   Make your own spell checker, and provide utilities to add their own content.
 -   For example, in case of HTML, the HTML spec contains all the valid words. So just add every word of HTML spec into the spell check dictionary, and this should include HTML specific words. You can look into creating separate dictionaries for each language.
 -   An alternative, is to look into the grammar of each language and add all the keywords and stuff like that. Also, for each language there are rules like, the function name can be anything, so spell checker should not be enforced there.
 
-## Project version and info tracker
+### Project version and info tracker
 
 **Motivation**\
 Make it easier to track the dependency of packages used across multiple projects, thus helping with version upgrades. And the same reasoning for personal info, like the tagline I use across all social media.
@@ -126,3 +145,57 @@ Other stuff
 -   Create a C++ script that can automatically get the version number of all the dependencies used by a project. So if you have 10 projects, you provide it 10 urls/locations and 10 methods to get all the required version numbers. And then you run the script whenever you want to update the page. It also fetches the latest package version.
 -   The information can be outputted in some standard format (read on which format to choose).
 -   Also, add personal information tracking. Like you are using a tagline across multiple social media accounts and pages. So you list things like tagline, name and then list of all locations those things are used.
+-   For MDN HTML docs, you have to check the modified files between the last and current commit.
+
+### NBA Game App
+
+-   How would a NBA game have played if there was a 4 point line, or the 3 point line was molded into a custom line, with all the related stats.
+-   Create a leaderboard of who can make the losing team the winner the fastest by modifying the 3 point line.
+-   Do the marketing and creating a viral hashtag like `myteamwon`.
+
+### Utility functions AI
+
+-   Create a list of all the utility functions in a project, and optionally a string that describes the intent of each utility function.
+-   When a new developer creates a utility function, they can query this database, to see if a similar utility function exists. And this can avoid duplication.
+-   This workflow can be triggered from GitHub comments as well (which is really helpful during a pull request).
+
+## Company Ideas
+
+### Basketball shooting machine
+
+-   Set up basketball shooting machines in gym and create a website for people to book 1 hour sessions.
+-   Split the charges/maintenance with the gym and yourself.
+-   Invest money equivalent to the cost of the machine, before expansion.
+
+### Ground marking machine
+
+-   Get the machine for marking grounds for baseball, football, ... and approach schools to do this for them.
+
+### Health information website
+
+-   The purpose of the website is to provide information that a normal person can use (alternatively, what is the base fitness, health knowledge that every human should have). This should not be geared towards some domain experts like body lifters, athletes.
+-   Create a website to provide information about healthy lifestyle (exercise, recovery, nutrition, sleep, ...).
+-   Completely free and proof-checked with experts. Donations are welcome but not expected.
+-   Have a forum section, where people can post suggestion for new/missing topics.
+-   How to take care of each body part (ear, nose, eyes, ...).
+-   For supplementation, show how you can get raw ingredients and make this stuff at home, optimized for your blood work/goals.
+
+Companion app
+
+-   To track stuff in a single place. Like for sleep, there are various metrics that can be tracked (all provided by a watch), or simply user logs.
+-   Make this app available on a cloud provider that people can setup themselves, so as to ensure all the sensitive data stays with them.
+-   Users can enter the stuff they eat daily (through a barcode scan) and the portion used, and the app will display the micro-nutrients consumed daily.
+
+### Pharmacy company
+
+-   Focus on one health domain, like eyes. What are all the possible disorders, and the best medicine for each.
+-   For some medicines, companies charge ridiculous amount of money (due to patents and copyright).
+-   Screw the patents, and create the cheapest possible option.
+-   Make the final price of the medicine completely transparent. If the medicine cost $10, then break it down to the smallest factor and show how you got $10 as the final price.
+
+### Origami machine
+
+-   It takes paper and diagram and does all the pre-creasing.
+-   Diagrams composed of grids, and creases are folds in the grid.
+-   The machine first makes the grid, and then square by square makes the creases.
+-   Software that helps making the creases easier.

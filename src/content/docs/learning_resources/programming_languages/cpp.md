@@ -1,6 +1,5 @@
 ---
 title: C++
-slug: learning_resources/cpp
 ---
 
 ## Learning C++

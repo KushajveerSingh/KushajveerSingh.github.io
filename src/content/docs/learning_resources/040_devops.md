@@ -28,6 +28,8 @@ slug: learning_resources/devops
     -   Logstash + Ingest Integration
     -   Kibana
 -   Grafana
+-   data transfer protocols (json grpc, protobufs, cap'n proto, flat buffers) on top of transfer protocoals.
+-   language server protocol
 
 ## Other
 

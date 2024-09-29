@@ -155,3 +155,18 @@ slug: learning_resources/software
 -   [Tech Interview Handbook](https://www.techinterviewhandbook.org/software-engineering-interview-guide/)
 -   [Front end Interview Handbook](https://www.frontendinterviewhandbook.com/introduction/)
 -   [FAANG Tech Leads](https://www.faangtechleads.com/)
+
+## Random topics
+
+-   Cryptography
+-   Theory of computation
+-   Security
+-   Information theory
+-   Computer architecture
+-   Operating systems
+-   Quantum computing
+-   Linear algebra
+-   Differential calculus
+-   integral calculus
+-   differential equations
+-   matrices

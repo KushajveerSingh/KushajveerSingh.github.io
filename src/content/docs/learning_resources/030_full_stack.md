@@ -60,7 +60,9 @@ slug: learning_resources/full_stack
 
 ## Frontend
 
-### MDN Miscellaneous
+-   [ ] [link](https://wpc.guide/) Web Platform Contribution Guide
+
+### MDN
 
 -   [ ] [link](https://developer.mozilla.org/en-US/docs/Glossary) Glossary
 -   [ ] [link](https://developer.mozilla.org/en-US/docs/Learn) Guides
@@ -87,16 +89,29 @@ slug: learning_resources/full_stack
     -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/Security) Security on the web
     -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/URI) URIs
     -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/WebDriver) WebDriver
--   [ ] [link](https://web.dev/) web.dev
-    -   [ ] [link](https://web.dev/learn/performance) Learn Performance
-    -   [ ] [link](https://web.dev/learn/privacy) Learn Privacy
-    -   [ ] [link](https://web.dev/learn/testing) Learn Testing
-    -   [ ] [link](https://web.dev/case-studies) Case studies
+
+### web.dev
+
+-   [ ] [link](https://web.dev/learn/performance) Learn Performance
+-   [ ] [link](https://web.dev/learn/privacy) Learn Privacy
+-   [ ] [link](https://web.dev/learn/testing) Learn Testing
+-   [ ] [link](https://web.dev/case-studies) Case studies
 
 ### HTML
 
--   [ ] [link](https://html.spec.whatwg.org/dev/) WHATWG Spec for Web Devs
--   MDN Reference
+-   [ ] [link](https://html.spec.whatwg.org/dev/) WHATWG HTML Spec for Web Devs
+-   [ ] Build a HTML Parser in Dart
+    -   [ ] [link](https://www.youtube.com/watch?v=sWZ9HooKwjI) HTML 6 | Rubber Duck Engineering | Episode #89
+    -   [ ] [link](https://www.youtube.com/watch?v=7RWbAZcXSIg) HTML 6.2 | Rubber Duck Engineering | Episode #90
+    -   [ ] [link](https://www.youtube.com/watch?v=EgSi2e-NhXc) HTML 2π | Rubber Duck Engineering | Episode #91
+    -   [ ] [link](https://www.youtube.com/watch?v=YH0yDdQY6-A) HTML Tree Building | Rubber Duck Engineering | Episode #92
+-   [ ] [link](https://leanpub.com/html-parser-book/) Idiosyncrasies of the HTML parser
+    -   [ ] [link](https://htmlparser.info/introduction/) Chapter 1. Introduction
+    -   [ ] [link](https://htmlparser.info/syntax/) Chapter 2. The HTML syntax
+    -   [ ] [link](https://htmlparser.info/parser/) Chapter 3. The HTML parser
+    -   [ ] [link](https://htmlparser.info/scripting/) Chapter 4. Scripting complications
+    -   [ ] [link](https://htmlparser.info/microsyntaxes/) Appendix C. Microsyntaxes
+-   [ ] MDN Reference
     -   [ ] [link](https://developer.mozilla.org/en-US/docs/Web/HTML) HTML: HyperText Markup Language
         -   [ ] References
         -   [ ] Guides
@@ -109,7 +124,7 @@ slug: learning_resources/full_stack
     -   [ ] [link](https://web.dev/learn/forms) Learn Forms
     -   [ ] [link](https://web.dev/learn/pwa) Learn PWA
 
----
+## ---
 
 Other
 

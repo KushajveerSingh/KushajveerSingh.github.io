@@ -71,6 +71,7 @@ export default defineConfig({
             },
             'project_ideas',
             'working',
+            'adventure',
           ],
           collapsed: true,
         },

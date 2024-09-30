@@ -190,6 +190,18 @@ Other
     -   Browser
         -   [Web browser engineering](https://browser.engineering/)
         -   67 Weird Debugging Tricks Your Browser Doesn't Want You to Know [article](https://alan.norbauer.com/articles/browser-debugging-tricks)
+    -   Browser engines
+        -   chromium
+        -   webkit
+        -   gecko
+        -   servo
+    -   Chrome browser blog
+        -   part 1 [link](https://developer.chrome.com/blog/inside-browser-part1)
+        -   part 2 [link](https://developer.chrome.com/blog/inside-browser-part2)
+        -   part 2 [link](https://developer.chrome.com/blog/inside-browser-part3)
+        -   part 2 [link](https://developer.chrome.com/blog/inside-browser-part4)
+    -   debugging [link](https://textslashplain.com/2020/09/29/debugging-browsers-tools-and-techniques/)
+        -   LINE BREAK
         -   v8 engine
         -   chromium docs
         -   chrome university 2019 playlist
@@ -246,6 +258,8 @@ Other
 web.dev/explore
 
 web.dev/patterns
+
+-   https://httparchive.org/ (check report section)
 
 ## Frontend frameworks
 
@@ -328,6 +342,7 @@ Frameworks
         -   volume 1
         -   volume 2
         -   volume 3
+    -   Bulletproof SSL and TLS
 -   API
     -   (book) Mastering API Architecture: Design, operate and evolve API-based systems
     -   (book) Learn API Testing: Norms, Practices and Guidelines
@@ -350,6 +365,10 @@ Frameworks
         -   Kong (built on top of NGINX)
         -   Apache APISIX (better than Kong)
         -   difference between kong, apisix [blog](https://api7.ai/blog/why-choose-apisix-instead-of-nginx-or-kong)
+
+## Web security
+
+-   The Tangled Web: A Guide to Securing Modern Web Applications
 
 ## Database
 

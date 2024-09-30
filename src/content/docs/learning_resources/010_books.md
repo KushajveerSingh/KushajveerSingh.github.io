@@ -7,6 +7,10 @@ slug: learning_resources/books
 
 -   [ ] The Pragmatic Programmer: Your Journey To Mastery, 20th Anniversary (2nd Edition) by _David Thomas_, _Andrew Hunt_ (352 pages) (Sep 13, 2019)
 
+Find book publishers
+
+-   A Book Apart
+
 Add to list
 
 -   Range: Why Generalists Triumph in a Specialized World

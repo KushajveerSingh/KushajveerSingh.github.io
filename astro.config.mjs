@@ -36,6 +36,10 @@ export default defineConfig({
           items: ['documentation/starlight'],
         },
         {
+          label: 'Frontend',
+          items: ['frontend/web_platform'],
+        },
+        {
           label: 'Books',
           items: [
             {

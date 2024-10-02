@@ -10,6 +10,7 @@ pagefind: false
 -   Refine the original estimate.
 -   After feature completion, do a review of the code base to ensure DRY, Orthogonality, ... principles are being followed. Refer to the following resources
     -   [The Pragmatic Programmer](../books/general_programming/the_pragmatic_programmer_your_journey_to_mastery/)
+    -   [Design Patterns: Elements of Reusable Object-Oriented Software](../books/general_programming/design_patterns_elements_of_reusable_object_oriented_software/)
 -   Do an iteration focused on performance optimization. This is where subsections of code are analyzed to, improve performance. Also, check the network tab to identify and bottlenecks.
 -   Do one final iteration to verify Pragmatic Programmer principles are being met.
 -   Do a project retrospect. Work on refining the estimate and identifying how to make it more accurate in the future.
@@ -138,11 +139,22 @@ Create HTML formatter module for Configurable formatter.
 -   The idea of the AI is to provide suggestions on why a certain pragmatic principle is being violated, and how to resolve it.
 -   An optimization can include, only running this stuff on the modified code, after the initial cache of the entire codebase has been created.
 
+Read the book again, for each example document it, and find similar examples online for best practices.
+
 Another idea for checking duplication of utility function
 
 -   Create a list of all the utility functions in a project, and optionally a string that describes the intent of each utility function.
 -   When a new developer creates a utility function, they can query this database, to see if a similar utility function exists. And this can avoid duplication.
 -   This workflow can be triggered from GitHub comments as well (which is really helpful during a pull request).
+
+Another idea for testing orthogonality
+
+-   Check the commit messages with bug/feature and create reports on the number of files changed, which can can test for orthogonality.
+
+### Language best practices
+
+-   For every language, there are common guidelines, best practices, best design patterns.
+-   This is an extension to Pragmatic Programmer project, for language specific stuff.
 
 ## Other
 

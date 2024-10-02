@@ -80,6 +80,12 @@ title: 'The Pragmatic Programmer: Your Journey To Mastery'
 -   If you don't listen to them, they won't listen to you. Encourage people to talk by asking questions, or ask them to restate the discussion in their own words.
 -   Always respond to email and voicemail, even if the response if "I'll get back to you later." This makes them feel that you haven't forgotten them.
 
+When communicating with users
+
+-   The users have a vague idea of what they want to achieve, but they neither know nor care about the details. That is your job, to guess intent and convert it to code.
+-   So don't give the users a requirements document to sign, as this will force them to make random changes to save face and sign it to get you out of their office.
+-   Instead give them code that runs, and that they can play with.
+
 ## How to write comments
 
 -   For non-API things, restrict the commenting to discussing why something is done, its purpose and its goal, as the code already shows how it is done.
@@ -93,7 +99,110 @@ title: 'The Pragmatic Programmer: Your Journey To Mastery'
 
 ## DRY (Don't repeat yourself) principle
 
-Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+Every piece of knowledge (not all code duplication is knowledge duplication) must have a single, unambiguous, authoritative representation within a system.
 
--   Duplicating knowledge in the specification, processes, and programs are bad from a maintenance perspective, as a single change has to be made at multiple places.
--
+-   Duplicating knowledge in the specification, processes, and programs are bad from a maintenance perspective, as a single change has to be made at multiple places, and you have to remember to make those places and pass it down to the next person.
+-   Acid test - when some single facet of the code has to change, do you have to make that change in multiple places. If you do, then the code is not DRY. For example, database scheme and a structure that holds it, code and documentation.
+-   Use accessor functions (getters and setters) to read and write attributes of objects. This ensures the code does not depend on the data structure exposed by the object.
+-   Duplication for performance cases. Make sure to localize the impact. The violation is not exposed to the outside world: only the methods within the class have to worry about keeping things straight.
+-   Duplication across internal APIs. Specify the APIs in a neutral format (like OpenAPI), which lets you generate documentation, mock APIs, functional tests, and API clients.
+-   Duplication across external APIs. If OpenAPI is not available, create one. OpenAPI lets you import the API spec into your local API tool.
+-   Duplication across data sources. Rather than manually creating the code to contain the data, copy the schema and use that to create the data structure automatically.
+    -   Another solution is to use a key-value data structure to store the data. And then add a table on top, to keep track of what each key-value store contains.
+-   Duplication across teams. Encourage active and frequent communication between developers, and have a central place in the source tree where utility routines and scripts can be deposited. And use code reviews, to ensure people are reading other people's code.
+
+## Orthogonality principle
+
+Two or more things are orthogonal if changes in once do not affect any of the others.
+
+-   Use a layers approach to design orthogonal systems. Because each layer uses only the abstractions provided by the layers below it, giving you more flexibility to make code changes.
+-   Test for orthogonal design. If you change the requirements behind a particular function, how many modules are affected. In an orthogonal system, the answer should be "one". Moving a button on GUI should not impact the database schema.
+-   Test how decoupled design is from real world.
+    -   Using telephone number as identifier is bad, if the phone company decided to change the area code.
+    -   Postal codes, Social Security Numbers or government IDs, email addresses, and domain are all external identifiers. These could change at any time for any reason.
+    -   Do not rely on properties of things you can't control.
+-   When using external APIs, check if using the API imposes changes on code that shouldn't be there.
+
+How to maintain orthogonality
+
+-   Keep your code decoupled. Create modules that don't reveal anything unnecessary to other modules and don't rely on other modules implementations.
+    -   If you have to change an object's state, get the object to do it for you.
+-   Avoid global data. When a component references global data, it ties itself into the other components that share that data. This is true for read only global data as well, due to problems with concurrency.
+-   Avoid similar functions. Strategy pattern can be used to avoid this.
+-   When writing unit tests, if you have import a large percentage of the rest of the system's code, then you found a module that is not well decoupled from the rest of the system.
+-   When fixing bugs, assess how localized the fix is. Are the changes scattered throughout the entire system.
+
+## Reversibility principle
+
+Critical decisions aren't easily reversible, like what database to use, or that architectural patterns, or a certain deployment model. This cannot be undone, except at great expense.
+
+-   Hide third-party APIs behind your own abstraction layer.
+-   Break code into components, even if you end up deploying on a single server. This is easier than creating a monolithic application and splitting it.
+-   No one knows what the future is gonna be. So when you see a new shiny thing, integrate it in a way, that it is easier to swap out with the new shiny thing that will come after that.
+
+## Tracer bullet development for novel projects
+
+When working on novel projects, don't spend a month producing 1000 pages describing the system. Use tracer code to know how the application as a whole hangs together, and show the users how the interactions will work in practice, and you want to give your developers an architectural skeleton on which to hang code.
+
+-   Look for important requirements, the ones that define the system.
+-   Look for areas where you have doubts, and where you see the biggest risks.
+-   Prioritize development so that these are the first areas you code.
+-   Build a "hello, world" equivalent. Get the system working for a simple use case, and then add stuff on top of that.
+    -   It includes error checking, structuring, documentation, and putting thing in production.
+    -   Then evaluate how close are you to the target, and readjust accordingly. Once you're on target, adding functionality is easy.
+
+This is different from prototyping. A prototype is meant to be thrown away, while tracer system is going to be used as the final system.
+
+## How to create prototypes
+
+The code can ignore details, unimportant at the moment. Prototype things that carry risk, anything that hasn't been tried before, or that is absolutely critical to the final system. Details to ignore
+
+-   Correctness - Use dummy data.
+-   Completeness - You can use preselected input data and one menu item.
+-   Robustness - Error checking is probably missing.
+-   Style - No need to comments or documentation.
+
+Goal of prototype is to learn lessons, instead of producing code.
+
+You can prototype these things
+
+-   Architecture
+-   New functionality in an existing system
+-   Structure or contents of external data
+-   Third-party tools or components
+-   Performance issues
+-   user interface design
+
+Things to learn after creating prototype
+
+-   Are the responsibilities of the major areas well defined and appropriate?
+-   Are the collaborations between major components well defined?
+-   Is coupling minimized?
+-   Can you identify potential sources of duplication?
+-   Are interface definitions and constraints acceptable?
+-   Does every module have an access path to the data it needs during execution? Does it have access when it needs it?
+
+## How to do estimates
+
+When giving someone as estimate, first figure out how accurate of an estimate does the other person want. 130 days and about 6 months have a different meaning.
+
+| Duration   | Quote estimate in |
+| ---------- | ----------------- |
+| 1-15 days  | Days              |
+| 3-6 weeks  | Weeks             |
+| 8-20 weeks | Months            |
+| 20+ weeks  | Do not estimate   |
+
+Tips on estimating
+
+-   Ask someone who has already done the thing you are trying to estimate.
+-   Understand the scope before the estimate. And give the estimate stating the scope, for example "Assuming there is no traffic, I should be in 20 minutes."
+-   From your understanding of the topic, build a rough-and-ready bare-bones mental model. And from that guess the estimate or say "You asked for an estimate to do X. However, it looks like Y, a variant of X, could be done in about half the time, and you lose only one feature."
+-   Break the model into components, and do an estimate for each component. Each component will have parameters, which will contribute to the final estimate. And this is what will introduce the most inaccuracies as well.
+-   After the project is over, do a retrospect and see where in the model/components/parameters you made mistakes, that got you an incorrect estimate.
+
+Here is how you can present your estimate "Will, if everything goes right, and this paint has the coverage they claim, it might be as few as 10 hours. But that's unlikely: I'd guess a more realistic figure if closer to 18 hours. And, of course, if the weather turns bad, that could push it out to 30 or more."
+
+And when management forces you for an estimate say "I'll get back to you." Make them understand that the team, their productivity, and the environment will determine the schedule.
+
+To estimate when using tracer bullet approach - Complete the first iteration, and refine the initial guess on the number of iterations and what can be included in each.

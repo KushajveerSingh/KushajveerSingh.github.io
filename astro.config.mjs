@@ -46,6 +46,7 @@ export default defineConfig({
               label: 'General Programming',
               items: [
                 'books/general_programming/the_pragmatic_programmer_your_journey_to_mastery',
+                'books/general_programming/design_patterns_elements_of_reusable_object_oriented_software',
               ],
             },
           ],

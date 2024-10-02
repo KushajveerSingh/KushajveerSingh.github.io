@@ -3,14 +3,16 @@ title: Project Ideas
 pagefind: false
 ---
 
-## Common things
+## Project writing tips
 
 -   Start each project with a day spent on project planning, scope (including features), rough estimate.
--   Do the first iteration of the project, which includes building a "hello, world" equivalent. This should include all the things, other than the actual core features (like deployment, docs, source control, ...).
+-   Do the first iteration of project, which includes building a "hello, world" equivalent. This should include all the things (like deployment, docs, source control, ...) other than the actual core features.
 -   Refine the original estimate.
 -   After feature completion, do a review of the code base to ensure DRY, Orthogonality, ... principles are being followed. Refer to the following resources
     -   [The Pragmatic Programmer](../books/general_programming/the_pragmatic_programmer_your_journey_to_mastery/)
--   Do an iteration focused on performance optimization. This is where subsections of code are analyzed to, improve performance.
+-   Do an iteration focused on performance optimization. This is where subsections of code are analyzed to, improve performance. Also, check the network tab to identify and bottlenecks.
+-   Do one final iteration to verify Pragmatic Programmer principles are being met.
+-   Do a project retrospect. Work on refining the estimate and identifying how to make it more accurate in the future.
 
 ## Astro
 
@@ -125,6 +127,23 @@ Create HTML formatter module for Configurable formatter.
 -   For the streaming HTMl, build a visualization tool to show how the DOM looks over time. The streaming should be at 1 character increment levels. And then of course you can provide a batch size option.
 -   Show where the parser got halted. Like script, link, style tags halt the HTML parser. How can this information be made available to the users.
 
+## Artificial Intelligence
+
+### Pragmatic programmer
+
+-   In the book Pragmatic programmer, there are multiple principles like DRY, orthogonality, and so on.
+-   Additionally, there are various code examples that shows things not to do.
+-   All of these things can be checked by AI on a codebase.
+-   This can be implemented by taking checking one function at a time. Create different LLM prompts for each principle and run for each function.
+-   The idea of the AI is to provide suggestions on why a certain pragmatic principle is being violated, and how to resolve it.
+-   An optimization can include, only running this stuff on the modified code, after the initial cache of the entire codebase has been created.
+
+Another idea for checking duplication of utility function
+
+-   Create a list of all the utility functions in a project, and optionally a string that describes the intent of each utility function.
+-   When a new developer creates a utility function, they can query this database, to see if a similar utility function exists. And this can avoid duplication.
+-   This workflow can be triggered from GitHub comments as well (which is really helpful during a pull request).
+
 ## Other
 
 ### Spellcheck program
@@ -152,12 +171,6 @@ Other stuff
 -   How would a NBA game have played if there was a 4 point line, or the 3 point line was molded into a custom line, with all the related stats.
 -   Create a leaderboard of who can make the losing team the winner the fastest by modifying the 3 point line.
 -   Do the marketing and creating a viral hashtag like `myteamwon`.
-
-### Utility functions AI
-
--   Create a list of all the utility functions in a project, and optionally a string that describes the intent of each utility function.
--   When a new developer creates a utility function, they can query this database, to see if a similar utility function exists. And this can avoid duplication.
--   This workflow can be triggered from GitHub comments as well (which is really helpful during a pull request).
 
 ## Company Ideas
 

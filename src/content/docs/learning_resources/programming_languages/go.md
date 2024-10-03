@@ -2,56 +2,75 @@
 title: Go
 ---
 
--   https://github.com/dariubs/GoBooks
--   Go docs
-    -   Getting started
-    -   Developing modules
-    -   A Tour of Go
-    -   Language Specification
-    -   Effective Go
-    -   Using and Understanding Go
-    -   References
-    -   Accessing databases
--   Go By examples
--   John Arundel books
-    -   For the love of Go
-    -   The power of Go Tools
-    -   The Power of go tests
-    -   Know go generics
-    -   Explore go cryptography
--   O'Reiley books
-    -   Learning Go: An idiomatic approach to real-world problems
-    -   Efficient Go: Data-driven performance optimization
-    -   Cloud native Go: Building Reliable Services in Unreliable
-    -   Go cookbook: expert solutions for commonly needed go tasks
-    -   Concurrency in go: tools and techniques for developers
--   Alex edwards books
-    -   Let's go
-    -   Let's go further
--   checkmarx.gitbooks.io/go-scp
--   Spaceship Go A journey into the standard library
--   learn how to build an API First SAAS Web App in Go
--   12 factor applications with docker and go
--   Manning books
-    -   100 go mistakes and how to avoid them
-    -   go in action
-    -   build an orchestrator in go (from scratch)
-    -   grpc microservices in go
-    -   Shipping in go
--   Microservices with go by alexandra
--   Go with the domain: Building modern business software in go
--   Everday go by alex ellis
--   Corey scott
-    -   Beyond effective go Part 1
-    -   Beyond effective go part 2
-    -   Dependency injection in Go
-    -   Powerful command line applications in go
--   Thorsten Ball
-    -   Writing an interpreter in go
-    -   Writing a compiler in go
--   Crafting interpreters
--   Event driven architecture in golang
--   Domain driven design with golang
--   Black hat go by tom steele
--   network programming in go
--   Anthony gg youtube
+-   [ ] [link](https://go.dev/doc/) Go Documentation
+    -   [ ] Getting started
+    -   [ ] Developing modules (skim all topics)
+    -   [ ] Talks (check [wiki](https://go.dev/wiki/GoTalks) for all the relevant talks)
+    -   [ ] Codewalks (only do Tools section)
+    -   [ ] Accessing databases
+    -   [ ] References (complete Go By Example before starting)
+    -   [ ] Using and Understanding Go
+-   [ ] [link](https://gobyexample.com/) Go By Example
+-   [ ] [link](https://www.alexedwards.net/blog) Alex Edwards
+    -   [ ] [link](https://lets-go.alexedwards.net/) Let's Go
+    -   [ ] [link](https://lets-go-further.alexedwards.net/) Let's Go Further
+    -   [ ] [link](https://www.alexedwards.net/blog) Articles
+-   [ ] [link](https://checkmarx.gitbooks.io/go-scp/content/) Go SCP
+-   [ ] [link](https://bitfieldconsulting.com/books) John Arundel books
+    -   [ ] [link](https://bitfieldconsulting.com/books/love) For the love of Go
+    -   [ ] [link](https://bitfieldconsulting.com/books/tools) The power of Go Tools
+    -   [ ] [link](https://bitfieldconsulting.com/books/tests) The Power of Go tests
+    -   [ ] [link](https://bitfieldconsulting.com/books/generics) Know go
+    -   [ ] [link](https://bitfieldconsulting.com/books/crypto) Explore go cryptography
+-   [ ] [link](https://coreyscott.dev/book/) Corey scott
+    -   [ ] Hands-On Dependency Injection in Go
+    -   [ ] Beyond effective Go Part 1 Achieving High-Performance Code
+    -   [ ] Beyond effective Go Part 2 Striving for High-Quality Code
+-   [ ] Thorsten Ball
+    -   [ ] Writing an interpreter in go
+    -   [ ] Writing a compiler in go
+-   [ ] [link](https://www.youtube.com/playlist?list=PL0xRBLFXXsP7-0IVCmoo2FEWBrQzfH2l8) Anthony GG How to Golang playlist
+-   [ ] Books
+    -   [ ] Manning books
+        -   [ ] 100 Go Mistakes and How to Avoid Them
+        -   [ ] Shipping Go: Develop, deliver, discuss, design, and go again
+        -   [ ] Learn Go with Pocket-Size Projects
+        -   [ ] Go by Example: Programmer's guide to idiomatic and testable code
+        -   [ ] Go in Practice, 2nd ed.
+        -   [ ] Go in Action, 2nd ed.
+        -   [ ] gRPC Microservices in Go
+        -   [ ] Build an Orchestrator in Go (From Scratch)
+        -   [ ] Learn Concurrent Programming with Go
+    -   [ ] O'Reiley books
+        -   [ ] Learning Go: An idiomatic approach to real-world problems
+        -   [ ] Efficient Go: Data-driven performance optimization
+        -   [ ] Cloud native Go: Building Reliable Services in Unreliable
+        -   [ ] Go cookbook: expert solutions for commonly needed go tasks
+        -   [ ] Concurrency in go: tools and techniques for developers
+    -   [ ] [link](https://github.com/dariubs/GoBooks) Other
+        -   [ ] Security with Go
+        -   [ ] Black Hat Go
+        -   [ ] Building Distributed Applications in Gin
+        -   [ ] Network Programming with Go
+        -   [ ] Powerful Command-Line Applications in Go
+        -   [ ] Microservices with Go
+        -   [ ] Event-Driven Architecture in Golang
+        -   [ ] Domain-Driven Design with Golang
+        -   [ ] Go with the Domain: Building Modern Business Software in Go
+        -   [ ] 12 Factor Applications with Docker and Go
+        -   [ ] Creative DIY Microcontroller Projects with TinyGo and WebAssembly
+        -   [ ] Distributed Services with Go Your Guide to Reliable, Scalable, and Maintainable Systems
+        -   [ ] Wasm Cooking with Golang
+        -   [ ] Generative Art in Go
+        -   [ ] Everyday Golang
+-   [ ] Conferences
+    -   [Gopher Academy](https://www.youtube.com/@GopherAcademy/playlists) - in july (videos are posted almost 1 year after the conference)
+    -   [GopherCon Europe](https://www.youtube.com/@GopherConEurope/playlists) - in june
+    -   [GopherCon UK](https://www.youtube.com/@GopherConUK/playlists) - in august
+    -   [ ] Latest links
+        -   [ ] [link](https://www.youtube.com/playlist?list=PL2ntRZ1ySWBep6rEAtp9jI6GXGZdlJmWN) GopherCon 2023
+        -   [ ] [link](https://www.youtube.com/playlist?list=PL2ntRZ1ySWBd4WWWIv9kykszeQhdxJ5jg) GopherCon 2023 - Lightning talks
+        -   [ ] [link](https://www.youtube.com/playlist?list=PLtoVuM73AmsIf99_fXLq_ehe2tpGVJQiF) GopherCon Europe: Berlin 2024
+        -   [ ] [link](https://www.youtube.com/playlist?list=PLDWZ5uzn69ezR6D6FUj_iBSOyRc9xaZFP) GopherCon UK 2024
+-   [ ] [link](https://github.com/avelino/awesome-go) Tools
+    -   [ ] [link](https://gin-gonic.com/) Gin

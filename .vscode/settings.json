@@ -40,6 +40,8 @@
   "cSpell.files": ["src/content/docs/**"],
   "cSpell.words": [
     "astro",
+    "Booch",
+    "Bron",
     "Callouts",
     "clonezilla",
     "Cloudfare",
@@ -58,6 +60,7 @@
     "HTMX",
     "Istio",
     "Kaizen",
+    "Kilian",
     "Kushaj",
     "Kushajveer",
     "kushajveersingh",
@@ -93,6 +96,7 @@
     "typeof",
     "Unopinionated",
     "unrepaired",
+    "Vlissides",
     "WHATWG",
     "wireframes"
   ]

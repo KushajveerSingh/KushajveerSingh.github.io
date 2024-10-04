@@ -1,6 +1,7 @@
 ---
 title: Software
-slug: learning_resources/software
+slug: internal/learning_resources/software
+pagefind: false
 ---
 
 ## Data Structures and Algorithms

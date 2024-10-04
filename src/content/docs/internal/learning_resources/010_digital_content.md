@@ -1,6 +1,7 @@
 ---
 title: Digital Content
-slug: learning_resources/digital_content
+slug: internal/learning_resources/digital_content
+pagefind: false
 ---
 
 ## Digital photography

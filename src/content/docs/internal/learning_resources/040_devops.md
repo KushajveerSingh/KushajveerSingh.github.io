@@ -1,6 +1,7 @@
 ---
 title: DevOps
-slug: learning_resources/devops
+slug: internal/learning_resources/devops
+pagefind: false
 ---
 
 -   Ansible
@@ -68,6 +69,10 @@ slug: learning_resources/devops
 
 -   RapidSeedbox
 
+## Secure browsing app
+
+https://www.securemessagingapps.com/
+
 ## Test browser for leaks and anti-tracking
 
 -   https://deviceinfo.me
@@ -104,6 +109,10 @@ slug: learning_resources/devops
 ## Linux tools
 
 -   [Nushell](https://www.nushell.sh/) - use this as shell (Bourne -> Bash -> Z shell -> Fish -> Nushell)
+
+## Other
+
+-   [link](https://github.com/sharkdp/hyperfine) hyperfine - CLI benchmarking tool
 
 ## Git
 

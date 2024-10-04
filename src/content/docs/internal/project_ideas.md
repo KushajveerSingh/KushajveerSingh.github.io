@@ -9,8 +9,8 @@ pagefind: false
 -   Do the first iteration of project, which includes building a "hello, world" equivalent. This should include all the things (like deployment, docs, source control, ...) other than the actual core features.
 -   Refine the original estimate.
 -   After feature completion, do a review of the code base to ensure DRY, Orthogonality, ... principles are being followed. Refer to the following resources
-    -   [The Pragmatic Programmer](../books/general_programming/the_pragmatic_programmer_your_journey_to_mastery/)
-    -   [Design Patterns: Elements of Reusable Object-Oriented Software](../books/general_programming/design_patterns_elements_of_reusable_object_oriented_software/)
+    -   [The Pragmatic Programmer](../../books/general_programming/the_pragmatic_programmer_your_journey_to_mastery/)
+    -   [Design Patterns: Elements of Reusable Object-Oriented Software](../../books/general_programming/design_patterns_elements_of_reusable_object_oriented_software/)
 -   Do an iteration focused on performance optimization. This is where subsections of code are analyzed to, improve performance. Also, check the network tab to identify and bottlenecks.
 -   Do one final iteration to verify Pragmatic Programmer principles are being met.
 -   Do a project retrospect. Work on refining the estimate and identifying how to make it more accurate in the future.
@@ -93,6 +93,7 @@ Other stuff
 
 -   There are chrome extensions that deal with analyzing DOM like number of nodes. Consolidate all the extensions into one script/extension.
 -   Chrome console shows DOM after JD render. Ctrl-U shows HTML returned by the server. In the chrome DOM, spaces and newline nodes are not shows. In your project show these as well.
+-   Add a graph showing the dom depth.
 
 ### Linter
 
@@ -104,12 +105,13 @@ Other stuff
 -   For SSR framework, get all the routes and then run the linter on the generated HTML. Since in SSR, all HTML is hidden in JS and linter would not be of much use.
 -   Check HTML xmlns for XML, for stricter parsing.
 -   `<p><p>Text</p></p>` - Linter can look into unnecessary tags as well. What is nested div's are used, but the code be replaced with just one div.
+-   h1 tags should be in order, and there should be no skipping.
 -   After reading best UI practices, see if these guidelines can be translated to a linter.
 -   Ensure all the tags are closed. Every tag (should probably) have a certain number of valid tags that can be nested inside of it. This information might be helpful for guessing if the tag was closed or not. When using the HTML parser, you have to look into if the AST returned includes auto-closing nodes added by the parser, which is what we don't want. The reason why we don't want auto-closing tags, is it sometimes results in weird behavior.
 
     -   This website lists [most common errors](https://htmlparser.info/conformance-checkers/).
 
-        ![Most common HTML errors](../../assets/project_ideas/html_linter_most_common_errors.png)
+        ![Most common HTML errors](../../../assets/project_ideas/html_linter_most_common_errors.png)
 
 ### Minifier
 
@@ -117,6 +119,7 @@ Other stuff
 -   Add an option to further compress the output using popular compression techniques and show the output size comparison using various all the comparison options.
 -   Use DOM analyzer, to test the effectiveness of the minifier, in terms of `querySelector` performance, number of nodes, and other relevant stuff.
 -   For removing optional closing tags, one situation that comes to my mind is people modifying HTML from JS. Using `.innerHTML` to access HTML, would produce HTML without closing tags in production, which would be different from development, since the closing tags would be enforced through the linter.
+-   Run the browser parser to generate HTML for the minified HTML and the original HTML, and it should be the same.
 
 ### Formatter
 
@@ -157,6 +160,16 @@ Another idea for testing orthogonality
 -   This is an extension to Pragmatic Programmer project, for language specific stuff.
 
 ## Other
+
+### Static Page encrypt/decrypt
+
+**Motivation**\
+When hosting documentation on CND (without server), it is not possible to hide internal pages from public. HTTP password, hiding routes exist
+
+-   Encrypt HTML of the page during build process, and when user navigates to the URL, the encrypted HTML is shown.
+-   User can provide a one-way password (decryption key). The program decrypts the HTML. One optimization you can do is, every decrypted HTML should contain doctype at the top, so if the decrypted html does not start with doctype, then say incorrect password.
+-   This encryption strategy can be extended to page components as well.
+-   Store the password in cache and revalidate after some time.
 
 ### Spellcheck program
 

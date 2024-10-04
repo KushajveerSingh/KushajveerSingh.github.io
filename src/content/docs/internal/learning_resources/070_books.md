@@ -1,15 +1,22 @@
 ---
 title: Books
-slug: learning_resources/books
+slug: internal/learning_resources/books
+pagefind: false
 ---
 
 ## General Programming
 
 -   [ ] The Pragmatic Programmer: Your Journey To Mastery, 20th Anniversary (2nd Edition) by _David Thomas_, _Andrew Hunt_ (352 pages) (Sep 13, 2019)
+    -   [ ] [link](https://reactivex.io/) ReactiveX
+-   [ ] ## Design Patterns: Elements of Reusable Object-Oriented Software by _Erich Gamma_, _Richard Johnson_, _John Vlissides_, _Grady Booch_ (416 pages) (Jan 1, 1994)
 
 Find book publishers
 
 -   A Book Apart
+-   The Pragmatic bookshelf
+-   no starch press
+-   Manning
+-   O'Reilly
 
 Add to list
 
@@ -18,6 +25,10 @@ Add to list
 
 Pragmatic recommended
 
+-   Operating Systems: Three Easy Pieces
+-   Structure and Interpretation of Computer Programs - 2nd Edition
+-   Object oriented modeling and design with uml
+-   Designing Data-Intensive Applications
 -   Clean code: A handbook of agile
 -   Clean architecture
 -   Refactoring improving the design of existing code
@@ -48,6 +59,24 @@ Pragmatic recommended
 -   design it from programmer to software architect
 -   code that fits in your head heuristics
 -   writing secure code, second edition
+-   Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions
+-   Game Programming Patterns
+
+Software architecture patterns
+
+-   Pattern-Oriented Software Architecture Volume 1: A System of Patterns
+-   Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects
+-   Pattern-Oriented Software Architecture Volume 3: Patterns for Resource Management
+-   Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing
+-   Pattern Oriented Software Architecture Volume 5: On Patterns and Pattern Languages
+-   Software Architecture in Practice (SEI Series in Software Engineering)
+-   The Process of Software Architecting
+-   https://arc42.org/
+-   https://c4model.com/
+-   https://www.uml.org/
+-   https://sysml.org/
+-   https://architectelevator.com/architecture/architect-bookshelf/#the-whole-shelf
+-   https://www.reddit.com/r/softwarearchitecture/comments/16usw23/megathread_software_architecture_books_resources/
 
 Books on
 

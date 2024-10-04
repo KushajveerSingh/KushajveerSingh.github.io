@@ -1,5 +1,6 @@
 ---
 title: C++
+pagefind: false
 ---
 
 ## Learning C++

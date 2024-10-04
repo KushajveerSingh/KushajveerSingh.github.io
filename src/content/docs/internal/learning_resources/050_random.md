@@ -1,6 +1,7 @@
 ---
 title: Random
-slug: learning_resources/random
+slug: internal/learning_resources/random
+pagefind: false
 ---
 
 ## Diagram
@@ -22,3 +23,7 @@ slug: learning_resources/random
 ## Standard/Specification
 
 -   [link](https://infra.spec.whatwg.org/) Infra Standard
+
+## GDPR
+
+## Semantic versioning

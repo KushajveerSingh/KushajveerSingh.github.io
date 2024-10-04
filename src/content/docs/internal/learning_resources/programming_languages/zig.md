@@ -1,5 +1,6 @@
 ---
 title: Zig
+pagefind: false
 ---
 
 -   zig.guide

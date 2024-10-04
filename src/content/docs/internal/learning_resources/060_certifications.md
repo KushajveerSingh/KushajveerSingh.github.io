@@ -1,6 +1,7 @@
 ---
 title: Certifications
-slug: learning_resources/certifications
+slug: internal/learning_resources/certifications
+pagefind: false
 ---
 
 -   Comptia

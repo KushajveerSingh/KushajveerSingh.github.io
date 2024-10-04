@@ -1,5 +1,6 @@
 ---
 title: Apple
+pagefind: false
 ---
 
 ## Yet to explore

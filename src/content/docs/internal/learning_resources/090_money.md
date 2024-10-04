@@ -1,6 +1,7 @@
 ---
 title: Money
-slug: learning_resources/money
+slug: internal/learning_resources/money
+pagefind: false
 ---
 
 -   JJ Collins

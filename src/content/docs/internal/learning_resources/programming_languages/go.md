@@ -1,5 +1,6 @@
 ---
 title: Go
+pagefind: false
 ---
 
 -   [ ] [link](https://go.dev/doc/) Go Documentation

@@ -131,6 +131,13 @@ Create HTML formatter module for Configurable formatter.
 -   For the streaming HTMl, build a visualization tool to show how the DOM looks over time. The streaming should be at 1 character increment levels. And then of course you can provide a batch size option.
 -   Show where the parser got halted. Like script, link, style tags halt the HTML parser. How can this information be made available to the users.
 
+## CSS
+
+### Inline style sorter
+
+-   Sort inline styles using the same rules as Tailwind CSS
+-   Use Tailwind logic to move all the inline styles to style.css
+
 ## Artificial Intelligence
 
 ### Pragmatic programmer
@@ -158,6 +165,11 @@ Another idea for testing orthogonality
 
 -   For every language, there are common guidelines, best practices, best design patterns.
 -   This is an extension to Pragmatic Programmer project, for language specific stuff.
+
+### Charts
+
+-   When creating charts, use AI to analyze how people of different calibre would use and understand the info.
+-   For the chart, show how info can be improved, what is redundant, and what extra info can be added to improve comprehension, and what supplementary/complementary charts can be used.
 
 ## Other
 
@@ -238,6 +250,15 @@ Companion app
 -   The machine first makes the grid, and then square by square makes the creases.
 -   Software that helps making the creases easier.
     Create HTML formatter module for Configurable formatter.
+
+### Job roles explores
+
+-   GIS
+-   Licensed land surveyor field
+-   Emergency management
+-   Project associate recovery specialist
+-   Mineral rights for oil and gas companies
+-   Check if company is meeting compliance for something
 
 ## (Template) - Template repo
 

@@ -22,6 +22,7 @@ Useful resource
 -   National monuments
 -   National seashores
 -   National recreational areas
+-   National forests
 
 ## Other places to check
 
@@ -41,6 +42,7 @@ Useful resource
 -   Churches
 -   Historic buildings in the city
 -   Haunted city trails
+-   Waterfall
 
 ## Useful resources
 
@@ -70,6 +72,7 @@ Useful resource
 -   Haunted house/trails and haunted city tours
 -   Sunset hike
 -   Stargazing
+-   Hot air balloon
 
 ## Local activities
 
@@ -104,3 +107,12 @@ Useful resource
 -   Viking Cruises company or european cruises
 -   Cooper river bridge run - charleston, south carolina
 -   Turtle season in summer charleston, south carolina beach
+-   Via de la Plata (Silver Way) 621 mile 40day hike in Spain
+-   Appalachian Trail (check the international version as well)
+-   Pacific Crest Trail on west coast side (Mexico to Canada)
+-   ETH Zürich swiss college
+-   Swiss Alps and Gineava
+
+## Random stuff
+
+-   In Europe, get train pass and use hostel to stay when backpacking.

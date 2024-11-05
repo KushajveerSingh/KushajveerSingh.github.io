@@ -9,6 +9,8 @@ pagefind: false
 -   [ ] The Pragmatic Programmer: Your Journey To Mastery, 20th Anniversary (2nd Edition) by _David Thomas_, _Andrew Hunt_ (352 pages) (Sep 13, 2019)
     -   [ ] [link](https://reactivex.io/) ReactiveX
 -   [ ] ## Design Patterns: Elements of Reusable Object-Oriented Software by _Erich Gamma_, _Richard Johnson_, _John Vlissides_, _Grady Booch_ (416 pages) (Jan 1, 1994)
+-   [ ] The Power of Ten - Rules for Developing Safety Critical Codeby _Gerald J. Holzmann_ [link](https://spinroot.com/gerard/pdf/P10.pdf)
+-   [ ] Tiger Style [link](https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/TIGER_STYLE.md)
 
 Find book publishers
 

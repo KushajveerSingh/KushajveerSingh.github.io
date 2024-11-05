@@ -7,6 +7,9 @@ pagefind: false
 ## UI/UX
 
 -   check frontend masters for ui/ux
+-   [Liftkit youtube](https://www.youtube.com/playlist?list=PLz1LO9ooPaOgioL3JjhvAQq4UVafrTpVi)
+-   [UX Tools youtube](https://www.youtube.com/@uxtools/videos)
+-   [Tonic youtube](https://www.youtube.com/@wearestudiotonic/videos)
 
 ### Tools
 
@@ -47,6 +50,7 @@ pagefind: false
 ### Design systems
 
 -   [ ] designsystems.com
+-   https://www.chainlift.io/liftkit
 -   check frontend masters
 -   [ ] Google Material
 -   [ ] Apple Human Interfaces
@@ -445,3 +449,9 @@ Start with [Hussein Nasser Courses](https://www.husseinnasser.com/p/about-hussei
     -   lint-staged
     -   pre-commit
 -   editorconfig
+
+## SAAS
+
+-   Stripe
+-   ParityDeals
+-   Socket.IO

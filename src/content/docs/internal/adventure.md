@@ -68,11 +68,14 @@ Useful resource
 -   Bird watching (get book and try to photograph all the bird)
 -   Fishing
 -   Float tubing
--   Northern lights
+-   Northern lights ([link](https://www.outsideonline.com/adventure-travel/essays/northern-lights-canada-joe-buffalo-child/?utm_term=ool_member&utm_campaign=oplus_topfive&utm_medium=email&_hsmi=332351068&utm_source=newsletter))
 -   Haunted house/trails and haunted city tours
 -   Sunset hike
 -   Stargazing
 -   Hot air balloon
+-   Follow eclipse on top of mountain peekl in national forest (next eclipse happening in Spain)
+-   Constellation
+    1
 
 ## Local activities
 
@@ -98,6 +101,7 @@ Useful resource
 -   Softball
 -   Golf
 -   Archery
+-   Canoe (sinle or two person)
 
 ## Places visited by friends
 
@@ -112,7 +116,12 @@ Useful resource
 -   Pacific Crest Trail on west coast side (Mexico to Canada)
 -   ETH Zürich swiss college
 -   Swiss Alps and Gineava
+-   Brazil Carnival (2 to 3 weeks)
 
 ## Random stuff
 
 -   In Europe, get train pass and use hostel to stay when backpacking.
+-   Get wilderness first aid certification
+-   https://lnt.org/
+-   Rope tying
+-   https://outwardbound.org/ for group trips

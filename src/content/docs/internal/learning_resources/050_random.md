@@ -27,3 +27,5 @@ pagefind: false
 ## GDPR
 
 ## Semantic versioning
+
+## Licenses

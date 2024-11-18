@@ -52,6 +52,10 @@ export default defineConfig({
           ],
         },
         {
+          label: 'C#',
+          items: ['csharp/tooling'],
+        },
+        {
           label: 'Internal',
           items: [
             'internal/adventure',

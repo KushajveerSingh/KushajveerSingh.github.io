@@ -121,6 +121,7 @@ pagefind: false
     -   [ ] [link](https://web.dev/explore/animations) Animations
     -   [ ] [link](https://web.dev/explore/identity) Identity
     -   [ ] [link](https://web.dev/explore/webassembly) WebAssembly
+        -   https://extism.org/
     -   [ ] [link](https://web.dev/explore/test-automation) Test automation
     -   [ ] [link](https://web.dev/explore/mini-apps) Mini apps
 -   [ ] [link](https://web.dev/baseline) Baseline
@@ -337,6 +338,7 @@ Frameworks
     -   Preact
     -   Remix
 -   React libraries
+    -   https://million.dev/
     -   State management
         -   Zustand
     -   Data Fetching

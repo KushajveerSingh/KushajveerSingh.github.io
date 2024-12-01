@@ -251,7 +251,11 @@ Companion app
 -   Software that helps making the creases easier.
     Create HTML formatter module for Configurable formatter.
 
-### Job roles explores
+### Stapler
+
+-   Stapler that folds paper instead of using physical stable.
+
+## Job roles explores
 
 -   GIS
 -   Licensed land surveyor field

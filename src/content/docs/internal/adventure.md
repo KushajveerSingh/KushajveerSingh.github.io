@@ -51,6 +51,7 @@ Useful resource
 -   https://www.alltrails.com/
 -   https://www.gaiagps.com/
 -   https://faroutguides.com/
+-   Georgia adventure bucket list by Rio [link](https://reachinternationaloutfitters.com/collections/state-bucket-lists/products/georgia-adventure-bucket-list)
 
 ## Activities
 
@@ -73,9 +74,9 @@ Useful resource
 -   Sunset hike
 -   Stargazing
 -   Hot air balloon
--   Follow eclipse on top of mountain peekl in national forest (next eclipse happening in Spain)
+-   Follow eclipse on top of mountain peek in national forest (next eclipse happening in Spain)
 -   Constellation
-    1
+-   White water rafting
 
 ## Local activities
 
@@ -101,7 +102,9 @@ Useful resource
 -   Softball
 -   Golf
 -   Archery
--   Canoe (sinle or two person)
+-   Canoe (single or two person)
+-   Polarized sunglasses
+-   Monocular with rage finder (military standard)
 
 ## Places visited by friends
 
@@ -117,6 +120,10 @@ Useful resource
 -   ETH Zürich swiss college
 -   Swiss Alps and Gineava
 -   Brazil Carnival (2 to 3 weeks)
+
+## Home ideas
+
+-   Create a crossword puzzle like shape with blocks with your name and other important stuff. Motivation: Saw mom/dad/child's name in this format.
 
 ## Random stuff
 

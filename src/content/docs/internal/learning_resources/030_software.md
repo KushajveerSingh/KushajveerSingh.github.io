@@ -84,6 +84,8 @@ pagefind: false
 
 ## Distributed Computing
 
+-   Gaurev Sen Research paper breakdowns [playlist](https://www.youtube.com/playlist?list=PLMCXHnjXnTnv5Pd3O1bKGHNU4mkvribaB)
+    -   20 Whitepapers that changed the world [For Senior Software Engineers] (also look for data platforms like Spark)
 -   Distributed systems course by Chris Colohan [website](https://www.distributedsystemscourse.com/), [playlist](https://www.youtube.com/playlist?list=PLOE1GTZ5ouRPbpTnrZ3Wqjamfwn_Q5Y9A)
 -   Distributed Systems lecture series by Martin Kleppmann [link](https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB)
 -   CSE 138 Distributed Systems lectures Spring 2021 by Lindsey Kuper [link](https://www.youtube.com/playlist?list=PLNPUF5QyWU8PydLG2cIJrCvnn5I_exhYx)
@@ -130,33 +132,6 @@ pagefind: false
 -   Books
     -   Database systems concepts 7th edition
     -   The Data Warehouse Toolkit 3rd edition
-
-## Behavioral
-
--   (Design Guru) [Grokking Modern Behavioral Interview](https://www.designgurus.io/course/grokking-behavioral-interview)
--   Tech Interview Handbook - [Behavioral Interview section](https://www.techinterviewhandbook.org/behavioral-interview/)
--   Find list of all common questions and prepare answers using STAR method and ChatGPT.
-
-## Salary
-
--   (DesignGuru) [Grokking Tech Salary Negotiations](https://www.designgurus.io/course/grokking-tech-salary-negotiations)
--   levels.fyi [blog](https://www.levels.fyi/blog/)
--   Negotiating salary reddit post
-    -   [post 1](https://www.reddit.com/r/cscareerquestions/comments/10aglj4/negotiating_salary_quick_guide_on_how_to_get_more/)
-    -   [post 2](https://www.reddit.com/r/softwaretesting/comments/10atho7/negotiating_salary_quick_guide_on_how_to_get_more/)
--   Amy Miller youtube ([Let's Talk Money playlist](https://www.youtube.com/playlist?list=PL6eafD4u4Fa5n6lWAlBsKfM7vp-zOmbuY))
--   Andrew LaCivitia ([Salary Negotiation Tips playlist](https://www.youtube.com/playlist?list=PLxjGQaV8rAh0ogBNS10RPDv7eHMnJwoNO))
--   Deepak Malhotra [youtube](https://www.youtube.com/@deepakmalhotra8983/videos)
--   How to Negotiate Compensation Like A Boss [youtube video](https://www.youtube.com/watch?v=ciMZ7tylBXs)
--   Skim Never Split the Difference book
--   Understand how stock works in startups and different types
--   https://www.youtube.com/watch?v=5pNZw92CCAo
-
-## Other
-
--   [Tech Interview Handbook](https://www.techinterviewhandbook.org/software-engineering-interview-guide/)
--   [Front end Interview Handbook](https://www.frontendinterviewhandbook.com/introduction/)
--   [FAANG Tech Leads](https://www.faangtechleads.com/)
 
 ## Random topics
 

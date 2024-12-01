@@ -113,6 +113,8 @@ https://www.securemessagingapps.com/
 ## Other
 
 -   [link](https://github.com/sharkdp/hyperfine) hyperfine - CLI benchmarking tool
+-   https://privacytests.org/
+-   https://www.getdante.com/ - audio and video solution for home
 
 ## Git
 

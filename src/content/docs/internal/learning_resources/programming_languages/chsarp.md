@@ -1,3 +1,52 @@
 ---
 title: C#
 ---
+
+-   [ ] Frontend mentor courses by Spencer
+    -   [ ] [link](https://frontendmasters.com/courses/csharp-dotnet/) C# and .NET Basics
+    -   [ ] [link](https://frontendmasters.com/courses/dotnet-apis/) Building APIs with C# and ASP.NET Core
+-   [ ] [link](https://juliocasal.com/courses/) Julio Casal courses
+    -   Testing
+        -   C# Unit Testing Essentials
+        -   Mastering C# Unit Testing
+    -   Web
+        -   .NET REST API Essentials
+        -   Building .NET REST APIs
+        -   Blazor Essentials
+    -   Microservices
+        -   Building Microservices with .NET
+        -   Unlock The Power of Microservices in tThe Azure Cloud
+        -   Automate All The Things with DevOps
+        -   Microservices Troubleshooting Essentials
+-   [ ] Tooling
+    -   [ ] JetBrains
+        -   [ ] [link](https://www.jetbrains.com/rider/) Rider
+        -   [ ] [link](https://www.jetbrains.com/dotcover/) dotCover - Unit test runner
+        -   [ ] [link](https://www.jetbrains.com/profiler/) dotTrace - performance profiler
+        -   [ ] [link](https://www.jetbrains.com/dotmemory/) dotMemory - memory profiler
+        -   [ ] [link](https://www.jetbrains.com/decompiler/) dotPeek - decompiler and assembly browser
+    -   [ ] [link](https://www.nuget.org/) nuget - package manager
+    -   [ ] [link](https://code.visualstudio.com/docs/csharp/introvideos-csharp) VSCode
+-   [ ] C#
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) Documentation
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/) Reference
+-   [ ] .NET
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/fundamentals/) Fundamentals
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/navigate/tools-diagnostics/) Tools and diagnostics
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/core/compatibility/breaking-changes/) Compatibility
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/navigate/advanced-programming/) Advanced programming
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/navigate/devops-testing/) DevOps and testing
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/navigate/security/) Security
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/navigate/data-access/) Data access
+    -   [ ] Architecture
+        -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/) .NET Microservices: Architecture for containerized .NET apps
+        -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/) Framework design guidelines
+        -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/) Library guidance
+-   [ ] ASP.NET
+    -   [link](https://learn.microsoft.com/en-us/aspnet/core/) Docs
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/) Architecture - Architect modern web apps with ASP.NET and Azure
+-   [ ] .NET Aspire
+    -   [link](https://learn.microsoft.com/en-us/dotnet/aspire/) Docs
+    -   [ ] [link](https://learn.microsoft.com/en-us/dotnet/architecture/cloud-native/) Architecture - Architecting Cloud Native .NET Applications for Azure
+-   [ ] [link](https://learn.microsoft.com/en-us/dotnet/azure/) Azure for .NET developers
+-   [ ] [link](https://learn.microsoft.com/en-us/azure/?product=popular) Azure

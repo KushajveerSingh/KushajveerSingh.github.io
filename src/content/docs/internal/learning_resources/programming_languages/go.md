@@ -12,6 +12,7 @@ pagefind: false
     -   [ ] References (complete Go By Example before starting)
     -   [ ] Using and Understanding Go
 -   [ ] [link](https://gobyexample.com/) Go By Example
+-   [ ] [link](https://google.github.io/styleguide/go/) Google style guide
 -   [ ] [link](https://www.alexedwards.net/blog) Alex Edwards
     -   [ ] [link](https://lets-go.alexedwards.net/) Let's Go
     -   [ ] [link](https://lets-go-further.alexedwards.net/) Let's Go Further
@@ -30,6 +31,9 @@ pagefind: false
 -   [ ] Thorsten Ball
     -   [ ] Writing an interpreter in go
     -   [ ] Writing a compiler in go
+-   [ ] Dave Cheney
+    -   [ ] [link](https://dave.cheney.net/high-performance-go-workshop/gophercon-2019.html) High Performance Go
+    -   [ ] [link](https://dave.cheney.net/practical-go) Practical Go
 -   [ ] [link](https://www.youtube.com/playlist?list=PL0xRBLFXXsP7-0IVCmoo2FEWBrQzfH2l8) Anthony GG How to Golang playlist
 -   [ ] Books
     -   [ ] Manning books
@@ -74,4 +78,14 @@ pagefind: false
         -   [ ] [link](https://www.youtube.com/playlist?list=PLtoVuM73AmsIf99_fXLq_ehe2tpGVJQiF) GopherCon Europe: Berlin 2024
         -   [ ] [link](https://www.youtube.com/playlist?list=PLDWZ5uzn69ezR6D6FUj_iBSOyRc9xaZFP) GopherCon UK 2024
 -   [ ] [link](https://github.com/avelino/awesome-go) Tools
-    -   [ ] [link](https://gin-gonic.com/) Gin
+
+## Full stack app tools
+
+-   [ ] [link](https://gin-gonic.com/) Gin
+-   [ ] [link](https://github.com/a-h/templ) templ
+-   [ ] [link](https://tailwindcss.com/) Tailwind CSS
+-   [ ] [link](https://htmx.org/) HTMX
+-   [ ] [link](https://hyperscript.org/) HyperScript
+-   [ ] [link](https://github.com/air-verse/air) air - Live reload
+-   [ ] [link](https://github.com/rs/zerolog) - ZeroLog - Logger
+-   [ ] [link](https://github.com/jackc/pgx) - pgx - Postgres driver

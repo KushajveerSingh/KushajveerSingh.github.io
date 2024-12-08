@@ -53,7 +53,12 @@ export default defineConfig({
         },
         {
           label: 'C#',
-          items: ['csharp/tooling'],
+          items: [
+            {
+              label: 'C#',
+              items: ['csharp/csharp/basic_syntax'],
+            },
+          ],
         },
         {
           label: 'Internal',

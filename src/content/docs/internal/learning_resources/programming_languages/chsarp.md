@@ -2,22 +2,22 @@
 title: C#
 ---
 
--   [ ] Frontend mentor courses by Spencer
-    -   [ ] [link](https://frontendmasters.com/courses/csharp-dotnet/) C# and .NET Basics
-    -   [ ] [link](https://frontendmasters.com/courses/dotnet-apis/) Building APIs with C# and ASP.NET Core
+-   [x] Frontend mentor courses by Spencer
+    -   [x] [link](https://frontendmasters.com/courses/csharp-dotnet/) C# and .NET Basics
+    -   [x] [link](https://frontendmasters.com/courses/dotnet-apis/) Building APIs with C# and ASP.NET Core
 -   [ ] [link](https://juliocasal.com/courses/) Julio Casal courses
-    -   Testing
-        -   C# Unit Testing Essentials
-        -   Mastering C# Unit Testing
-    -   Web
-        -   .NET REST API Essentials
-        -   Building .NET REST APIs
-        -   Blazor Essentials
-    -   Microservices
-        -   Building Microservices with .NET
-        -   Unlock The Power of Microservices in tThe Azure Cloud
-        -   Automate All The Things with DevOps
-        -   Microservices Troubleshooting Essentials
+    -   [ ] Testing
+        -   [ ] C# Unit Testing Essentials
+        -   [ ] Mastering C# Unit Testing
+    -   [ ] Web
+        -   [ ] .NET REST API Essentials
+        -   [ ] Building .NET REST APIs
+        -   [ ] Blazor Essentials
+    -   [ ] Microservices
+        -   [ ] Building Microservices with .NET
+        -   [ ] Unlock The Power of Microservices in tThe Azure Cloud
+        -   [ ] Automate All The Things with DevOps
+        -   [ ] Microservices Troubleshooting Essentials
 -   [ ] Tooling
     -   [ ] JetBrains
         -   [ ] [link](https://www.jetbrains.com/rider/) Rider

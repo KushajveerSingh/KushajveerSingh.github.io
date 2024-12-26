@@ -323,3 +323,57 @@ namespace LearnCSharp
   }
 }
 ```
+
+## Type system
+
+In addition to the compiler checking type safety at compile time, the compiler embeds the type information into the executable file as metadata. The common language runtime (CLR) uses that metadata at runtime to further gurantee type safety when it allocates and reclaims memory.
+
+All types derive from the base type `System.Object`. This unified type hierarchy is called Common Type System (CTS). In CTS a type can be either a value type or reference type.
+
+-   All built-in types are `struct` and are called value types.
+    -   Value types are sealed, meaning you can't derive a type from any value type.
+    -   The memory is allocated inline in whatever context the variable is declared, and there is no separate heap allocation or garbage collection overhead.
+    -   Value types are of two types `struct` and `enum`.
+    -   `struct` is used to create custom value types.
+-   Types defined using `class` or `record` are reference types.
+    -   The default value at initalization is `null`.
+    -   When object is created, the memory is allocated on the managed heap, and the variable holds reference to the location of the object.
+    -   In the garbage collection process, there is overhead for both allocation and deallocation.
+-   Literal values. For example `4.56`. These automatically receive a type from the compiler, which inherits from `System.Object` as well.
+    -   The type can be specified to the compiler using `4.56f`.
+-   Generic types. For example `System.Collections.Generic.List<T>`. `T` here is the placeholder for the actual type (the concrete type).
+-   `var` can be used to provide an implicit type. The variable would receive the type at compile time.
+-   Add `?` at the end of type (nullable value types) to allow the value to be `null`.
+    -   Inherit from `System.Nullable<T>`.
+
+If you define a class, struct, or record named `Person`, `Person` is the name of the type. If you declare and initialize a variable `p` of type `Person`, `p` is said to be an object or instance of `Person`.
+
+In some situations, compile-time and run-time types can be different.
+
+```c#
+object anotherMessage = "This is another string of characters";
+IEnumerable<char> someCharacters = "abcdefghijklmnopqrstuvwxyz";
+```
+
+In the above example, the run-time type is `string` but the compile-time type is `object` and `IEnumerable<char>`.
+
+-   Compile-time type determines all the actions taken by the compiler, like method call resolution, overload resolution, and available implicit and explicit casts.
+-   Run-time type determines all actions that are resolved at run time, like dispatching virtual method calls, evaluating `is` and `switch` expressions, and other type testing APIs.
+
+### Custom types
+
+How to choose which one to use
+
+-   If the data storage size is small, no more than 64 bytes, choose `struct` or `record struct`.
+-   If the type is immutable, or you want nondestructive mutation (create a new instance of object with modified values, instead of directly modifying the original instance), choose `struct` or `record struct`.
+-   If your type should have value semantics for equality (two instances are considered equal if their values are the same), choose `record class` or `record struct`.
+-   If the type is primarily used for storing data, not behavior, choose a `record class` or `record struct`.
+-   If the type is part of an inheritance hierarchy, choose a `record class` or `class`.
+-   If the type uses polymorphism, choose a `class`.
+-   If the primary purpose if behavior, choose a `class`.
+
+Summary of above
+
+-   Classes typpically store data that is intended to be modifed after a class object is created.
+-   Structs are best suited for small data structures, that typically would not be modifed after the struct is created.
+-   Records typpically store data that isn't instended to be modified after object is created. And they are mostly used to checking value equality, since records modify `Equals` and `GetHashCode`, and two records are equal if all their properties have the same values.

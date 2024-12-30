@@ -376,4 +376,94 @@ Summary of above
 
 -   Classes typpically store data that is intended to be modifed after a class object is created.
 -   Structs are best suited for small data structures, that typically would not be modifed after the struct is created.
--   Records typpically store data that isn't instended to be modified after object is created. And they are mostly used to checking value equality, since records modify `Equals` and `GetHashCode`, and two records are equal if all their properties have the same values.
+-   Records typpically store data that isn't instended to be modified after object is created. And they are mostly used for checking value equality, since records modify `Equals` and `GetHashCode`, and two records are equal if all their properties have the same values.
+
+### Namespaces
+
+Namespaces used to organize classes. `System` is namespace and `Console` is class inside that namespace.
+
+```c#
+System.Console.WriteLine("hello world");
+```
+
+To avoid writing the namespace use `using`
+
+```c#
+using System;
+Console.WriteLine("hello, world");
+```
+
+`global` is the "root" namespace. This is set by default by .NET depending on the application.
+
+```c#
+global::System.Console.WriteLine("hello");
+```
+
+### Classes
+
+-   When a variable is declared with class, the default value is `null` until an onject is assigned.
+-   When the object is created, enough memory is allocated on the managed heap for that specific object, which is later reclaimed by garbage collector.
+
+Class defition `[access modifier] - [class] - [identifier]`. Example `public class Customer`
+
+-   `access modifier` - default is `internal`.
+-   all the fields, properties, methods and events defined in the class are collectively referred to as _class members_.
+
+To create an object from the class use `new`. Example `Customer object1 = new Customer()`. This syntax can be simplified to `Customer object1 = new ()`;
+
+Use _field initializer_ to set the default value of the fields in the class. And then in the constructor, you can provide an initial value as well.
+
+```c#
+public class Container
+{
+    private int _capacity = 10; // field initializer
+
+    public Container(int capacity)
+    {
+        _capacity = capacity;
+    }
+}
+```
+
+In the above example, since the constructor is only being used to set the values for the fields, you can use a _primary constructor_ instead.
+
+```c#
+public class Container(int capacity)
+{
+    private int _capacity = capacity;
+}
+```
+
+Inheritance example `public class Manager : Employee { }`.
+
+### Records
+
+Use records when
+
+-   Object is immutable. Useful to make a type thread-safe, or you want the objects to have the same hash code in a hash table..
+-   You are interested in checking equality (all property and fields values compare equal) between two objects.
+
+Do not use record types, when you want to check for only one instance of a class. In that case, you need to do reference equality.
+
+At compile time will create method for equality, `ToString` and `Deconstruct` (if positional parameters were used).
+
+Syntax
+
+-   Instead of `class` use `record`.
+-   Instead of `struct` use `record struct`.
+
+Example
+
+```c#
+public record Person(string FirstName, string LastName);
+
+Person person1 = new("Kushajveer", "Singh");
+Person person2 = new("Kushajveer", "Singh");
+Console.WriteLine(person1 == person2); // True
+
+// Use "with" to copy the object and change any properties
+Person person3 = person1 with { FirstName = "Kushaj" };
+Console.WriteLine(person1 == person3); // False
+```
+
+### Interfaces

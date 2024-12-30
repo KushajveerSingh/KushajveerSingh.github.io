@@ -388,6 +388,7 @@ Start with [Hussein Nasser Courses](https://www.husseinnasser.com/p/about-hussei
 
 ## API
 
+-   OpenAPI https://swagger.io/specification/
 -   HTTP
     -   Mozialla HTTP observatory [link](https://github.com/mozilla/http-observatory)
     -   HTTP-1

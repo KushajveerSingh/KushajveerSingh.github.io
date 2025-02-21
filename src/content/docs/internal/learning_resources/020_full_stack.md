@@ -6,6 +6,7 @@ pagefind: false
 
 ## UI/UX
 
+-   https://www.youtube.com/@UICollectiveDesign
 -   check frontend masters for ui/ux
 -   [Liftkit youtube](https://www.youtube.com/playlist?list=PLz1LO9ooPaOgioL3JjhvAQq4UVafrTpVi)
 -   [UX Tools youtube](https://www.youtube.com/@uxtools/videos)
@@ -33,7 +34,11 @@ pagefind: false
 
 ### Books
 
+-   https://www.google.com/search?q=Articulating+Design+Decisions+by+Tom+Greever&sourceid=chrome&ie=UTF-8
+-   https://www.reddit.com/r/UXDesign/comments/x7zlco/ive_accumulated_a_list_of_ux_books_across_various/
 -   [ ] Refactoring UI
+    -   https://www.youtube.com/watch?v=7Z9rrryIOC4
+    -   https://www.youtube.com/playlist?list=PLDVpvW8ghDr9tasku_YvuTy_l0xPUtOHE
 -   [ ] Don't make me thing
 -   [ ] The Design of Everyday things
 -   [ ] The design of future things
@@ -185,7 +190,11 @@ pagefind: false
 
 Other
 
+-   Typography
+    -   https://typedesignresources.com/#learning-type-design
+    -   https://www.oddbird.net/2025/02/12/fluid-type/?ck_subscriber_id=2308324911
 -   CSS
+    -   https://every-layout.dev/
     -   Kevin powell courses
     -   Check kevin powell videos on each topic
     -   Frontend masters for topic like grid
@@ -227,6 +236,7 @@ Other
     -   Make a tool like stark to check accessibility with wcag spec and other specs you can find.
 -   Good [posts](https://adrianroselli.com/posts) by Adrian Roselli
 -   JavaScript
+    -   https://www.patterns.dev/
     -   web.dev/learn Learn JS
     -   Eloquent js [link](https://eloquentjavascript.net/)
     -   Modern JavaScript Tutorial
@@ -439,6 +449,7 @@ Start with [Hussein Nasser Courses](https://www.husseinnasser.com/p/about-hussei
 ## Web security
 
 -   The Tangled Web: A Guide to Securing Modern Web Applications
+-   https://cheatsheetseries.owasp.org/index.html
 
 ## Database
 

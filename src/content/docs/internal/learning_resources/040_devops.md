@@ -112,11 +112,14 @@ https://www.securemessagingapps.com/
 
 ## Other
 
+-   https://publicsuffix.org/list/
 -   [link](https://github.com/sharkdp/hyperfine) hyperfine - CLI benchmarking tool
 -   https://privacytests.org/
 -   https://www.getdante.com/ - audio and video solution for home
 -   https://suckless.org/
--   https://www.whonix.org/ -https://www.qubes-os.org/
+-   https://www.whonix.org/
+-   https://www.qubes-os.org/
+-   https://usebottles.com/
 
 ## Git
 

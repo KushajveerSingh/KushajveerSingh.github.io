@@ -63,10 +63,7 @@ export default defineConfig({
         {
           label: 'Internal',
           items: [
-            'internal/adventure',
             'internal/project_ideas',
-            'internal/tracker',
-            'internal/working',
             {
               label: 'Learning Resources',
               items: [

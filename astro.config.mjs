@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
 
@@ -12,6 +12,10 @@ import starlightImageZoom from 'starlight-image-zoom';
 export default defineConfig({
   site: 'https://KushajveerSingh.github.io',
   trailingSlash: 'always',
+
+  image: {
+    service: passthroughImageService(),
+  },
 
   markdown: {
     remarkPlugins: [],
